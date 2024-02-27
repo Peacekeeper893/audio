@@ -3,7 +3,7 @@ import BookDisplay from "./BookDisplay";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import ShortcutDisplay from "./ShortcutDisplay";
+import ShortcutDisplay from "./Utils/ShortcutDisplay";
 import SearchModal from "./SearchModal";
 import { IoSearch } from "react-icons/io5";
 // import LoadingScreen from "./LoadingScreen";
@@ -102,7 +102,6 @@ const Home = ({ loggedIn }) => {
             <Navbar loggedIn={loggedIn} />
             {/* Search bar for mobile displays */}
 
-
             <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-5">
                 <div className="flex w-full">
                     <input
@@ -120,8 +119,6 @@ const Home = ({ loggedIn }) => {
                         autoComplete="off"
 
                         // turn off predictive search
-
-
                     />
                     <div className="p-2 pt-3 border-gray-300 border-[4px] border-l-0 dark:bg-d-bg-200 rounded-xl rounded-l-none -ml-0.5">
                         <IoSearch />
@@ -130,9 +127,12 @@ const Home = ({ loggedIn }) => {
                 {searchmodal && <SearchModal query={query} />}
             </div>
 
-            <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3 flex justify-center pl-2 bg-stone-100 py-8 "> <Carousel books={hpbooks} /></div>
-            
-            <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full md:p-8 p-2">
+            <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3 flex justify-center pl-2 bg-stone-100 py-8 ">
+                {" "}
+                <Carousel books={hpbooks} />
+            </div>
+
+            <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full md:p-6 p-2">
                 <div className=" md:flex-[75]  ">
                     <div
                         className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
@@ -166,7 +166,7 @@ const Home = ({ loggedIn }) => {
                         )}
                     </div>
                 </div>
-                <div className="md:flex flex-col flex-[25] hidden">
+                <div className="md:flex flex-col ml-2 flex-[25] hidden">
                     <div className="  text-black my-5 dark:text-d-primary-400">
                         <input
                             type="search"
@@ -196,10 +196,7 @@ const Home = ({ loggedIn }) => {
                 </div>
             </div>
 
-
-            
-
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
                 <div
                     className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
                     id="hunger-games"
@@ -233,7 +230,7 @@ const Home = ({ loggedIn }) => {
                 </div>
             </div>
 
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
                 <div
                     className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
                     id="asoif"
@@ -267,7 +264,7 @@ const Home = ({ loggedIn }) => {
                 </div>
             </div>
 
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
                 <div
                     className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
                     id="hunger-games"
@@ -301,9 +298,7 @@ const Home = ({ loggedIn }) => {
                 </div>
             </div>
 
-
-
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
                 <div
                     className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
                     id="hunger-games"
@@ -336,7 +331,6 @@ const Home = ({ loggedIn }) => {
                     )}
                 </div>
             </div>
-
 
             <Footer />
         </Fragment>

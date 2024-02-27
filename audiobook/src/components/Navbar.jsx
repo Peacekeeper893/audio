@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { MdExpandMore } from "react-icons/md";
-import NovelSounds from "./NovelSounds";
+import NovelSounds from "./Utils/NovelSounds";
 import BrowseModal from "./BrowseModal";
 import { Link } from "react-router-dom";
-import Switcher from "./Switcher";
+import Switcher from "../Switcher";
 // import Login from "./Login";
 
 import { signOut } from "firebase/auth";
@@ -22,12 +22,12 @@ const Navbar = ({ loggedIn }) => {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    let displayName = "User"
+    let displayName = "User";
 
     if (user !== null) {
         displayName = user.displayName;
     }
-    
+
     // console.log(displayName)
 
     const handleLogout = () => {
@@ -71,8 +71,6 @@ const Navbar = ({ loggedIn }) => {
             </div>
 
             <div className="bg-slate-900 w-full text-white flex justify-between gap-6 py-2 dark:bg-d-bg-400">
-
-
                 <div className="md:ml-12 ml-6 flex justify-start gap-4">
                     <span className="hover:underline">
                         <Link to={"/"}>Home</Link>
@@ -89,7 +87,11 @@ const Navbar = ({ loggedIn }) => {
                 </div>
 
                 <div>
-                    {loggedIn && <p className="px-4 font-eczar md:text-lg">Hi {displayName}</p>}
+                    {loggedIn && (
+                        <p className="px-4 font-eczar md:text-lg">
+                            Hi {displayName}
+                        </p>
+                    )}
                 </div>
             </div>
         </Fragment>

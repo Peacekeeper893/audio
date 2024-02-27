@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ShortcutDisplay from "./ShortcutDisplay";
+import ShortcutDisplay from "./Utils/ShortcutDisplay";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -10,19 +10,16 @@ const SearchModal = ({ query }) => {
 
     useEffect(() => {
         setIsLoading(true);
-        
-        if (query !== "")
-        {
+
+        if (query !== "") {
             fetch(API_BASE + "/search/" + query)
-            .then((res) => res.json())
-            .then((data) => {
-                setRes(data);
-                setIsLoading(false);
-            })
-            .catch((err) => console.error(err));
-
+                .then((res) => res.json())
+                .then((data) => {
+                    setRes(data);
+                    setIsLoading(false);
+                })
+                .catch((err) => console.error(err));
         }
-
     }, [query]);
 
     return (
@@ -33,8 +30,8 @@ const SearchModal = ({ query }) => {
                 res.map((b) => (
                     <Link to={`book/${b["name"]}`}>
                         <ShortcutDisplay book={b} />
-                        <div className="my-3 "  />
-                            </Link>
+                        <div className="my-3 " />
+                    </Link>
                 ))
             )}
         </div>

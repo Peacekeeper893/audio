@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import ChapterList from "./ChapterList";
 import AboutBook from "./AboutBook";
 import Comments from "./Comments";
-import ProgressBarComponent from "../ProgressBarComponent";
+import ProgressBarComponent from "./ProgressBarComponent";
 
 const Navigation = ({ sendData, book, chapter_number }) => {
     const [open, setOpen] = useState("chapters");

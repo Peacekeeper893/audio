@@ -15,9 +15,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import {  signInWithEmailAndPassword   } from 'firebase/auth';
-import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -42,28 +42,25 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            navigate("/")
-            console.log(user);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
-        });
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                navigate("/");
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+            });
     };
 
     return (
@@ -125,7 +122,7 @@ export default function SignInSide() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
-                                onChange={(e)=>setEmail(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                                 autoFocus
                             />
                             <TextField
@@ -137,7 +134,7 @@ export default function SignInSide() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                onChange={(e)=>setPassword(e.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <FormControlLabel
                                 control={

@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { motion } from "framer-motion";
-// import { slideIn } from "../motion";
-// import { SectionWrapper } from "../hoc";
+
 
 const Modal = ({ openModalHandler, closeModalHandler, book }) => {
 

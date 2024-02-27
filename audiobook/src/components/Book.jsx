@@ -3,12 +3,12 @@ import ChapterPlayer from "./ChapterPlayer";
 import Hero from "./BookComponents/Hero";
 import Navigation from "./BookComponents/Navigation";
 import { useParams } from "react-router-dom";
-import Modal from "./Modal";
+import Modal from "./Utils/Modal";
 import Navbar from "./Navbar";
 
 
 import { auth } from "../firebase";
-import LoadingScreen from "./LoadingScreen";
+import LoadingScreen from "./Utils/LoadingScreen";
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
 const Book = ({ loggedIn }) => {
