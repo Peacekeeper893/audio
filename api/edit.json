@@ -1,0 +1,143 @@
+{
+    "_id": {
+      "$oid": "651aa4e462daaaef16a1ddbd"
+    },
+    "name": "Harry Potter and the Prisoner of Azkaban",
+    "author": "J.K Rowling",
+    "about": "Harry Potter and the Prisoner of Azkaban is the third book in J.K. Rowling's iconic Harry Potterseries. In this enchanting installment, Harry Potter returns to Hogwarts School of Witchcraft andWizardry for his third year. However, his school year takes an unexpected turn when it's revealed that the dangerous wizard Sirius Black has escaped from the wizarding prison, Azkaban.As Harry learns more about Sirius Black and his supposed connection to his own family, he embarks on a journey filled with mystery and intrigue. Alongside his loyal friends, Ron and Hermione, he unravels secrets about his past while trying to stay safe from the sinister Dementors that guard the school.Prisoner of Azkaban introduces readers to new magical creatures, such as Buckbeak the Hippogriff and the Marauder's Map, while delving deeper into the wizarding world's history and mythology. The novel explores themes of justice,forgiveness, and the power of friendship, making it a pivotal and captivating installment in the series.",
+    "chapters":[
+        {
+            "chapter_number": 1,
+            "chapter_title": "The Knight Bus",
+            "description": "Harry Potter finds himself stranded on Privet Drive during the summer when the Knight Bus arrives to rescue him.",
+            "url": "1LG4BwZa7JOG916V4fDVLPdQ-DAHraw2Y"
+          },
+          {
+            "chapter_number": 2,
+            "chapter_title": "The Leaky Cauldron",
+            "description": "Harry stays at the Leaky Cauldron and receives a warm welcome from the wizarding world as he awaits the start of his third year at Hogwarts.",
+            "url": "1Nj5k0_wx85zZVZmp-TE-6CRTWbnzi7Dr"
+          },
+          {
+            "chapter_number": 3,
+            "chapter_title": "The Dementor",
+            "description": "A Dementor attack on the Hogwarts Express sets the tone for a foreboding year at Hogwarts.",
+            "url": "1x3515f9mq84gBk6bTP_-AVKtY5oc_AX-"
+          },
+          {
+            "chapter_number": 4,
+            "chapter_title": "The Marauder's Map",
+            "description": "Harry discovers the Marauder's Map, a magical document that reveals the secrets of Hogwarts.",
+            "url": "1n15ARPbnGiL8xX-26m-Ho-hgCjBrgY1M"
+          },
+          {
+            "chapter_number": 5,
+            "chapter_title": "The Whomping Willow",
+            "description": "Harry and Ron crash into the Whomping Willow in a flying car, leading to a series of misadventures.",
+            "url": "11k1JsZ6RunYALf4tgNi5XqwGCf_UB8pp"
+          },
+          {
+            "chapter_number": 6,
+            "chapter_title": "Lupin's Lesson",
+            "description": "Professor Lupin introduces the students to the world of Defense Against the Dark Arts, including the Patronus Charm.",
+            "url": "1qTZm5y4ebOZToNDd58tVWnHGn_UGIFwv"
+          },
+          {
+            "chapter_number": 7,
+            "chapter_title": "The Boggart in the Wardrobe",
+            "description": "The students face a Boggart, a shape-shifting creature that takes on their worst fears.",
+            "url": "1QQf8DSK5h8VvRQYtypkHOAcNG28ovBpm"
+          },
+          {
+            "chapter_number": 8,
+            "chapter_title": "Flight of the Fat Lady",
+            "description": "Sirius Black's threat to Hogwarts prompts heightened security measures, including the Fat Lady's flight from her portrait.",
+            "url": "13IN8bu0cDEz6dWfwqvfBzc1vxE04C98I"
+          },
+          {
+            "chapter_number": 9,
+            "chapter_title": "Grim Defeat",
+            "description": "Harry and Hermione confront Professor Snape to save Buckbeak the Hippogriff from execution.",
+            "url": "17L3zHtmzvnL-V6TDK3lL-hyJEL8JD25F"
+          },
+          {
+            "chapter_number": 10,
+            "chapter_title": "The Marauder's Map",
+            "description": "Harry, Ron, and Hermione use the Marauder's Map to sneak into Hogsmeade and enjoy some freedom from school.",
+            "url": "1pbXwp_2mT0VD8AOCgZhpxeqygKZxM8FC"
+          },
+          {
+            "chapter_number": 11,
+            "chapter_title": "The Firebolt",
+            "description": "Harry receives a new Firebolt broomstick as an anonymous gift, leading to excitement and suspicion.",
+            "url": "1dwVo7OKXA7_t_S9HimZ6hamJYKy7fPr3"
+          },
+          {
+            "chapter_number": 12,
+            "chapter_title": "The Patronus",
+            "description": "Harry learns the Patronus Charm to defend against Dementors and uncovers the truth about his family.",
+            "url": "1DRr96mbisw-B7r8kAjwzWtFJRrZdJEAK"
+          },
+          {
+            "chapter_number": 13,
+            "chapter_title": "Gryffindor vs. Ravenclaw",
+            "description": "The Gryffindor Quidditch team faces Ravenclaw in an intense match, featuring the Firebolt's impressive performance.",
+            "url": "1Eillbto7smcYsqPl3NGB9UyiS7zeW-1i"
+          },
+          {
+            "chapter_number": 14,
+            "chapter_title": "Snape's Grudge",
+            "description": "Professor Snape's longstanding grudge against Harry becomes increasingly evident as tensions rise.",
+            "url": "1Z3APoXdvwyDVB-F9OlUJy-XZnlvhOKMl"
+          },
+          {
+            "chapter_number": 15,
+            "chapter_title": "The Quidditch Final",
+            "description": "Gryffindor plays in the Quidditch Final, but the match takes an unexpected turn with the arrival of the Dementors.",
+            "url": "1jzY_lVmk9RZeUv-Vpd1IgjqE-hYhfGdk"
+          },
+          {
+            "chapter_number": 16,
+            "chapter_title": "Professor Trelawney's Prediction",
+            "description": "Professor Trelawney makes a rare and ominous prediction, warning of impending danger.",
+            "url": "1N-4WGsRgbiOlwfXsw0JJowSboCyZMeme"
+          },
+          {
+            "chapter_number": 17,
+            "chapter_title": "Cat, Rat, and Dog",
+            "description": "The true identities of Crookshanks, Scabbers, and Padfoot are revealed, leading to a shocking revelation.",
+            "url": "1W4BcZV9T2qLlyt48cVNlkMq5RlbjZQgM"
+          },
+          {
+            "chapter_number": 18,
+            "chapter_title": "Moony, Wormtail, Padfoot, and Prongs",
+            "description": "Harry learns the truth about the Marauders, his father's friends, and their connection to his past.",
+            "url": "1WFykv3Orhlr0jEZPYlJbY-NGWcRQQVu6"
+          },
+          {
+            "chapter_number": 19,
+            "chapter_title": "The Servant of Lord Voldemort",
+            "description": "The shocking revelation of Pettigrew's betrayal and the return of Voldemort set the stage for a climactic confrontation.",
+            "url": "1C6wHZ60VV5UNDLkMm3vtxWYc3_R8yuDw"
+          },
+          {
+            "chapter_number": 20,
+            "chapter_title": "The Dementor's Kiss",
+            "description": "The Dementor's Kiss is narrowly avoided, and Sirius Black's fate hangs in the balance.",
+            "url": "13oBP1mdey01yFv9idGxhXL2p0eSNawCB"
+          },
+          {
+            "chapter_number": 21,
+            "chapter_title": "HERMIONE'S SECRET",
+            "description": "Harry Potter learns how Hermione has been attending classes all year.",
+            "url": "185nE4BfIYf2HYQR2CCOkYtIdyh0-w9Fw"
+          },
+          {
+            "chapter_number": 22,
+            "chapter_title": "Owl Post Again",
+            "description": "The school year concludes with Harry receiving a gift from Sirius Black, hinting at a brighter future.",
+            "url": "1qmfQayE_uNC_Ejx7AOaqiMHYVmwcruQ0"
+          }
+    ]
+
+  }
