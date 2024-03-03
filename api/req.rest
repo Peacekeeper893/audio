@@ -1,2 +1,6 @@
-GET http://localhost:3001/books/harrypotter
 
+
+# GET https://www.googleapis.com/books/v1/volumes?q=Kill a Mockingbird
+
+
+GET https://www.googleapis.com/books/v1/volumes/kwBlDwAAQBAJ

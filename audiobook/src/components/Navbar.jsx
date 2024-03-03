@@ -1,34 +1,46 @@
 import React, { Fragment, useState } from "react";
 import { MdExpandMore } from "react-icons/md";
 import NovelSounds from "./Utils/NovelSounds";
-import BrowseModal from "./BrowseModal";
+import BrowseModal from "./HomePageComponents/BrowseModal";
 import { Link } from "react-router-dom";
 import Switcher from "../Switcher";
-// import Login from "./Login";
-
+import SearchModal from "./HomePageComponents/SearchModal";
 import { signOut } from "firebase/auth";
-// import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-
 import { IoLogOutOutline } from "react-icons/io5";
+import { FaSearch } from "react-icons/fa";
+import { RiMenu3Fill } from "react-icons/ri";
+import MenuModal from "./HomePageComponents/MenuModal";
+import { createPortal } from "react-dom";
 
-// import {CgProfile} from "react-icons/cg"
-
-const Navbar = ({ loggedIn }) => {
+const Navbar = ({ loggedIn, home }) => {
     const [browse, setBrowse] = useState(false);
+    const [searchmodal, setSearchmodal] = useState(false);
+    const [query, setQuery] = useState("");
+    const [menu, setMenu] = useState(false);
 
     const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
+
+    const handleSearch = () => {
+        setSearchmodal(true);
+    };
+
+    const handleBlur = () => {
+        setTimeout(() => setSearchmodal(false), 250);
+    };
+
+    const handleOpenMenu = () => {
+        setMenu((prev) => !prev);
+    };
 
     let displayName = "User";
 
     if (user !== null) {
         displayName = user.displayName;
     }
-
-    // console.log(displayName)
 
     const handleLogout = () => {
         signOut(auth)
@@ -54,7 +66,17 @@ const Navbar = ({ loggedIn }) => {
                 </div>
 
                 <div className="flex md:gap-8 gap-3">
-                    <div className="self-center ">
+                    {loggedIn && (
+                        <div
+                            className="self-center text-md font-semibold md:text-lg dark:bg-d-bg-300 px-4 py-2  rounded-full hover:scale-105 bg-d-bg-500 text-white dark:text-d-primary-400"
+                            title={`Hello ${displayName}`}
+                        >
+                            <Link to={"/profile"}>
+                                {displayName.substring(0, 1)}
+                            </Link>
+                        </div>
+                    )}
+                    <div className="self-center " title="Switch Theme">
                         <Switcher />
                     </div>
                     {!loggedIn && (
@@ -63,37 +85,72 @@ const Navbar = ({ loggedIn }) => {
                         </div>
                     )}
                     {loggedIn && (
-                        <div className="self-center text-4xl hover:cursor-pointer">
+                        <div
+                            className="self-center text-4xl hover:cursor-pointer"
+                            title="Logout"
+                        >
                             <IoLogOutOutline onClick={handleLogout} />
                         </div>
                     )}
                 </div>
             </div>
 
-            <div className="bg-slate-900 w-full text-white flex justify-between gap-6 py-2 dark:bg-d-bg-400">
-                <div className="md:ml-12 ml-6 flex justify-start gap-4">
-                    <span className="hover:underline">
-                        <Link to={"/"}>Home</Link>
-                    </span>
+            {home && (
+                <>
+                    <div className="bg-slate-900 w-full text-white justify-between gap-6 py-3 dark:bg-d-bg-300 items-center hidden md:flex">
+                        <div className="md:ml-8 ml-6 flex justify-start content-center items-center gap-4 text-lg">
+                            <div className="mr-4">
+                                <RiMenu3Fill
+                                    onClick={handleOpenMenu}
+                                    className="cursor-pointer  hover:animate-pulse"
+                                />
 
-                    <div className=" flex " onClick={handleFocus}>
-                        <span className="hover:text-blue-400  ">Browse</span>
+                                {menu && (
 
-                        {browse && <BrowseModal />}
-                        <span className="p-1">
-                            <MdExpandMore />
-                        </span>
+                                    
+                                    <MenuModal setMenu={setMenu} menu={menu} />
+                                )}
+                            </div>
+                            <span className="hover:underline">
+                                <Link to={"/"}>Library</Link>
+                            </span>
+
+                            <div className=" flex " onClick={handleFocus}>
+                                <span className="hover:text-blue-400  ">
+                                    Browse
+                                </span>
+
+                                {browse && <BrowseModal />}
+                                <span className="p-1">
+                                    <MdExpandMore />
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className=" w-[30%] text-black  dark:text-d-primary-400 px-4 ">
+                            <div className="flex">
+                                <input
+                                    type="search"
+                                    name="searchq"
+                                    id="searchq"
+                                    placeholder="Search for an Audiobook..."
+                                    className="px-4 py-0.5 border-gray-300 border-[3px] w-full dark:bg-d-bg-200 rounded-lg"
+                                    onFocus={handleSearch}
+                                    onBlur={handleBlur}
+                                    value={query}
+                                    onChange={(e) => {
+                                        setQuery(() => e.target.value);
+                                    }}
+                                />
+                                <FaSearch className="-left-6 relative top-2" />
+                            </div>
+
+                            {searchmodal && <SearchModal query={query} />}
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    {loggedIn && (
-                        <p className="px-4 font-eczar md:text-lg">
-                            Hi {displayName}
-                        </p>
-                    )}
-                </div>
-            </div>
+                    <div className=" border-b-[0.5px] dark:border-d-primary-500"></div>
+                </>
+            )}
         </Fragment>
     );
 };

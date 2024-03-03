@@ -9,6 +9,7 @@ const API_BASE = "https://audioapi-euhq.vercel.app";
 const AboutBook = ({ about, bookName , bookTag }) => {
   
   const [similar, setsimilar] = useState([]);
+  const [info , setInfo] = useState([]);
 
   useEffect(() => {
     fetchSimilar();
@@ -16,13 +17,28 @@ const AboutBook = ({ about, bookName , bookTag }) => {
 
   const fetchSimilar = () => {
 
-    fetch(API_BASE + "/books/" + bookTag)
+    fetch("https://www.googleapis.com/books/v1/volumes?q=" + bookName + "&maxResults=1")
       .then((res) => res.json())
       .then((data) => {
-        setsimilar(data);
+        fetch("https://www.googleapis.com/books/v1/volumes/" + data.items[0].id).then((res) => res.json()).then((data) => {
+          console.log(data);
+          setInfo(data);
+        })
+
+      })
+      .catch((err) => console.error(err));
+  }
+
+  const fetchInfo = () => {
+
+    fetch(API_BASE + "/book/" + bookName)
+      .then((res) => res.json())
+      .then((data) => {
+        setInfo(data);
         console.log(data);
       })
       .catch((err) => console.error(err));
+
   }
     
   
@@ -34,28 +50,30 @@ const AboutBook = ({ about, bookName , bookTag }) => {
   return (
 
     <Fragment>
-    <div className=' md:px-12 md:py-12 min-h-[40vh] dark:bg-d-bg-200 dark:text-white text-justify px-6 py-6'>
-      {about}
+    <div className=' md:px-12 md:py-12 min-h-[30vh] dark:bg-d-bg-200 dark:text-white text-justify px-6 py-6'>
+      {info['volumeInfo'] && info['volumeInfo']['description'] ? ( info['volumeInfo']['description'] ) : (about)}
       </div>
       
-      <div className="text-2xl font-semibold font-serif text-center mb-5">Similar Books</div>
-      <div className="flex overflow-x-auto gap-8 px-8">
-        {similar.map((book) => {
-          return (
-            <div className="flex flex-col items-center gap-2 mb-5 flex-shrink-0">
-               {/* <Link to={`/book/${book.name}`} > */}
-              <div className="h-120 w-80 flex-[85%] justify-center overflow-hidden rounded-lg cursor-pointer"  onClick={() => window.location.href = `/book/${book.name}`}>
-                <img
-                  src={book.bookimg}
-                  alt="book cover"
-                  className="w-full h-full"
-                />
-              </div>
-               {/* </Link> */}
-              <div className="text-left font-semibold text-lg flex-[15%]">{book.name}</div>
-              </div>
-          );
-        })}
+      <div className='flex justify-between p-12'>
+        <div className='flex flex-col gap-1'>
+          <h2 className='text-2xl font-bold'>About the Author</h2>
+          <p className='text-justify'>{info['volumeInfo'] && info['volumeInfo']['authors'] ? (info['volumeInfo']['authors'][0]) : ("")}</p>
+          
+          
+          <br/>
+          
+          <h2 className='text-2xl font-bold'> Publish Date</h2>
+          <p>{info['volumeInfo'] && info['volumeInfo']['publishedDate'] ? (info['volumeInfo']['publishedDate']) : ("")}</p>
+        </div>
+        <div className='flex flex-col gap-1'>
+          <h2 className='text-2xl font-bold'>Publisher</h2>
+          <p className='text-justify'>{info['volumeInfo'] && info['volumeInfo']['publisher'] ? (info['volumeInfo']['publisher']) : ("")}</p>
+
+          <br/>
+          
+          <h2 className='text-2xl font-bold'> Page count</h2>
+          <p>{info['volumeInfo'] && info['volumeInfo']['pageCount'] ? (info['volumeInfo']['pageCount']) : ("")}</p>
+        </div>
       </div>
 
 

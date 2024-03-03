@@ -22,7 +22,6 @@ const Navigation = ({ sendData, book, chapter_number }) => {
 
     const curr_chap = localStorage.getItem(currentURL);
     const per = (curr_chap / chapter_length) * 100;
-    console.log(per);
 
     return (
         <Fragment>

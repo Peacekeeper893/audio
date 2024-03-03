@@ -2,17 +2,11 @@ import React from "react";
 
 const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
     const handleProgressChange = () => {
-
         try {
-
-        audioRef.current.currentTime = progressBarRef.current.value;
-
-            
+            audioRef.current.currentTime = progressBarRef.current.value;
         } catch (error) {
-
             audioRef.current.currentTime = 0;
             console.log("sorted");
-            
         }
     };
 
@@ -35,8 +29,12 @@ const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
                 onChange={handleProgressChange}
             />
             <div className="flex justify-between ">
-                <div className="time current relative left-[5%] ">{formatTime(timeProgress)}</div>
-                <div className="relative right-[5%] ">{formatTime(duration)}</div>
+                <div className="time current relative left-[5%] ">
+                    {formatTime(timeProgress)}
+                </div>
+                <div className="relative right-[5%] ">
+                    {formatTime(duration)}
+                </div>
             </div>
         </div>
     );

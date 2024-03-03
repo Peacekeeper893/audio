@@ -1,13 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
-import BookDisplay from "./BookDisplay";
+import BookDisplay from "./HomePageComponents/BookDisplay";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Footer from "./HomePageComponents/Footer";
 import ShortcutDisplay from "./Utils/ShortcutDisplay";
-import SearchModal from "./SearchModal";
+import SearchModal from "./HomePageComponents/SearchModal";
 import { IoSearch } from "react-icons/io5";
 // import LoadingScreen from "./LoadingScreen";
-import Carousel from "./Carousel";
+import Carousel from "./HomePageComponents/Carousel";
+import Collection from "./HomePageComponents/Collection";
+import Recent from "./ProfileComponents/Recent";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -21,6 +24,8 @@ const Home = ({ loggedIn }) => {
     const [searchmodal, setSearchmodal] = useState(false);
     const [lotrbooks, setLotrbooks] = useState([]); // Initialize loading state to true
     const [query, setQuery] = useState("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         GetBooks();
@@ -99,10 +104,12 @@ const Home = ({ loggedIn }) => {
 
     return (
         <Fragment>
-            <Navbar loggedIn={loggedIn} />
+            <Navbar loggedIn={loggedIn} home={true} />
+            
+
             {/* Search bar for mobile displays */}
 
-            <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-5">
+            <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-5 ">
                 <div className="flex w-full">
                     <input
                         type="text"
@@ -132,62 +139,17 @@ const Home = ({ loggedIn }) => {
                 <Carousel books={hpbooks} />
             </div>
 
-            <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full md:p-6 p-2">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex  ">
                 <div className=" md:flex-[75]  ">
-                    <div
-                        className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
-                        id="hp"
-                    >
-                        Harry Potter Books
-                    </div>
 
-                    <div className="flex flex-wrap gap-y-8 gap-x-5 md:gap-2 p-4">
-                        {isLoading === true ? (
-                            Array.from({ length: 5 }).map((_, index) => (
-                                <div
-                                    key={index}
-                                    className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
-                                >
-                                    <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
-                                </div>
-                            ))
-                        ) : (
-                            <Fragment>
-                                {hpbooks.map((book) => (
-                                    <Link to={`book/${book["name"]}`}>
-                                        <BookDisplay
-                                            name={book["name"]}
-                                            author={book["author"]}
-                                            bookimg={book["bookimg"]}
-                                        />
-                                    </Link>
-                                ))}
-                            </Fragment>
-                        )}
-                    </div>
+                    <Recent />
                 </div>
                 <div className="md:flex flex-col ml-2 flex-[25] hidden">
-                    <div className="  text-black my-5 dark:text-d-primary-400">
-                        <input
-                            type="search"
-                            name="searchq"
-                            id="searchq"
-                            placeholder="Search for an Audiobook..."
-                            className="p-2 border-gray-300 border-[4px] w-full dark:bg-d-bg-200 rounded-lg"
-                            onFocus={handleSearch}
-                            onBlur={handleBlur}
-                            value={query}
-                            onChange={(e) => {
-                                setQuery(() => e.target.value);
-                            }}
-                        />
-                        {searchmodal && <SearchModal query={query} />}
-                    </div>
 
-                    <div className="font-semibold text-xl">Recent Posts</div>
+                    <div className="font-semibold text-2xl mt-6 mb-1">Recently Added</div>
                     <hr className="border-gray-500 " />
-                    <div className=" mt-6 max-h-fit flex-col grid gap-10 md:gap-4">
-                        {books.map((book) => (
+                    <div className=" mt-8 max-h-fit flex-col grid gap-10 md:gap-4">
+                        {books.slice().reverse().slice(0,12).map((book) => (
                             <Link to={`book/${book["name"]}`}>
                                 <ShortcutDisplay book={book} />
                             </Link>
@@ -196,141 +158,28 @@ const Home = ({ loggedIn }) => {
                 </div>
             </div>
 
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
-                <div
-                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
-                    id="hunger-games"
-                >
-                    Lord of the Rings books
-                </div>
+            <Collection heading="Harry Potter Books" contents={hpbooks} isLoading={isLoading} />
 
-                <div className="flex flex-wrap  md:gap-26 p-4 gap-4 md:gap-2">
-                    {isLoading === true ? (
-                        Array.from({ length: 5 }).map((_, index) => (
-                            <div
-                                key={index}
-                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
-                            >
-                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
-                            </div>
-                        ))
-                    ) : (
-                        <Fragment>
-                            {lotrbooks.map((book) => (
-                                <Link to={`book/${book["name"]}`}>
-                                    <BookDisplay
-                                        name={book["name"]}
-                                        author={book["author"]}
-                                        bookimg={book["bookimg"]}
-                                    />
-                                </Link>
-                            ))}
-                        </Fragment>
-                    )}
-                </div>
-            </div>
-
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
-                <div
-                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
-                    id="asoif"
-                >
-                    A song of Ice and Fire Books
-                </div>
-
-                <div className="flex flex-wrap md:gap-26 gap-4 md:gap-2 p-4">
-                    {isLoading === true ? (
-                        Array.from({ length: 5 }).map((_, index) => (
-                            <div
-                                key={index}
-                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
-                            >
-                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
-                            </div>
-                        ))
-                    ) : (
-                        <Fragment>
-                            {asoifbooks.map((book) => (
-                                <Link to={`book/${book["name"]}`}>
-                                    <BookDisplay
-                                        name={book["name"]}
-                                        author={book["author"]}
-                                        bookimg={book["bookimg"]}
-                                    />
-                                </Link>
-                            ))}
-                        </Fragment>
-                    )}
-                </div>
-            </div>
-
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
-                <div
-                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
-                    id="hunger-games"
-                >
-                    Hunger Games Books
-                </div>
-
-                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-4 md:gap-2">
-                    {isLoading === true ? (
-                        Array.from({ length: 5 }).map((_, index) => (
-                            <div
-                                key={index}
-                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
-                            >
-                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
-                            </div>
-                        ))
-                    ) : (
-                        <Fragment>
-                            {hgbooks.map((book) => (
-                                <Link to={`book/${book["name"]}`}>
-                                    <BookDisplay
-                                        name={book["name"]}
-                                        author={book["author"]}
-                                        bookimg={book["bookimg"]}
-                                    />
-                                </Link>
-                            ))}
-                        </Fragment>
-                    )}
-                </div>
-            </div>
-
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-6 p-2">
-                <div
-                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
-                    id="hunger-games"
-                >
-                    Other Titles
-                </div>
-
-                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-4 md:gap-2">
-                    {isLoading === true ? (
-                        Array.from({ length: 5 }).map((_, index) => (
-                            <div
-                                key={index}
-                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
-                            >
-                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
-                            </div>
-                        ))
-                    ) : (
-                        <Fragment>
-                            {otherbooks.map((book) => (
-                                <Link to={`book/${book["name"]}`}>
-                                    <BookDisplay
-                                        name={book["name"]}
-                                        author={book["author"]}
-                                        bookimg={book["bookimg"]}
-                                    />
-                                </Link>
-                            ))}
-                        </Fragment>
-                    )}
-                </div>
-            </div>
+            <Collection
+                heading="Lord of the Rings Books"
+                contents={lotrbooks}
+                isLoading={isLoading}
+            />
+            <Collection
+                heading="A song of Ice and Fire Books"
+                contents={asoifbooks}
+                isLoading={isLoading}
+            />
+            <Collection
+                heading="Hunger Games Books"
+                contents={hgbooks}
+                isLoading={isLoading}
+            />
+            <Collection
+                heading="Other Titles"
+                contents={otherbooks}
+                isLoading={isLoading}
+            />
 
             <Footer />
         </Fragment>

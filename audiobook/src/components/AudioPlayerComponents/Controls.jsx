@@ -9,10 +9,8 @@ import {
 } from "react-icons/io5";
 
 import { TbRewindBackward10  , TbRewindForward10} from "react-icons/tb";
-
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
 import { BsArrowsFullscreen } from "react-icons/bs";
-// import UseAnimations from "react-useanimations";
 
 
 
@@ -33,10 +31,8 @@ const Controls = ({
     const [volumeval, setVolume] = useState(60);
     const [errorOccurred, setErrorOccurred] = useState(false);
     const [muteVolume, setMuteVolume] = useState(false);
-
     const playAnimationRef = useRef();
 
-    const imgurl = book[0]["bookimg"];
 
     useEffect(() => {
         if (audioRef) {
@@ -45,15 +41,15 @@ const Controls = ({
         }
     }, [volumeval, audioRef, muteVolume]);
 
+
+// add event listeners for audio playback errors
+    
     useEffect(() => {
         const audioElement = audioRef.current;
 
         const handleError = () => {
             setErrorOccurred(true);
-            console.log("Wazzawi");
-            const cpy = audioRef.current.currentTime;
-            audioRef.current.load();
-            audioRef.current.currentTime = cpy;
+            console.log("Audio Playback error");
         };
 
         const handleStalled = () => {
@@ -62,36 +58,20 @@ const Controls = ({
             );
         };
 
-        const handlePaused = () => {
-            setIsPlaying(false);
-            console.log("Paused");
-        };
-        const handlePlay = () => {
-            setIsPlaying((prev) => true);
-        };
-
-        // const handleEnded = () => {
-        //     console.log("Ended");
-        // };
-
         // Add event listeners to the audio element
         audioElement.addEventListener("error", handleError);
         audioElement.addEventListener("stalled", handleStalled);
-        audioElement.addEventListener("pause", handlePaused);
-        audioElement.addEventListener("play", handlePlay);
-        
 
         // Remove event listeners when the component unmounts
         return () => {
             audioElement.removeEventListener("error", handleError);
             audioElement.removeEventListener("stalled", handleStalled);
-            audioElement.removeEventListener("pause", handlePaused);
-            audioElement.removeEventListener("play", handlePlay);
         };
     }, []);
 
 
 
+// handle buttons on the control bar
 
     const togglePlayPause = () => {
         setIsPlaying((prev) => !prev);
@@ -110,8 +90,10 @@ const Controls = ({
         audioRef.current.currentTime += 10;
     };
 
+// add event listener for keyboard shortcuts
+
     useEffect(() => {
-        const handleSpacebarPress = (event) => {
+        const handleKeyPress = (event) => {
             switch (event.code) {
                 case 'Space':
                     togglePlayPause();
@@ -130,16 +112,37 @@ const Controls = ({
         };
     
         // Add event listener for the 'keydown' event
-        document.addEventListener('keydown', handleSpacebarPress);
-        
+        document.addEventListener('keydown', handleKeyPress);
     
         // Remove event listener when the component unmounts
         return () => {
-            document.removeEventListener('keydown', handleSpacebarPress);
+            document.removeEventListener('keydown', handleKeyPress);
         };
-    }, [togglePlayPause]);
+    }, []);
 
 
+// add action handlers for media shortcut
+
+    navigator.mediaSession.setActionHandler("previoustrack", function () {
+        handleprev();
+    });
+
+    navigator.mediaSession.setActionHandler("nexttrack", function () {
+        handlenext();
+    });
+
+    navigator.mediaSession.setActionHandler("play", function () {
+        setIsPlaying((prev) => true);
+    });
+
+    navigator.mediaSession.setActionHandler("pause", function () {
+        setIsPlaying(false);
+        console.log("Paused");;
+    });
+
+
+// repeat function to update the progress bar
+    
     let currentTime;
 
     const repeat = useCallback(() => {
@@ -160,18 +163,18 @@ const Controls = ({
         }
     }, [audioRef, duration, progressBarRef, setTimeProgress]);
 
+
+
+// Play and Pause the audio synced with the state
+
     useEffect(() => {
         if (isPlaying) {
             audioRef.current.play().catch(() => {
-                console.log("Wazza");
-                const cpy = audioRef.current.currentTime;
-                audioRef.current.load();
-                audioRef.current.currentTime = cpy;
-                // progressBarRef.current.value = currentTime;
+                console.log("Error in playing audio.");
             });
         } else {
             audioRef.current.pause();
-            console.log("check")
+            console.log("Playback Paused")
         }
         playAnimationRef.current = requestAnimationFrame(repeat);
     }, [isPlaying, audioRef, repeat]);
@@ -179,17 +182,6 @@ const Controls = ({
 
 
 
-
-    navigator.mediaSession.setActionHandler("previoustrack", function () {
-        handleprev();
-    });
-
-    navigator.mediaSession.setActionHandler("nexttrack", function () {
-        handlenext();
-    });
-
-
-    
 
 
     return (
