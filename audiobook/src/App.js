@@ -6,6 +6,7 @@ import HomeRedirect from "./components/HomeRedirect";
 import Profile from "./components/Profile";
 import AllBooks from "./components/AllBooks";
 import Request from "./components/Request";
+import Author from "./components/Author";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -51,6 +52,14 @@ function App() {
                     element={
                         <Fragment>
                             <Book loggedIn={loggedIn} />
+                        </Fragment>
+                    }
+                />
+                <Route
+                    path="/author/:author_name"
+                    element={
+                        <Fragment>
+                            <Author loggedIn={loggedIn} loading={ loading}  />
                         </Fragment>
                     }
                 />

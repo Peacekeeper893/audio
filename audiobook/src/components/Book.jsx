@@ -33,6 +33,7 @@ const Book = ({ loggedIn }) => {
     const [openModal, setOpenModal] = useState(false);
     const [user, setUser] = useState({});
 
+
     const openModalHandler = () => {
         setOpenModal((prev) => !prev);
     };
@@ -180,14 +181,15 @@ const Book = ({ loggedIn }) => {
                 <Modal
                     closeModalHandler={closeModalHandler}
                     openModalHandler={openModalHandler}
-                    book={book}
+                        book={book}
+                        
                 />
             ) : (
                 <div className="min-h-screen dark:bg-d-bg-200 dark:text-white">
                     <Navbar loggedIn={loggedIn} home={false} />
                     <hr className="dark:border-d-primary-300 border-d-bg-300" />
 
-                    <Hero book={book} user={user} sendData={sendData} />
+                    <Hero book={book} user={user} sendData={sendData} chapter_number={chapter_number} />
 
                     {!loggedIn ? (
                         <div className="text-center py-16 h-full dark:bg-d-bg-200 dark:text-white">
@@ -223,12 +225,13 @@ const Book = ({ loggedIn }) => {
                                 "url"
                             ]
                         }`}
-                        // url="https://audio.jukehost.co.uk/LGtRuEJuVLcX5cg0vQoHwL1hLDHW5bUu"
+                        // url="https://novsound-ubukj-234.s3.amazonaws.com/WTCS/4.mp3"
                         openModalHandler={openModalHandler}
                         openModal={openModal}
                         book={book}
                         chapter_number={chapter_number}
                         sendData={sendData}
+                        
                     />
                 </div>
             )}

@@ -88,3 +88,34 @@ ul.react-paginate li.disable,
 ul.react-paginate li.disabled a {
   cursor: default;
 }
+
+/* This will affect the scrollbar in the whole application */
+::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* color of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the scroll thumb when hovering */
+}
+
+
+.dark ::-webkit-scrollbar-track {
+  background: #282828; /* color of the tracking area */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #ba9ffb; /* color of the scroll thumb */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #7a5af5; /* color of the scroll thumb when hovering */
+}

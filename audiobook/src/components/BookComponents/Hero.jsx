@@ -7,15 +7,15 @@ import { getDocs, where, query } from "firebase/firestore";
 import { deleteDoc, doc } from "firebase/firestore";
 import ReactStars from "react-rating-stars-component";
 
-const Hero = ({ book, user, sendData }) => {
+import UseAnimations from "react-useanimations";
+import Activity from "react-useanimations/lib/activity";
 
-
+const Hero = ({ book, user, sendData, chapter_number }) => {
     const [third, setThird] = useState(false);
     const [isStarted, setIsStarted] = useState("no");
 
-
     // add and remove books from shelf
-    
+
     const handleAddShelf = async () => {
         addDoc(collection(db, "users", user.uid, "shelf"), {
             name: book[0]["name"],
@@ -75,25 +75,36 @@ const Hero = ({ book, user, sendData }) => {
             }, 0);
         }
     }, [book, user]);
-    
-// Play / Resume Button
-    
+
+    // Play / Resume Button
     useEffect(() => {
-        var currentURL = window.location.href;
+        if (chapter_number == 0) {
+            var currentURL = window.location.href;
 
-        // Get data from local storage with the URL as the key
-        var data = localStorage.getItem(currentURL);
+            var data = localStorage.getItem(currentURL);
 
-        // If data exists, set the state to it
-        if (data) {
-            setIsStarted("yes");
-        }
-    }, []);
+            // If data exists, set the state to it
+            if (data) {
+                setIsStarted("yes");
+            }
+        } else setIsStarted("playing");
+    }, [chapter_number]);
+
+    // useEffect(() => {
+    //     var currentURL = window.location.href;
+
+    //     // Get data from local storage with the URL as the key
+    //     var data = localStorage.getItem(currentURL);
+
+    //     // If data exists, set the state to it
+    //     if (data) {
+    //         setIsStarted("yes");
+    //     }
+    // }, []);
 
     const ratingChanged = (newRating) => {
         console.log(newRating);
     };
-    
 
     const handlePlay = () => {
         // Get the current URL
@@ -135,8 +146,8 @@ const Hero = ({ book, user, sendData }) => {
 
     return (
         <Fragment>
-            <div className="md:p-8 flex justify-start md:gap-9 dark:bg-d-bg-200 dark:text-white gap-4 p-4">
-                <div className="md:h-[370px] md:w-[280px] md:min-w-[250px]  h-[190px] w-[190px]">
+            <div className="md:p-8 flex flex-col md:flex-row md:justify-start items-center md:gap-9 dark:bg-d-bg-200 dark:text-white gap-4 p-4">
+                <div className="md:h-[370px] md:w-[280px] md:min-w-[250px]  h-[250px] w-[190px]">
                     <img
                         src={book[0]["bookimg"]}
                         alt=""
@@ -148,14 +159,18 @@ const Hero = ({ book, user, sendData }) => {
                     <h1 className="md:text-4xl text-xl mb-2">
                         {book[0]["name"]}
                     </h1>
-                    <p className="md:text-xl text-lg">{book[0]["author"]}</p>
+                    <a href={`/author/${book[0]["author"]}`} className="w-full ">
+                        <p className="md:text-xl text-lg text-center md:text-left mb-4 md:mb-0">
+                            {book[0]["author"]}
+                        </p>
+                    </a>
 
                     <p className="my-12 italic font-extralight max-w-[100%] max-h-[4.9em] overflow-hidden md:block hidden">
                         {book[0]["about"]}
                     </p>
 
-                    <div className="flex gap-4 justify-between">
-                        <div className="w-[30%]">
+                    <div className="flex md:flex-row flex-col-reverse items-center md:gap-4 justify-between gap-2">
+                        <div className="md:w-[30%] w-full">
                             {/* // Create a button to add to shelf */}
                             {!third && (
                                 <Button
@@ -180,10 +195,25 @@ const Hero = ({ book, user, sendData }) => {
                             {isStarted === "no" && (
                                 <Button handleTask={handlePlay} desc={"Play"} />
                             )}
+                            {isStarted === "playing" && (
+                                <div className="my-2 md:w-[80%] ">
+                                    <div className="dark:bg-d-bg-300 font-eczar dark:text-white font-semibold py-2  rounded  border-2 px-8  w-full flex gap-2 justify-center">
+                                        <div className="">
+                                            
+                                            <UseAnimations
+                                                animation={Activity}
+                                                size={26}
+                                                strokeColor="#0099FF"
+                                            />
+                                        </div>
+                                        <div>Playing</div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
-                        <div className=" flex-col justify-center items-center content-center p-4 ">
-                            <div>Rate this book</div>
+                        <div className="flex md:flex-col  items-center p-4 ">
+                            <div className="font-eczar pt-2 px-5">Rate this book:</div>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}

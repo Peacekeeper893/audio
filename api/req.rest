@@ -1,6 +1,6 @@
 
 
-# GET https://www.googleapis.com/books/v1/volumes?q=Kill a Mockingbird
+GET https://www.googleapis.com/books/v1/volumes?q=+inauthor:J.K Rowling
 
 
-GET https://www.googleapis.com/books/v1/volumes/kwBlDwAAQBAJ
+# GET https://www.googleapis.com/books/v1/volumes/kwBlDwAAQBAJ

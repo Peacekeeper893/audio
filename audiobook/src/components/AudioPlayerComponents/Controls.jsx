@@ -11,6 +11,8 @@ import {
 import { TbRewindBackward10  , TbRewindForward10} from "react-icons/tb";
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
 import { BsArrowsFullscreen } from "react-icons/bs";
+import { GiContract } from "react-icons/gi";
+
 
 
 
@@ -58,14 +60,24 @@ const Controls = ({
             );
         };
 
+        const hanndleEnded = () => {
+
+            if (chapter_number < book[0]["chapters"].length) {
+                sendData(chapter_number + 1);
+            }
+        };
+
+
         // Add event listeners to the audio element
         audioElement.addEventListener("error", handleError);
         audioElement.addEventListener("stalled", handleStalled);
+        audioElement.addEventListener("ended", hanndleEnded);
 
         // Remove event listeners when the component unmounts
         return () => {
             audioElement.removeEventListener("error", handleError);
             audioElement.removeEventListener("stalled", handleStalled);
+            audioElement.removeEventListener("ended", hanndleEnded);
         };
     }, []);
 
@@ -186,11 +198,11 @@ const Controls = ({
 
     return (
         <div className="controls-wrapper">
-            <div className={`controls md:flex justify-between px-6 ${openModal && "text-3xl md:pb-2 pb-12"}`}>
+            <div className={`controls md:flex justify-between px-6 ${openModal && "text-3xl md:pb-0 md:-mb-5 pb-12 "}`}>
                 <div className="md:flex-[15%] hidden md:flex  self-center">
 
                     <select
-                        className={`bg-transparent text-black  block ${openModal ? "md:hidden" : "md:block"} dark:placeholder-opacity-50 dark:ring-1 dark:ring-black ring-1 ring-gray-800 font-semibold font-sans rounded-lg pl-2  w-[42%] md:ml-8 mb-1`}
+                        className={`bg-transparent text-black cursor-pointer  block ${openModal ? "md:block text-gray-400 ring-gray-600 dark:ring-gray-600 text-2xl" : "md:block"} dark:placeholder-opacity-50 dark:ring-1 dark:ring-black ring-1 ring-gray-800 font-semibold font-sans rounded-lg pl-2  w-[45%] md:ml-8 mb-1`}
                         onChange={(e) => {
                             audioRef.current.playbackRate = e.target.value;
                         }}
@@ -209,24 +221,24 @@ const Controls = ({
    
                 </div>
 
-                <div className="md:flex-[70%] self-center text-center pl-2 gap-10">
-                    <button className={`px-2 ${openModal && "text-gray-1f00"}`} onClick={handleprev}>
+                <div className="md:flex-[70%] self-center text-center pl-2 gap-10 ">
+                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-100"}`} onClick={handleprev}>
                         <IoPlaySkipBackSharp />
                     </button>
-                    <button className={`px-2 ${openModal && "text-gray-400"}`} onClick={handleback10}>
+                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-400"}`} onClick={handleback10}>
                     <TbRewindBackward10/>
                     </button>
 
-                    <button onClick={togglePlayPause} className="px-2">
+                    <button onClick={togglePlayPause} className="px-2 hover:scale-110">
                         {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
                     </button>
-                    <button className={`px-2 ${openModal && "text-gray-400"}`} onClick={handleforward10}>
+                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-400"}`} onClick={handleforward10}>
                         
                     
                     <TbRewindForward10/>
                         
                     </button>
-                    <button className={`px-2 ${openModal && "text-gray-100"}`} onClick={handlenext}>
+                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-100"}`} onClick={handlenext}>
                         <IoPlaySkipForwardSharp />
                     </button>
                 </div>
@@ -279,11 +291,17 @@ const Controls = ({
                         <option value="2">2x</option>
                     </select>
                     </div>
-                    <div className="md:self-center pl-4 left-0">
-                        <BsArrowsFullscreen
+                    <div className="md:self-center pl-4 left-0 cursor-pointer md:content-center hover:scale-110">
+
+                        {!openModal ? (                        <BsArrowsFullscreen
                             onClick={openModalHandler}
-                            className={`${openModal ? "text-2xl" : ""}`}
-                        />
+                            className={`${openModal ? "text-2xl" : "text-lg"}`}
+                        />) : (<GiContract
+                            onClick={openModalHandler}
+                            className={`${openModal ? "text-2xl" : "text-lg"}`}
+                        
+                        />)}
+
                     </div>
                 </div>
             </div>
