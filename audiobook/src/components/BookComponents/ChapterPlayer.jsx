@@ -31,10 +31,10 @@ const Chapter = ({
                 <p
                     className={`${
                         openModal &&
-                        "bg-transparent bottom-2 text-4xl md:text-6xl font-sans text-[#ececec] mb-4 lg:px-72 lg:mx-8 text-center"
+                        "bg-transparent bottom-2 text-2xl md:text-4xl lg:text-6xl font-sans text-[#ececec] mb-4 lg:px-72 lg:mx-8 text-center"
                     } ${
                         !openModal && "text-2xl font-semibold"
-                    } py-3 text-center`}
+                    } md:py-3 text-center`}
                 >
                     {book[0]["chapterdetails"]
                         ? title

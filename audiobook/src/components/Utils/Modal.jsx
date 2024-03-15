@@ -1,12 +1,23 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { GrNext } from "react-icons/gr";
+import { FcNext } from "react-icons/fc";
+import { MdNavigateNext } from "react-icons/md";
+import { MdArrowDropDown } from "react-icons/md";
 
-const Modal = ({ openModalHandler, closeModalHandler, book }) => {
+const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendData }) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [focused, setFocused] = useState(true);
+    const [upnext, setUpnext] = useState(false);
+    const [nxtchapters, setNxtchapters] = useState([]);
     const inactivityTimeout = useRef(null);
 
-    console.log(focused);
+    // console.log(focused);
+
+    useEffect(() => {
+
+        setNxtchapters(book[0]["chapters"].slice(chapter_number, chapter_number + 4 > book[0]["chapters"].length ? book[0]["chapters"].length : chapter_number + 4));
+    }, [chapter_number]);
 
     useEffect(() => {
         if (isFirstRender) {
@@ -42,6 +53,10 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
         };
     }, [focused]);
     let burl;
+
+    const handleUpNext = () => {
+        setUpnext((prev) => !prev);
+    };
 
     if (window.innerWidth > 1024) {
         burl = book[0]["bookimg"];
@@ -98,7 +113,7 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
                 animate="visible"
                 variants={variants}
                 transition={transition}
-                className="hidden md:block lg:h-[60%] md:bottom-[60vh] md:w-[40%] md:left-[30%] absolute lg:bottom-20 h-[60%] bottom-[40vh] left-[23%] right-[25%] w-[70%] lg:w-[20%] lg:left-[2%] z-30"
+                className="hidden md:block lg:h-[60%] md:bottom-[35vh] md:w-[50%] md:left-[32%] absolute lg:bottom-20 h-[60%] bottom-[40vh] left-[23%] right-[25%] w-[70%] lg:w-[20%] lg:left-[2%] z-30"
             >
                 <img
                     src={book[0]["bookimg"]}
@@ -117,7 +132,46 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
                 />
             </div>
 
-            {/* <div className="md:hidden absolute bottom-0 h-20 bg-red-500 w-full">njtgjt</div> */}
+            <div
+                className="hidden cursor-pointer absolute top-[12vh] right-[1vw] text-gray-400  bg-transparent bg-opacity-30 w-32 md:block"
+                onClick={handleUpNext}
+            >
+                <div className="md:flex items-center gap-2">
+                    <div className="underline underline-offset-8">Up Next</div>
+                    <div className=" pt-1 ">
+                        {!upnext && (
+                            <span style={{ color: "#9CA3AF" }}>
+                                <MdNavigateNext size={18} />
+                            </span>
+                        )}
+                        {upnext && (
+                            <span style={{ color: "#9CA3AF" }}>
+                                <MdArrowDropDown size={18} />
+                            </span>
+                        )}
+                    </div>
+                </div>
+                {upnext && <div className=" h-24 w-32  mt-6 flex flex-col gap-3">
+
+                    {nxtchapters && nxtchapters.map((chapter, index) => {
+
+                        return (
+                            <div key={index} className="text-gray-400 text-sm flex w-full gap-2 hover:scale-105 duration-300" onClick={() => { sendData(chapter.chapter_number) }}>
+
+                            <p>  {chapter.chapter_number}.</p> 
+                            <p>    {chapter.chapter_title}</p>
+
+                                
+                                
+                                
+                            </div>
+                        );
+
+                    })}
+                    
+                
+                </div>}
+            </div>
         </div>
     );
 };

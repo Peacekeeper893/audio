@@ -13,7 +13,7 @@ const Collection = ({ heading, contents, isLoading ,progress }) => {
                 {heading}
             </div>
 
-            <div className="flex flex-wrap  md:gap-26 p-4 gap-9 md:gap-2">
+            <div className="flex flex-wrap  md:gap-26 p-4 gap-8 md:gap-2">
                 {isLoading === true ? (
                     Array.from({ length: 5 }).map((_, index) => (
                         <div

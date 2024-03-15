@@ -182,6 +182,8 @@ const Book = ({ loggedIn }) => {
                     closeModalHandler={closeModalHandler}
                     openModalHandler={openModalHandler}
                         book={book}
+                        chapter_number={chapter_number}
+                        sendData={sendData}
                         
                 />
             ) : (
