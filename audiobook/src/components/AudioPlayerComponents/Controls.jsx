@@ -8,13 +8,10 @@ import {
     IoPauseSharp,
 } from "react-icons/io5";
 
-import { TbRewindBackward10  , TbRewindForward10} from "react-icons/tb";
+import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import { GiContract } from "react-icons/gi";
-
-
-
 
 const Controls = ({
     audioRef,
@@ -27,14 +24,13 @@ const Controls = ({
     book,
     openModal,
     isPlaying,
-    setIsPlaying
+    setIsPlaying,
 }) => {
     // const [isPlaying, setIsPlaying] = useState(true);
     const [volumeval, setVolume] = useState(60);
     const [errorOccurred, setErrorOccurred] = useState(false);
     const [muteVolume, setMuteVolume] = useState(false);
     const playAnimationRef = useRef();
-
 
     useEffect(() => {
         if (audioRef) {
@@ -43,9 +39,8 @@ const Controls = ({
         }
     }, [volumeval, audioRef, muteVolume]);
 
+    // add event listeners for audio playback errors
 
-// add event listeners for audio playback errors
-    
     useEffect(() => {
         const audioElement = audioRef.current;
 
@@ -61,12 +56,10 @@ const Controls = ({
         };
 
         const hanndleEnded = () => {
-
             if (chapter_number < book[0]["chapters"].length) {
                 sendData(chapter_number + 1);
             }
         };
-
 
         // Add event listeners to the audio element
         audioElement.addEventListener("error", handleError);
@@ -81,9 +74,7 @@ const Controls = ({
         };
     }, []);
 
-
-
-// handle buttons on the control bar
+    // handle buttons on the control bar
 
     const togglePlayPause = () => {
         setIsPlaying((prev) => !prev);
@@ -102,19 +93,19 @@ const Controls = ({
         audioRef.current.currentTime += 10;
     };
 
-// add event listener for keyboard shortcuts
+    // add event listener for keyboard shortcuts
 
     useEffect(() => {
         const handleKeyPress = (event) => {
             switch (event.code) {
-                case 'Space':
+                case "Space":
                     togglePlayPause();
                     break;
-                case 'ArrowRight':
+                case "ArrowRight":
                     // Handle right arrow key press
                     handleforward10();
                     break;
-                case 'ArrowLeft':
+                case "ArrowLeft":
                     // Handle left arrow key press
                     handleback10();
                     break;
@@ -122,18 +113,17 @@ const Controls = ({
                     break;
             }
         };
-    
+
         // Add event listener for the 'keydown' event
-        document.addEventListener('keydown', handleKeyPress);
-    
+        document.addEventListener("keydown", handleKeyPress);
+
         // Remove event listener when the component unmounts
         return () => {
-            document.removeEventListener('keydown', handleKeyPress);
+            document.removeEventListener("keydown", handleKeyPress);
         };
     }, []);
 
-
-// add action handlers for media shortcut
+    // add action handlers for media shortcut
 
     navigator.mediaSession.setActionHandler("previoustrack", function () {
         handleprev();
@@ -149,16 +139,14 @@ const Controls = ({
 
     navigator.mediaSession.setActionHandler("pause", function () {
         setIsPlaying(false);
-        console.log("Paused");;
+        console.log("Paused");
     });
 
+    // repeat function to update the progress bar
 
-// repeat function to update the progress bar
-    
     let currentTime;
 
     const repeat = useCallback(() => {
-
         try {
             currentTime = audioRef.current.currentTime;
             setTimeProgress(currentTime);
@@ -171,13 +159,14 @@ const Controls = ({
             playAnimationRef.current = requestAnimationFrame(repeat);
         } catch (error) {
             console.log("Error");
-            localStorage.setItem(`${book[0].name}-${chapter_number}`, currentTime.toString());
+            localStorage.setItem(
+                `${book[0].name}-${chapter_number}`,
+                currentTime.toString()
+            );
         }
     }, [audioRef, duration, progressBarRef, setTimeProgress]);
 
-
-
-// Play and Pause the audio synced with the state
+    // Play and Pause the audio synced with the state
 
     useEffect(() => {
         if (isPlaying) {
@@ -186,59 +175,79 @@ const Controls = ({
             });
         } else {
             audioRef.current.pause();
-            console.log("Playback Paused")
+            console.log("Playback Paused");
         }
         playAnimationRef.current = requestAnimationFrame(repeat);
     }, [isPlaying, audioRef, repeat]);
 
-
-
-
-
-
     return (
         <div className="controls-wrapper">
-            <div className={`controls md:flex justify-between px-6 ${openModal && "text-3xl md:pb-0 md:-mb-5 pb-12 "}`}>
+            <div
+                className={`controls md:flex justify-between px-6 ${
+                    openModal && "text-3xl md:pb-0 md:-mb-5 pb-4 "
+                }`}
+            >
                 <div className="md:flex-[15%] hidden md:flex  self-center">
-
                     <select
-                        className={`bg-transparent text-black cursor-pointer  block ${openModal ? "md:block text-gray-400 ring-gray-600 dark:ring-gray-600 text-2xl" : "md:block"} dark:placeholder-opacity-50 dark:ring-1 dark:ring-black ring-1 ring-gray-800 font-semibold font-sans rounded-lg pl-2  w-[45%] md:ml-8 mb-1`}
+                        className={`bg-transparent text-black cursor-pointer  block ${
+                            openModal
+                                ? "md:block text-gray-400 ring-gray-600 dark:ring-gray-600 text-2xl"
+                                : "md:block"
+                        } dark:placeholder-opacity-50 dark:ring-1 dark:ring-black ring-1 ring-gray-800 font-semibold font-sans rounded-lg pl-2  w-[45%] md:ml-8 mb-1`}
                         onChange={(e) => {
                             audioRef.current.playbackRate = e.target.value;
                         }}
-
                         defaultValue={1}
                     >
                         <option value="0.25">0.25x</option>
                         <option value="0.5">0.5x</option>
                         <option value="0.75">0.75x</option>
-                        <option value="1" >1x</option>
+                        <option value="1">1x</option>
                         <option value="1.25">1.25x</option>
                         <option value="1.5">1.5x</option>
                         <option value="1.75">1.75x</option>
                         <option value="2">2x</option>
-                        </select>
-   
+                    </select>
                 </div>
 
                 <div className="md:flex-[70%] self-center text-center pl-2 gap-10 ">
-                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-100"}`} onClick={handleprev}>
+                    <button
+                        className={`px-2 hover:scale-110 ${
+                            openModal && "text-gray-100"
+                        }`}
+                        onClick={handleprev}
+                    >
                         <IoPlaySkipBackSharp />
                     </button>
-                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-400"}`} onClick={handleback10}>
-                    <TbRewindBackward10/>
+                    <button
+                        className={`px-2 hover:scale-110 ${
+                            openModal && "text-gray-400"
+                        }`}
+                        onClick={handleback10}
+                    >
+                        <TbRewindBackward10 />
                     </button>
 
-                    <button onClick={togglePlayPause} className="px-2 hover:scale-110">
+                    <button
+                        onClick={togglePlayPause}
+                        className="px-2 hover:scale-110"
+                    >
                         {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
                     </button>
-                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-400"}`} onClick={handleforward10}>
-                        
-                    
-                    <TbRewindForward10/>
-                        
+                    <button
+                        className={`px-2 hover:scale-110 ${
+                            openModal && "text-gray-400"
+                        }`}
+                        onClick={handleforward10}
+                    >
+                        <TbRewindForward10 />
                     </button>
-                    <button className={`px-2 hover:scale-110 ${openModal && "text-gray-100"}`} onClick={handlenext}>
+                    <button
+                        className={`px-2 hover:scale-110 ${
+                            openModal && "text-gray-100"
+                        }`}
+                        onClick={handlenext}
+                    >
                         <IoPlaySkipForwardSharp />
                     </button>
                 </div>
@@ -257,7 +266,11 @@ const Controls = ({
                         )}
                     </button>
 
-                    <div className={`pb-2 self-center hidden md:block ${openModal &&"pb-[18px]"}`}>
+                    <div
+                        className={`pb-2 self-center hidden md:block ${
+                            openModal && "pb-[18px]"
+                        }`}
+                    >
                         <input
                             type="range"
                             min={0}
@@ -272,36 +285,44 @@ const Controls = ({
                         />
                     </div>
 
-                    <div className="md:self-center pl-3 absolute left-0 bottom-[67px] md:hidden ">
-                    <select
-                        className={`bg-transparent  text-md block ${openModal ? "md:hidden text-white" : "md:block"}   font-sans rounded-lg  py-1 w-[80%] bottom-5  ${openModal ? "text-2xl mb-7" : "text-sm"}   `}
-                        onChange={(e) => {
-                            audioRef.current.playbackRate = e.target.value;
-                        }}
-
-                        defaultValue={1}
-                    >
-                        <option value="0.25">0.25x</option>
-                        <option value="0.5">0.5x</option>
-                        <option value="0.75">0.75x</option>
-                        <option value="1" >1x</option>
-                        <option value="1.25">1.25x</option>
-                        <option value="1.5">1.5x</option>
-                        <option value="1.75">1.75x</option>
-                        <option value="2">2x</option>
-                    </select>
-                    </div>
+                    {/* <div className="md:self-center pl-3 absolute left-0 bottom-[67px] md:hidden ">
+                        <select
+                            className={`bg-transparent  text-md block ${
+                                openModal ? "md:hidden text-white" : "md:block"
+                            }   font-sans rounded-lg  py-1 w-[80%] bottom-5  ${
+                                openModal ? "text-2xl mb-[5.5rem]" : "text-sm"
+                            }   `}
+                            onChange={(e) => {
+                                audioRef.current.playbackRate = e.target.value;
+                            }}
+                            defaultValue={1}
+                        >
+                            <option value="0.25">0.25x</option>
+                            <option value="0.5">0.5x</option>
+                            <option value="0.75">0.75x</option>
+                            <option value="1">1x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="1.75">1.75x</option>
+                            <option value="2">2x</option>
+                        </select>
+                    </div> */}
                     <div className="md:self-center pl-4 left-0 cursor-pointer md:content-center hover:scale-110">
-
-                        {!openModal ? (                        <BsArrowsFullscreen
-                            onClick={openModalHandler}
-                            className={`${openModal ? "text-2xl" : "text-lg"}`}
-                        />) : (<GiContract
-                            onClick={openModalHandler}
-                            className={`${openModal ? "text-2xl" : "text-lg"}`}
-                        
-                        />)}
-
+                        {!openModal ? (
+                            <BsArrowsFullscreen
+                                onClick={openModalHandler}
+                                className={`${
+                                    openModal ? "text-2xl" : "text-lg"
+                                }`}
+                            />
+                        ) : (
+                            <GiContract
+                                onClick={openModalHandler}
+                                className={`${
+                                    openModal ? "text-2xl" : "text-lg"
+                                } hidden md:block`}
+                            />
+                        )}
                     </div>
                 </div>
             </div>

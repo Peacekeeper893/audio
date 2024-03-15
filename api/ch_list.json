@@ -1,383 +1,175 @@
 {
-    "name": "Where the Crawdads Sing",
-    "author": "Delia Owens",
-    "about": "Where the Crawdads Sing is a novel by Delia Owens that tells the story of Kya Clark, who is known as the 'Marsh Girl of Barkley Cove.' The novel follows Kya's journey from childhood to adulthood, as she navigates the complexities of love, abandonment, and survival in the marshlands of North Carolina. Set against",
-    "chapters": [
-      {
-        "chapter_number": "01",
-        "chapter_title": "Opening Credits",
-        "description": "The opening credits set the stage for the atmospheric and evocative narrative, introducing readers to the mysterious world of the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "02",
-        "chapter_title": "Part 1- The Marsh",
-        "description": "In this section, readers are immersed in the unique environment of the marsh, setting the backdrop for the unfolding story.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "03",
-        "chapter_title": "Prologue",
-        "description": "The prologue provides a glimpse into a crucial moment in the protagonist's life, sparking curiosity about her journey.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "04",
-        "chapter_title": "1. Ma",
-        "description": "The narrative begins with Kya, the 'Marsh Girl,' navigating the challenges of life with her enigmatic and elusive mother, Ma.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "05",
-        "chapter_title": "2. Jodie",
-        "description": "Jodie, Kya's brother, plays a pivotal role in her early life, shaping her understanding of human connections and abandonment.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "06",
-        "chapter_title": "3. Chase",
-        "description": "As Kya grows, the chapter 'Chase' introduces readers to the dynamics of the small town and the relationships that influence her.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "07",
-        "chapter_title": "4. School",
-        "description": "Kya's journey into formal education brings both challenges and opportunities, shedding light on her resilience and intelligence.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "08",
-        "chapter_title": "5. Investigation",
-        "description": "The investigation chapter delves into a mysterious event, marking a turning point in Kya's life and the unfolding narrative.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "09",
-        "chapter_title": "6. A Boat and a Boy",
-        "description": "A poignant chapter exploring Kya's encounter with a boat and a boy, opening new avenues for connection and understanding.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "10",
-        "chapter_title": "7. The Fishing Season",
-        "description": "Set against the backdrop of the fishing season, this chapter weaves a tale of love, loss, and the ebb and flow of life in the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "11",
-        "chapter_title": "8. Negative Data",
-        "description": "The chapter 'Negative Data' delves into Kya's struggles with societal judgments and misconceptions, highlighting the isolation she faces in the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "12",
-        "chapter_title": "9. Jumpin'",
-        "description": "In 'Jumpin',' Kya forms a unique friendship with Jumpin', a local character who becomes a source of support and understanding in her life.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "13",
-        "chapter_title": "10. Just Grass in the Wind",
-        "description": "This chapter captures the essence of the marsh and its influence on Kya, portraying the tranquil beauty and harsh realities of her surroundings.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "14",
-        "chapter_title": "11. Croker Sacks Full",
-        "description": "Against the backdrop of 'Croker Sacks Full,' Kya faces challenges that test her resourcefulness and resilience in the face of adversity.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "15",
-        "chapter_title": "12. Pennies and Grits",
-        "description": "The chapter 'Pennies and Grits' explores Kya's resourcefulness and ingenuity as she navigates the practicalities of survival in the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "16",
-        "chapter_title": "13. Feathers",
-        "description": "A pivotal chapter, 'Feathers' unravels secrets from Kya's past, shedding light on her relationships and the impact of abandonment.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "17",
-        "chapter_title": "14. Red Fibers",
-        "description": "The intricate details of 'Red Fibers' weave together a tapestry of mystery and intrigue, bringing to light hidden connections and unforeseen consequences.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "18",
-        "chapter_title": "15. The Game",
-        "description": "In 'The Game,' Kya navigates the complex dynamics of human interactions, love, and loss, shaping her understanding of the world beyond the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "19",
-        "chapter_title": "16. Reading",
-        "description": "The chapter 'Reading' explores Kya's journey into the world of literature, providing a glimpse into her intellectual growth and thirst for knowledge.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "20",
-        "chapter_title": "17. Crossing the Threshold",
-        "description": "A pivotal moment in Kya's life, 'Crossing the Threshold' marks a turning point, propelling her further into the complexities of adulthood and self-disc",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-singovery."
-      },
-      {
-        "chapter_number": "21",
-        "chapter_title": "18. White Canoe",
-        "description": "In 'White Canoe,' Kya encounters a mysterious white canoe, sparking a series of events that unravel both the beauty and challenges of her isolated life.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "22",
-        "chapter_title": "19. Something Going On",
-        "description": "As suggested by the title, 'Something Going On' explores the undercurrents of change and intrigue in Kya's life, hinting at a shift in the narrative.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "23",
-        "chapter_title": "20. July 4",
-        "description": "Set against the backdrop of July 4th, this chapter captures the celebrations and reflections that mark a significant moment in Kya's journey.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "24",
-        "chapter_title": "21. Coop",
-        "description": "The chapter 'Coop' introduces readers to a new character or aspect of Kya's life, unfolding fresh perspectives and challenges.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "25",
-        "chapter_title": "Part 2- The Swamp",
-        "description": "The beginning of Part 2, 'The Swamp,' signifies a shift in the narrative, possibly introducing new themes, characters, or challenges for Kya.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "26",
-        "chapter_title": "22. Same Tide",
-        "description": "As the narrative flows with the 'Same Tide,' readers witness the continuous ebb and flow of Kya's life, filled with both constancy and change.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "27",
-        "chapter_title": "23. The Shell",
-        "description": "In 'The Shell,' the significance of a particular shell unravels layers of meaning, offering insights into Kya's connection with her surroundings.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "28",
-        "chapter_title": "24. The Fire Tower",
-        "description": "The chapter 'The Fire Tower' introduces a notable landmark, possibly symbolizing a vantage point or revelation that shapes Kya's perspective.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "29",
-        "chapter_title": "25. A Visit from Patti Love",
-        "description": "With 'A Visit from Patti Love,' a new character brings fresh dynamics to Kya's life, leading to unforeseen consequences and revelations.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "30",
-        "chapter_title": "26. The Boat Ashore",
-        "description": "The arrival of 'The Boat Ashore' sets the stage for a pivotal moment, offering opportunities and challenges that impact Kya's journey.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "31",
-        "chapter_title": "27. Out Hog Mountain Road",
-        "description": "Journeying 'Out Hog Mountain Road,' Kya faces external landscapes and internal reflections that shape her understanding of the world.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "32",
-        "chapter_title": "28. The Shrimper",
-        "description": "Encounters with 'The Shrimper' bring a new dimension to Kya's life, adding layers to her relationships and the intricacies of the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "33",
-        "chapter_title": "29. Seaweed",
-        "description": "In 'Seaweed,' the symbolism of seaweed may mirror the complexities that entangle Kya's life, unveiling both beauty and challenges.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "34",
-        "chapter_title": "30. The Rips",
-        "description": "Navigating 'The Rips,' Kya confronts currents and challenges that mirror the turbulence and uncertainties in her own journey.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "35",
-        "chapter_title": "31. A Book",
-        "description": "The chapter 'A Book' signifies a literary exploration that adds intellectual depth to Kya's character, revealing new facets of her personality.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "36",
-        "chapter_title": "32. Alibi",
-        "description": "In 'Alibi,' the concept of an alibi may introduce elements of mystery or intrigue, impacting the narrative and Kya's relationships.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "37",
-        "chapter_title": "33. The Scar",
-        "description": "The chapter 'The Scar' delves into a physical or metaphorical scar, unraveling the history and emotional depth behind Kya's experiences.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "38",
-        "chapter_title": "34. Search the Shack",
-        "description": "As the narrative prompts characters to 'Search the Shack,' the secrets and revelations hidden within the shack come to light, shaping the storyline.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "39",
-        "chapter_title": "35. The Compass",
-        "description": "The symbolism of 'The Compass' may guide Kya through new directions and decisions, shaping her path and destiny in unexpected ways.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "40",
-        "chapter_title": "36. To Trap a Fox",
-        "description": "In 'To Trap a Fox,' Kya faces unexpected challenges, and the chapter unfolds a tale of cunning strategies and unforeseen consequences.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "41",
-        "chapter_title": "37. Gray Sharks",
-        "description": "The chapter 'Gray Sharks' explores the darker sides of human nature as Kya confronts threats that lurk beneath the surface of the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "42",
-        "chapter_title": "38. Sunday Justice",
-        "description": "'Sunday Justice' brings justice and morality into focus as Kya navigates the complexities of right and wrong in her secluded world.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "43",
-        "chapter_title": "39. Chase by Chance",
-        "description": "A chance encounter shapes Kya's destiny in 'Chase by Chance,' presenting opportunities and challenges that alter the course of her life.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "44",
-        "chapter_title": "40. Cypress Cove",
-        "description": "The chapter 'Cypress Cove' paints a vivid picture of the natural beauty surrounding Kya, emphasizing the delicate balance of life in the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "45",
-        "chapter_title": "41. A Small Herd",
-        "description": "'A Small Herd' explores themes of companionship and solitude as Kya's interactions with the wildlife of the marsh take center stage.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "46",
-        "chapter_title": "42. A Cell",
-        "description": "'A Cell' introduces new challenges and obstacles for Kya, testing her strength and resilience in the face of adversity.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "47",
-        "chapter_title": "43. A Microscope",
-        "description": "In 'A Microscope,' Kya's curiosity and intellect are highlighted as she explores the world with newfound perspectives and insights.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "48",
-        "chapter_title": "44. Cell Mate",
-        "description": "The chapter 'Cell Mate' delves into Kya's relationships and connections, revealing the intricacies of human bonds in her secluded world.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "49",
-        "chapter_title": "45. Red Cap",
-        "description": "'Red Cap' unfolds a tale of mystery and intrigue as Kya navigates through events that cast shadows over her solitary existence.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "50",
-        "chapter_title": "46. King of the World",
-        "description": "In 'King of the World,' Kya confronts moments of triumph and tragedy, shaping her understanding of her place in the vast expanse of the marsh.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "51",
-        "chapter_title": "47. The Expert",
-        "description": "'The Expert' introduces characters and events that challenge Kya's perceptions, pushing her to reassess her place in the world.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "52",
-        "chapter_title": "48. A Trip",
-        "description": "'A Trip' takes readers on a journey beyond the marsh, presenting new landscapes and experiences that leave a lasting impact on Kya.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "53",
-        "chapter_title": "49. Disguises",
-        "description": "'Disguises' unravels layers of deception and revelation, adding complexity to the narrative as Kya faces unexpected twists.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "54",
-        "chapter_title": "50. The Journal",
-        "description": "'The Journal' becomes a key element as Kya's story is intertwined with written words, memories, and the passage of time.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "55",
-        "chapter_title": "51. Waning Moon",
-        "description": "Under the 'Waning Moon,' Kya's journey reaches a critical phase, and the celestial metaphor reflects the changing tides of her life.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "56",
-        "chapter_title": "52. Three Mountains Motel",
-        "description": "'Three Mountains Motel' marks a departure from the familiar marsh surroundings, introducing new settings and challenges for Kya.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "57",
-        "chapter_title": "53. Missing Link",
-        "description": "'Missing Link' becomes a puzzle piece in Kya's story, connecting past events and present circumstances in unexpected ways.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "58",
-        "chapter_title": "54. Vice Versa",
-        "description": "'Vice Versa' explores the dualities and contradictions within Kya's world, adding layers of complexity to her character.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "59",
-        "chapter_title": "55. Grass Flowers",
-        "description": "'Grass Flowers' captures the ephemeral beauty and fragility of life in the marsh, as Kya grapples with the passage of time.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "60",
-        "chapter_title": "56. The Night Heron",
-        "description": "Under 'The Night Heron,' the narrative takes a nocturnal turn, exploring the mysteries that unfold in the dark corners of Kya's world.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "61",
-        "chapter_title": "57. The Firefly",
-        "description": "'The Firefly' illuminates the final moments of Kya's journey, casting a warm glow on the resolution of her story as it draws to a close.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      },
-      {
-        "chapter_number": "62",
-        "chapter_title": "End Credits",
-        "description": "The 'End Credits' offer a reflective conclusion, bringing closure to the narrative as the readers bid farewell to Kya's captivating world.",
-        "url": "https://www.goodreads.com/book/show/36809135-where-the-crawdads-sing"
-      }
-    ],
-    "tag": "others",
-    "bookimg": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582135294i/36809135.jpg",
-    "chapterdetails": true
-  }
-  
+  "name": "Book Title",
+  "author": "Author Name",
+  "about" : "A brief description of the book",
+  "chapters": [
+    {
+      "chapter_number": "1",
+      "chapter_title": "Part 1 - Chapter 1",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "2",
+      "chapter_title": "Chapter 2",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "3",
+      "chapter_title": "Chapter 3",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "4",
+      "chapter_title": "Chapter 4",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "5",
+      "chapter_title": "Chapter 5",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "6",
+      "chapter_title": "Chapter 6",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "7",
+      "chapter_title": "Chapter 7",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "8",
+      "chapter_title": "Chapter 8",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "9",
+      "chapter_title": "Chapter 9",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "10",
+      "chapter_title": "Part 2 - Chapter 10",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "11",
+      "chapter_title": "Chapter 11",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "12",
+      "chapter_title": "Chapter 12",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "13",
+      "chapter_title": "Chapter 13",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "14",
+      "chapter_title": "Chapter 14",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "15",
+      "chapter_title": "Chapter 15",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "16",
+      "chapter_title": "Chapter 16",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "17",
+      "chapter_title": "Chapter 17",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "18",
+      "chapter_title": "Chapter 18",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "19",
+      "chapter_title": "Part 3 - Chapter 19",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "20",
+      "chapter_title": "Chapter 20",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "21",
+      "chapter_title": "Chapter 21",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "22",
+      "chapter_title": "Chapter 22",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "23",
+      "chapter_title": "Chapter 23",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "24",
+      "chapter_title": "Chapter 24",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "25",
+      "chapter_title": "Chapter 25",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "26",
+      "chapter_title": "Chapter 26",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "27",
+      "chapter_title": "Chapter 27",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "28",
+      "chapter_title": "Epilogue",
+      "summary": "",
+      "url": "Placeholder URL"
+    }
+  ]
+}

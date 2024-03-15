@@ -6,7 +6,6 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
     const [focused, setFocused] = useState(true);
     const inactivityTimeout = useRef(null);
 
-
     console.log(focused);
 
     useEffect(() => {
@@ -17,30 +16,29 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
         }
     }, [isFirstRender]);
 
-
     useEffect(() => {
         if (focused) {
             inactivityTimeout.current = setTimeout(() => {
                 setFocused(false);
-            }, 9000); // 10 seconds of inactivity
-    
+            }, 90000000); // 10 seconds of inactivity
+
             return () => clearTimeout(inactivityTimeout.current);
         }
     }, [focused]);
-    
+
     useEffect(() => {
         const handleActivity = () => {
             if (!focused) {
                 setFocused(true);
             }
         };
-    
-        window.addEventListener('mousemove', handleActivity);
-        window.addEventListener('mousedown', handleActivity);
-    
+
+        window.addEventListener("mousemove", handleActivity);
+        window.addEventListener("mousedown", handleActivity);
+
         return () => {
-            window.removeEventListener('mousemove', handleActivity);
-            window.removeEventListener('mousedown', handleActivity);
+            window.removeEventListener("mousemove", handleActivity);
+            window.removeEventListener("mousedown", handleActivity);
         };
     }, [focused]);
     let burl;
@@ -80,13 +78,12 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
     };
 
     return (
-        <div >
+        <div>
             <div
                 className={`max-w-full bg-black h-screen ${
                     focused ? "-z-40 opacity-90" : "z-20 opacity-100"
                 } -z-40  w-full  text-white absolute top-0 bg-cover bg-center shadow-slate-950 shadow-2xl bg-no-repeat `}
                 style={containerStyle}
-                
             >
                 <button
                     className="text-white float-right p-4 font-bold font-serif"
@@ -111,17 +108,16 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
                 />
             </motion.div>
 
-
-            {<div className="md:hidden lg:h-[60%] md:bottom-[60vh] md:w-[40%] md:left-[30%] absolute lg:bottom-20 h-[60%] bottom-[30vh] left-[9 %]  w-[80%] lg:w-[20%] lg:left-[2%] z-30">
-
-            <img
+            <div className="md:hidden  absolute  h-[50%] bottom-[38vh] left-[10%]  w-[75%]  z-30">
+                <img
                     src={book[0]["bookimg"]}
-                    className="h-[100%] bottom-12 md:bottom-[4.5rem]  absolute left-[3%]  w-[110%]  md:left-0 "
+                    className="h-[100%] bottom-12 md:bottom-[4.5rem]  absolute left-[3%]  w-[100%]   "
                     alt={book[0]["bookname"]}
                     style={mainstyle}
                 />
+            </div>
 
-            </div>}
+            {/* <div className="md:hidden absolute bottom-0 h-20 bg-red-500 w-full">njtgjt</div> */}
         </div>
     );
 };

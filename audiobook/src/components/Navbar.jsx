@@ -60,12 +60,12 @@ const Navbar = ({ loggedIn, home }) => {
     };
     return (
         <Fragment>
-            <div className="  md:h-[14vh] min-h-[11vh] flex justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
+            <div className="  md:h-[14vh] min-h-[10vh] flex justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
                 <div className="self-center md:text-4xl">
                     <NovelSounds />
                 </div>
 
-                <div className="flex md:gap-8 gap-3">
+                <div className="flex md:gap-8 gap-5">
                     {loggedIn && (
                         <div
                             className="self-center text-md font-semibold md:text-lg dark:bg-d-bg-300 px-4 py-2  rounded-full hover:scale-105 bg-d-bg-500 text-white dark:text-d-primary-400"

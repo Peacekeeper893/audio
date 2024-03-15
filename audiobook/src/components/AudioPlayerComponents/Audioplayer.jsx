@@ -10,8 +10,9 @@ const Audioplayer = ({
     chapter_number,
     book,
     openModal,
+    audioRef,
 }) => {
-    const audioRef = useRef();
+    // const audioRef = useRef();
     const progressBarRef = useRef();
     const [isPlaying, setIsPlaying] = useState(true);
 

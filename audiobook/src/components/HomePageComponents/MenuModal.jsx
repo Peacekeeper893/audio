@@ -28,7 +28,7 @@ const Menu = ({ setMenu, menu }) => {
     return (
         <div className="flex justify-start">
             <div
-                className={`w-72 top-0 absolute z-20 left-0 h-full transition-transform duration-1000 ease-in-out bg-d-bg-200 text-white overflow-auto ${
+                className={`md:w-72 w-56 md:top-0 top-[10vh] absolute z-20 left-0 h-[90vh] md:h-full transition-transform duration-1000 ease-in-out bg-d-bg-200 text-white overflow-auto ${
                     menu ? "translate-x-0" : "-translate-x-full "
                 }`}
             >
@@ -39,7 +39,7 @@ const Menu = ({ setMenu, menu }) => {
                     <IoCloseSharp />
                 </button>
 
-                <div className="text-2xl p-4 font-bold font-eczar">Hi {user.displayName}  👋</div>
+                <div className="md:text-2xl p-4 text-lg font-bold font-eczar">Hi {user.displayName}  👋</div>
                 <div className="border"></div>
                 <a href="/" className="block p-4 hover:bg-d-primary-500 border-b-[1px]">
                     Home
@@ -65,7 +65,7 @@ const Menu = ({ setMenu, menu }) => {
             </div>
 
             <div
-                className=" bg-stone-600 opacity-50  h-full absolute top-0 left-72 z-20 w-[calc(100vw-288px)] "
+                className=" bg-stone-600 opacity-50  h-full absolute md:top-0 top-[10vh] md:left-72 left-56 z-20 md:w-[calc(100vw-288px)] w-[calc(100vw-224px)]  "
                 onClick={() => setMenu(false)}
             ></div>
         </div>

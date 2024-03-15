@@ -156,11 +156,11 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                 </div>
 
                 <div>
-                    <h1 className="md:text-4xl text-xl mb-2">
+                    <h1 className="md:text-4xl text-2xl mb-2 text-center md:text-left">
                         {book[0]["name"]}
                     </h1>
                     <a href={`/author/${book[0]["author"]}`} className="w-full ">
-                        <p className="md:text-xl text-lg text-center md:text-left mb-4 md:mb-0">
+                        <p className="md:text-xl text-md text-center md:text-left mb-4 md:mb-0">
                             {book[0]["author"]}
                         </p>
                     </a>

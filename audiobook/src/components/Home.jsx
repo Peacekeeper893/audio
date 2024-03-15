@@ -11,6 +11,8 @@ import { IoSearch } from "react-icons/io5";
 import Carousel from "./HomePageComponents/Carousel";
 import Collection from "./HomePageComponents/Collection";
 import Recent from "./ProfileComponents/Recent";
+import MobileSearch from "./HomePageComponents/MobileSearch";
+import MobileGreeting from "./HomePageComponents/MobileGreeting";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -105,34 +107,15 @@ const Home = ({ loggedIn }) => {
     return (
         <Fragment>
             <Navbar loggedIn={loggedIn} home={true} />
+
+
             
 
             {/* Search bar for mobile displays */}
 
-            <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-5 ">
-                <div className="flex w-full">
-                    <input
-                        type="text"
-                        name="searchq"
-                        id="searchq"
-                        placeholder={`Search an Audiobook... `}
-                        className="p-2 border-gray-300 border-[4px] w-full dark:bg-d-bg-200 rounded-xl border-r-0 rounded-r-none"
-                        onFocus={handleSearch}
-                        onBlur={handleBlur}
-                        value={query}
-                        onChange={(e) => {
-                            setQuery(() => e.target.value);
-                        }}
-                        autoComplete="off"
+            <MobileSearch />
 
-                        // turn off predictive search
-                    />
-                    <div className="p-2 pt-3 border-gray-300 border-[4px] border-l-0 dark:bg-d-bg-200 rounded-xl rounded-l-none -ml-0.5">
-                        <IoSearch />
-                    </div>
-                </div>
-                {searchmodal && <SearchModal query={query} />}
-            </div>
+            <MobileGreeting/>
 
             <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3 flex justify-center pl-2 bg-stone-100 py-8 ">
                 {" "}
