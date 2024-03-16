@@ -11,6 +11,9 @@ const Audioplayer = ({
     book,
     openModal,
     audioRef,
+    isMiniPlayer,
+    time,
+    setShowPlayer,
 }) => {
     // const audioRef = useRef();
     const progressBarRef = useRef();
@@ -49,11 +52,20 @@ const Audioplayer = ({
         }
     };
 
+    useEffect(() => {
+
+
+        if (isMiniPlayer && audioRef && audioRef.current) {
+            audioRef.current.currentTime = time;
+        }
+        
+    }, [ time, isMiniPlayer]);
+
     return (
         <Fragment>
             {/*continue playback modal*/}
 
-            {open && (
+            {open && !isMiniPlayer &&  (
                 <div className="fixed z-10 inset-0 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div
@@ -129,6 +141,8 @@ const Audioplayer = ({
                         openModal,
                         isPlaying,
                         setIsPlaying,
+                        setShowPlayer,
+                        isMiniPlayer,
                     }}
                 />
                 <ProgressBar

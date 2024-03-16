@@ -5,18 +5,43 @@ import { FcNext } from "react-icons/fc";
 import { MdNavigateNext } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 
+
 const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendData }) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [focused, setFocused] = useState(true);
     const [upnext, setUpnext] = useState(false);
     const [nxtchapters, setNxtchapters] = useState([]);
     const inactivityTimeout = useRef(null);
+    const [startX, setStartX] = useState();
 
     // console.log(focused);
 
+
+    const handleTouchStart = (e) => {
+        setStartX(e.touches[0].clientX);
+      };
+    
+      const handleTouchEnd = (e) => {
+        const endX = e.changedTouches[0].clientX;
+        if (startX > endX + 100) {
+            console.log('Swipe Left');
+            
+            if(chapter_number<book[0]["chapters"].length-1){
+                sendData(chapter_number+1);
+            }
+        }
+        if (startX + 100 < endX) {
+            console.log('Swipe Right');
+            
+            if (chapter_number > 1) {
+                sendData(chapter_number - 1);
+            }
+        }
+      };
+
     useEffect(() => {
 
-        setNxtchapters(book[0]["chapters"].slice(chapter_number, chapter_number + 4 > book[0]["chapters"].length ? book[0]["chapters"].length : chapter_number + 4));
+        setNxtchapters(book[0]["chapters"].slice(chapter_number, chapter_number + 5 > book[0]["chapters"].length ? book[0]["chapters"].length : chapter_number + 5));
     }, [chapter_number]);
 
     useEffect(() => {
@@ -44,12 +69,22 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
             }
         };
 
+        const handleEscape = (event) => {
+            if (event.key === 'Escape') {
+                // Your logic here
+
+                closeModalHandler();
+            }
+        };
+
         window.addEventListener("mousemove", handleActivity);
         window.addEventListener("mousedown", handleActivity);
+        window.addEventListener('keydown', handleEscape);
 
         return () => {
             window.removeEventListener("mousemove", handleActivity);
             window.removeEventListener("mousedown", handleActivity);
+            window.removeEventListener('keydown', handleEscape);
         };
     }, [focused]);
     let burl;
@@ -84,6 +119,15 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
             transition: { duration: 0.5 },
         },
     };
+    const variants2 = {
+        hidden: { x: "-100%" }, // Offscreen to the right
+        visible: {
+            x: isFirstRender && focused ? 0 : focused ? "-5%" : "15%",
+            scale: isFirstRender && focused ? 1 : focused ? 1.2 : 1.25,
+            // y: isFirstRender && focused ? 0 : focused ? "7%" : "8%",
+            transition: { duration: 0.5 },
+        },
+    };
 
     // Define the transition settings
     const transition = {
@@ -93,7 +137,7 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
     };
 
     return (
-        <div>
+        <div className="" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <div
                 className={`max-w-full bg-black h-screen ${
                     focused ? "-z-40 opacity-90" : "z-20 opacity-100"
@@ -123,7 +167,7 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
                 />
             </motion.div>
 
-            <div className="md:hidden  absolute  h-[50%] bottom-[38vh] left-[10%]  w-[75%]  z-30">
+            <div className="md:hidden  absolute  h-[50%] bottom-[38vh] left-[10%]  w-[75%]  z-30" key={chapter_number}>
                 <img
                     src={book[0]["bookimg"]}
                     className="h-[100%] bottom-12 md:bottom-[4.5rem]  absolute left-[3%]  w-[100%]   "
@@ -133,11 +177,11 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
             </div>
 
             <div
-                className="hidden cursor-pointer absolute top-[12vh] right-[1vw] text-gray-400  bg-transparent bg-opacity-30 w-32 md:block"
+                className="hidden cursor-pointer absolute top-[12vh] right-[1vw] text-gray-400    w-32 md:block"
                 onClick={handleUpNext}
             >
-                <div className="md:flex items-center gap-2">
-                    <div className="underline underline-offset-8">Up Next</div>
+                <div className="md:flex items-center gap-2 bg-gray-700 rounded-full py-3 px-2 pl-6 bg-opacity-30 hover:scale-110 duration-500">
+                    <div className=" ">Up Next</div>
                     <div className=" pt-1 ">
                         {!upnext && (
                             <span style={{ color: "#9CA3AF" }}>
@@ -151,7 +195,11 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
                         )}
                     </div>
                 </div>
-                {upnext && <div className=" h-24 w-32  mt-6 flex flex-col gap-3">
+                {upnext && <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={variants2}
+                transition={transition} className=" h-24 w-32  mt-10 flex flex-col gap-3">
 
                     {nxtchapters && nxtchapters.map((chapter, index) => {
 
@@ -170,7 +218,9 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
                     })}
                     
                 
-                </div>}
+                </motion.div>
+                
+                }
             </div>
         </div>
     );

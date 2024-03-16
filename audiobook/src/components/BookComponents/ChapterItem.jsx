@@ -99,11 +99,17 @@ const ChapterItem = ({
                             {isPlaying === false ? (
                                 <BsFillPlayCircleFill className=" self-center text-2xl hover:scale-110" />
                             ) : (
+                                <div className="bg-black rounded-full p-1 -ml-1 cursor-auto">
                                 <UseAnimations
                                     animation={Activity}
-                                    size={26}
-                                    color="white"
-                                />
+                                    size={20}
+                                        color="white"
+                                        fillColor="#000"
+                                        strokeColor="#fff"
+
+                                        
+                                        />
+                                        </div>
                             )}
                         </button>
                     </div>

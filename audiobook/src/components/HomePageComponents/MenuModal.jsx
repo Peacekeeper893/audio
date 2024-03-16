@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { getAuth } from "firebase/auth";
 import { IoLogOut } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 
 const Menu = ({ setMenu, menu }) => {
@@ -41,15 +42,15 @@ const Menu = ({ setMenu, menu }) => {
 
                 <div className="md:text-2xl p-4 text-lg font-bold font-eczar">Hi {user.displayName}  👋</div>
                 <div className="border"></div>
-                <a href="/" className="block p-4 hover:bg-d-primary-500 border-b-[1px]">
+                <Link to="/" className="block p-4 hover:bg-d-primary-500 border-b-[1px]">
                     Home
-                </a>
-                <a href="books" className="block p-4 hover:bg-d-primary-500 border-b-[1px]">
+                </Link>
+                <Link to="books" className="block p-4 hover:bg-d-primary-500 border-b-[1px]">
                     Books
-                </a>
-                <a href="/profile" className="block p-4 hover:bg-d-primary-500 border-b-[1px]">
+                </Link>
+                <Link to="/profile" className="block p-4 hover:bg-d-primary-500 border-b-[1px]">
                     Profile
-                </a>
+                </Link>
 
 
                 <button

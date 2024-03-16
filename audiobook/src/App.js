@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 import AllBooks from "./components/AllBooks";
 import Request from "./components/Request";
 import Author from "./components/Author";
+import MiniPlayer from "./components/MiniPlayer";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -60,6 +61,14 @@ function App() {
                     element={
                         <Fragment>
                             <Author loggedIn={loggedIn} loading={ loading}  />
+                        </Fragment>
+                    }
+                />
+                <Route
+                    path="/miniplayer/:book_name/"
+                    element={
+                        <Fragment>
+                            <MiniPlayer loggedIn={loggedIn} loading={loading}  />
                         </Fragment>
                     }
                 />

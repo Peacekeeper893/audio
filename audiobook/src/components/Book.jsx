@@ -32,6 +32,7 @@ const Book = ({ loggedIn }) => {
     const [isLoading, setIsLoading] = useState(true); // Initialize loading state to true
     const [openModal, setOpenModal] = useState(false);
     const [user, setUser] = useState({});
+    const [showPlayer, setShowPlayer] = useState(true);
 
 
     const openModalHandler = () => {
@@ -161,6 +162,8 @@ const Book = ({ loggedIn }) => {
     };
 
     const sendData = (data) => {
+
+        setShowPlayer(true)
         setChapter_number((prev) => data);
         var currentURL = window.location.href;
         // Store data in local storage with the URL as the key
@@ -207,7 +210,7 @@ const Book = ({ loggedIn }) => {
                 </div>
             )}
 
-            {chapter_number !== "0" && (
+            {chapter_number !== "0" && showPlayer && (
                 <div
                     className={`${!openModal && "sticky bottom-0"} ${
                         openModal &&
@@ -233,6 +236,7 @@ const Book = ({ loggedIn }) => {
                         book={book}
                         chapter_number={chapter_number}
                         sendData={sendData}
+                        setShowPlayer={setShowPlayer}
                         
                     />
                 </div>

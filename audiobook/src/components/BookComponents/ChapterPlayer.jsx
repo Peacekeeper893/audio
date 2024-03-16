@@ -12,11 +12,16 @@ const Chapter = ({
     book,
     chapter_number,
     sendData,
+    isMiniPlayer,
+    time,
+    setShowPlayer,
 }) => {
     const name = book[0]["name"];
     console.log(chapter_number);
 
     const ARef = useRef();
+
+
 
     return (
         <Fragment>
@@ -31,10 +36,10 @@ const Chapter = ({
                 <p
                     className={`${
                         openModal &&
-                        "bg-transparent bottom-2 text-2xl md:text-4xl lg:text-6xl font-sans text-[#ececec] mb-4 lg:px-72 lg:mx-8 text-center"
+                        "bg-transparent bottom-2 text-2xl md:text-4xl lg:text-6xl font-sans text-[#ececec] mb-1 lg:px-72 lg:mx-8 text-center"
                     } ${
                         !openModal && "text-2xl font-semibold"
-                    } md:py-3 text-center`}
+                    } py-3 text-center`}
                 >
                     {book[0]["chapterdetails"]
                         ? title
@@ -48,6 +53,10 @@ const Chapter = ({
                     book={book}
                     openModal={openModal}
                     audioRef={ARef}
+                    isMiniPlayer={isMiniPlayer}
+                    time={time}
+                    setShowPlayer={setShowPlayer}
+
                 />
 
                 {openModal && (
@@ -76,7 +85,7 @@ const Chapter = ({
                         <div className="w-[25%]  h-full  flex items-center justify-center">
                             <FaHouseChimneyWindow size={32} />
                         </div>
-                        <div className="w-[25%]  h-full  flex items-center justify-center">
+                        <div className="w-[25%]  h-full  flex items-center justify-center hover:scale-90">
                             <GiContract
                                 size={32}
                                 onClick={openModalHandler}
