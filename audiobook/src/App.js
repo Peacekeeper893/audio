@@ -8,6 +8,7 @@ import AllBooks from "./components/AllBooks";
 import Request from "./components/Request";
 import Author from "./components/Author";
 import MiniPlayer from "./components/MiniPlayer";
+import Library from "./components/Library";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -77,6 +78,8 @@ function App() {
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/books" element={<AllBooks loggedIn={loggedIn} loading={loading} />} />
                 <Route path="/request" element={<Request loggedIn={loggedIn} loading={loading} />} />
+                <Route path="/library" element={<Library loggedIn={loggedIn} loading={loading} />} />
+
             </Routes>
         </div>
     );

@@ -2,6 +2,7 @@ import React, { Fragment, useRef, useState, useEffect } from "react";
 import DisplayTrack from "./DisplayTrack";
 import Controls from "./Controls";
 import ProgressBar from "./ProgressBar";
+import { Timestamp } from "firebase/firestore";
 
 const Audioplayer = ({
     currentTrack,
@@ -59,7 +60,19 @@ const Audioplayer = ({
             audioRef.current.currentTime = time;
         }
         
-    }, [ time, isMiniPlayer]);
+    }, [time, isMiniPlayer]);
+
+    const playBookmark = (chapter, timestamp) =>{
+        
+        sendData(chapter);
+
+        setTimeout(() => {
+            audioRef.current.currentTime = timestamp;
+            setIsPlaying(true);
+        }, 500);
+    }
+    
+    
 
     return (
         <Fragment>
@@ -150,6 +163,9 @@ const Audioplayer = ({
                     audioRef={audioRef}
                     timeProgress={timeProgress}
                     duration={duration}
+                    openModal={openModal}
+                    book={book}
+                    playBookmark={playBookmark}
                 />
             </div>
         </Fragment>

@@ -5,13 +5,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Eczar&display=swap');
 
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  
 }
+
+
+
+@media (min-width: 768px ) and (max-width: 944px)   { /* Tailwind's md breakpoint */
+  body {
+    min-width: 944px;
+    max-width: 1024px;
+    
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1290px) { /* Tailwind's lg breakpoint */
+  body {
+    min-width: 1024px;
+    max-width: 1280px;
+  }
+}
+
+
+
+
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -21,6 +47,12 @@ code {
 .dark{
   background-color: #121212;
 }
+
+/* .volume-slider{
+
+  transform: rotate(-90deg);
+
+} */
 
 .slick-next:before {
   color: #0a0a0e !important; /* Replace 'red' with your desired color */
@@ -59,9 +91,10 @@ ul.react-paginate {
   margin-bottom: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   list-style-type: none;
-  padding: 0 18rem;
+  padding: 0 0rem;
+  gap: 2vw;
 }
 
 ul.react-paginate li a {
@@ -69,6 +102,13 @@ ul.react-paginate li a {
   padding: 0.1rem 1rem;
   border: gray 1px solid;
   cursor: pointer;
+}
+.dark ul.react-paginate li a {
+  border-radius: 7px;
+  padding: 0.1rem 1rem;
+  border: gray 1px solid;
+  cursor: pointer;
+  color: white;
 }
 ul.react-paginate li.previous a,
 ul.react-paginate li.next a,
@@ -87,6 +127,12 @@ ul.react-paginate li.disabled a {
 ul.react-paginate li.disable,
 ul.react-paginate li.disabled a {
   cursor: default;
+  color: grey;
+}
+
+.pagination__link--active{
+  font-weight: bold;
+  font-size: larger;
 }
 
 /* This will affect the scrollbar in the whole application */
@@ -118,4 +164,8 @@ ul.react-paginate li.disabled a {
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #7a5af5; /* color of the scroll thumb when hovering */
+}
+
+.volume:hover .volume-slider {
+  display: block !important;
 }

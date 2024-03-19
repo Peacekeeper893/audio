@@ -13,7 +13,7 @@ const Footer = () => {
 
     return (
         <Fragment>
-            <div className=" bg-black text-white min-h-[10vh] flex justify-between p-8">
+            <div className=" dark:bg-black dark:text-white min-h-[10vh] bg-slate-400 flex justify-between p-8">
                 {/* <div className="text-center font-eczar py-5"> Thank you for visiting us!!</div> */}
                 <div className="flex-col ">
 
@@ -34,12 +34,12 @@ const Footer = () => {
                 </div>
                 <div className="flex-col">
                     <div className=" font-eczar pb-4 underline underline-offset-4"> Quick Links</div>
-                    <div className=" font-eczar pb-2 cursor-pointer hover:scale-105 transition-all duration-500">
+                    <div className=" font-eczar pb-2 cursor-pointer hover:scale-105 transition-all duration-400">
                         About Us
                     </div>
                     <div className=" font-eczar pb-2"> Contact Us</div>
                     <a href="request">
-                    <div className=" font-eczar pb-2 cursor-pointer hover:scale-105 transition-all duration-500 " >
+                    <div className=" font-eczar pb-2 cursor-pointer hover:scale-105 transition-all duration-400 " >
                         
                         Request an Audiobook
 
@@ -48,7 +48,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="bg-black text-white ">
+            <div className="dark:bg-black bg-slate-400 dark:text-white ">
                 <div className=" font-eczar py-2 text-center">
                     Thank you for visiting us!!
                 </div>

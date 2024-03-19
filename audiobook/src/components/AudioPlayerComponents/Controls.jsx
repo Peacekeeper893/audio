@@ -8,11 +8,19 @@ import {
     IoPauseSharp,
 } from "react-icons/io5";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import { GiContract } from "react-icons/gi";
 import { LuPictureInPicture } from "react-icons/lu";
+import { CiBookmarkPlus } from "react-icons/ci";
+
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../../firebase";
+import { getAuth } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +43,11 @@ const Controls = ({
     const [volumeval, setVolume] = useState(60);
     const [errorOccurred, setErrorOccurred] = useState(false);
     const [muteVolume, setMuteVolume] = useState(false);
+    const [showVolumeSlider, setShowVolumeSlider] = useState(false);
     const playAnimationRef = useRef();
+
+    const auth = getAuth();
+    const user = auth.currentUser;
 
     useEffect(() => {
         if (audioRef) {
@@ -104,6 +116,7 @@ const Controls = ({
         const handleKeyPress = (event) => {
             switch (event.code) {
                 case "Space":
+                    event.preventDefault()
                     togglePlayPause();
                     break;
                 case "ArrowRight":
@@ -113,6 +126,9 @@ const Controls = ({
                 case "ArrowLeft":
                     // Handle left arrow key press
                     handleback10();
+                    break;
+                case "KeyF":
+                    openModalHandler();
                     break;
                 default:
                     break;
@@ -196,22 +212,43 @@ const Controls = ({
             if (newWindow.closed) {
                 setShowPlayer(true);
 
-              clearInterval(checkWindowClosed);
+                clearInterval(checkWindowClosed);
             }
         }, 1800);
-        
+    };
 
-        
+    const notify = (message) => toast(message);
+
+    const handleAddBookmark = async () => {
+        if (user && user.uid && book && audioRef.current) {
+            addDoc(collection(db, "users", user.uid, "bookmarks"), {
+                name: book[0]["name"],
+                chapter_number: chapter_number,
+                timestamp: audioRef.current.currentTime,
+                setAt: serverTimestamp(),
+            })
+                .then(() => {
+                    console.log("Document successfully written!");
+                    window.alert("Bookmark added successfully");
+                    notify("Bookmark Added");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+        } else {
+            console.log("Error in adding bookmark");
+        }
     };
 
     return (
         <div className="controls-wrapper">
             <div
                 className={`controls md:flex justify-between px-6 ${
-                    openModal && "text-3xl md:pb-0 md:-mb-5 pb-4 "
+                    openModal && "text-3xl md:pb-0 md:-mb-2 pb-8 "
                 }`}
             >
-                <div className="md:flex-[15%] hidden md:flex  self-center">
+                {/* Playback Rate Control */}
+                <div className="md:flex-[20%] hidden md:flex  self-center">
                     <select
                         className={`bg-transparent text-black cursor-pointer  block ${
                             openModal
@@ -234,7 +271,9 @@ const Controls = ({
                     </select>
                 </div>
 
-                <div className="md:flex-[70%] self-center text-center pl-2 gap-10 ">
+                {/* Main Controls */}
+
+                <div className="md:flex-[65%] self-center text-center pl-2 gap-10 ">
                     {!isMiniPlayer && (
                         <button
                             className={`px-2 hover:scale-110 ${
@@ -256,7 +295,7 @@ const Controls = ({
 
                     <button
                         onClick={togglePlayPause}
-                        className="px-2 hover:scale-110"
+                        className="px-2 hover:scale-[1.2] duration-500"
                     >
                         {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
                     </button>
@@ -280,25 +319,28 @@ const Controls = ({
                     )}
                 </div>
 
-                <div className="volume flex-[15%] flex gap-2  flex-nowrap float-right">
-                    <button
-                        onClick={() => setMuteVolume((prev) => !prev)}
-                        className="hidden md:block"
-                    >
-                        {muteVolume || volumeval < 5 ? (
-                            <IoMdVolumeOff />
-                        ) : volumeval < 40 ? (
-                            <IoMdVolumeLow />
-                        ) : (
-                            <IoMdVolumeHigh />
-                        )}
-                    </button>
+                <div
+                    className={`volume flex-[18%] flex flex-row-reverse justify-end gap-2 items-center flex-nowrap float-right ${
+                        !openModal && "pl-4"
+                    } `}
+                >
+                    {/* AudioLevel Controls */}
 
-                    <div
-                        className={`pb-2 self-center hidden md:block ${
-                            openModal && "pb-[18px]"
-                        }`}
-                    >
+                    {/* 
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => setMuteVolume((prev) => !prev)}
+                            className="hidden md:block"
+                        >
+                            {muteVolume || volumeval < 5 ? (
+                                <IoMdVolumeOff />
+                            ) : volumeval < 40 ? (
+                                <IoMdVolumeLow />
+                            ) : (
+                                <IoMdVolumeHigh />
+                            )}
+                        </button>
+
                         <input
                             type="range"
                             min={0}
@@ -308,13 +350,77 @@ const Controls = ({
                             onChange={(e) => setVolume(e.target.value)}
                             style={{
                                 background: `linear-gradient(to right, #f50 ${volumeval}%, #ccc ${volumeval}%)`,
-                                paddingBottom: "6px",
+                                paddingBottom: "5px",
                             }}
+                            className="hidden md:block mt-2"
                         />
+                    </div> */}
+
+                    <div
+                        className="py-2"
+                        onMouseEnter={() => setShowVolumeSlider(true)}
+                        onMouseLeave={() => setShowVolumeSlider(false)}
+                    >
+                        <div className="flex items-center gap-2 pl-1 text-2xl">
+                            <button
+                                onClick={() => setMuteVolume((prev) => !prev)}
+                                className="hidden md:block"
+                            >
+                                {muteVolume || volumeval < 5 ? (
+                                    <IoMdVolumeOff />
+                                ) : volumeval < 40 ? (
+                                    <IoMdVolumeLow />
+                                ) : (
+                                    <IoMdVolumeHigh />
+                                )}
+                            </button>
+
+                            {showVolumeSlider && (
+                                <input
+                                    type="range"
+                                    min={0}
+                                    max={100}
+                                    id="vol-control"
+                                    value={volumeval}
+                                    onChange={(e) => setVolume(e.target.value)}
+                                    style={{
+                                        background: `linear-gradient(to right, #f50 ${volumeval}%, #ccc ${volumeval}%)`,
+                                        paddingBottom: "5px",
+                                    }}
+                                    className="hidden md:block mt-2 volume-slider"
+                                />
+                            )}
+                        </div>
                     </div>
 
+                    {/* Picture in Picture */}
+                    {!openModal && (
+                        <div
+                            className="md:self-center pl-2 cursor-pointer md:content-center hover:scale-110 hidden lg:block"
+                            onClick={handlePiP}
+                        >
+                            <div>
+                                <LuPictureInPicture
+                                    className="text-2xl font-thin"
+                                    size={28}
+                                    strokeWidth={1}
+                                />
+                            </div>
+                        </div>
+                    )}
 
-                    <div className="md:self-center pl-4 left-0 cursor-pointer md:content-center hover:scale-110">
+                    {/* Bookmark */}
+                    {openModal && (
+                        <div
+                            className="md:self-center pl-2 cursor-pointer md:content-center hover:scale-110 hidden lg:block"
+                            onClick={handleAddBookmark}
+                        >
+                            <CiBookmarkPlus />
+                        </div>
+                    )}
+
+                    {/* Full Screen and Contract Full Screen */}
+                    <div className="md:self-center pl-2 left-0 cursor-pointer md:content-center hover:scale-110">
                         {!openModal ? (
                             <BsArrowsFullscreen
                                 onClick={openModalHandler}
@@ -331,15 +437,6 @@ const Controls = ({
                             />
                         )}
                     </div>
-
-                    {!openModal && <div
-                        className="md:self-center pl-2 cursor-pointer md:content-center hover:scale-110 hidden lg:block"
-                        onClick={handlePiP}
-                    >
-                        <div >
-                            <LuPictureInPicture className="text-2xl font-thin" size={28} strokeWidth={1}/>
-                        </div>
-                    </div>}
                 </div>
             </div>
         </div>

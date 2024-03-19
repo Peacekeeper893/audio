@@ -13,6 +13,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 
+
 const BookDisplay = ({ name, author, bookimg, progress }) => {
     const [loading, setLoading] = useState(true);
     const [percent, setPercent] = useState(0);

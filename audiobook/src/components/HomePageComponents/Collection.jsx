@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import BookDisplay from "./BookDisplay";
 
-const Collection = ({ heading, contents, isLoading ,progress }) => {
+const Collection = ({ heading, contents, isLoading ,progress , isHome }) => {
     return (
         <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-full max-w-full md:px-5 md:py-3 p-2">
             <div
@@ -32,6 +32,7 @@ const Collection = ({ heading, contents, isLoading ,progress }) => {
                                     author={book["author"]}
                                     bookimg={book["bookimg"]}
                                     progress={progress}
+                                    isHome={isHome}
                                 />
                             </Link>
                         ))}

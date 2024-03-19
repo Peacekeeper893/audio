@@ -161,6 +161,24 @@ const Book = ({ loggedIn }) => {
         }
     };
 
+    const handleListenHistory = async (data) => {
+
+        addDoc(collection(db, "users", user.uid, "history"), {
+            name: book[0]["name"],
+            chapter: data,
+            at: serverTimestamp(),
+        })
+            .then(() => {
+                console.log(
+                    "History Document successfully written!"
+                );
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+
+    }
+
     const sendData = (data) => {
 
         setShowPlayer(true)
@@ -168,6 +186,18 @@ const Book = ({ loggedIn }) => {
         var currentURL = window.location.href;
         // Store data in local storage with the URL as the key
         localStorage.setItem(currentURL, data);
+
+        const test = true;
+
+
+        setTimeout(() => {
+
+            if (test) {
+                handleListenHistory(data);
+            }
+
+        } , 5000);
+        
 
         setTimeout(() => {
             if (user && book) {

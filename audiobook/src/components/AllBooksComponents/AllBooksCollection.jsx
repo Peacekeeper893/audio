@@ -28,7 +28,7 @@ const AllBooksCollection = ({}) => {
     }, []);
 
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 5;
+    const itemsPerPage = 4;
 
     const handlePageClick = ({ selected: selectedPage }) => {
         setCurrentPage(selectedPage);
@@ -38,15 +38,15 @@ const AllBooksCollection = ({}) => {
 
 
     return (
-        <>
+        <div className="min-h-[150vh] pt-[10vh]">
             {loading ? (
                 <LoadingScreen />
             ) : (
             <div>
-                   <Collection contents={books.slice(offset, offset + itemsPerPage)} isLoading={loading} heading={"All Books"} progress={false} />
+                        <Collection contents={books.slice(offset, offset + itemsPerPage)} isLoading={loading} heading={"All Books"} progress={false} isHome={false} />
 
               <ReactPaginate
-                className="react-paginate"
+                className="react-paginate mt-[25vh]"
                         previousLabel={"⏮️ Previous"}
                         nextLabel={"Next ⏭️"}
                         pageCount={Math.ceil(books.length / itemsPerPage)}
@@ -59,7 +59,7 @@ const AllBooksCollection = ({}) => {
                     />
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

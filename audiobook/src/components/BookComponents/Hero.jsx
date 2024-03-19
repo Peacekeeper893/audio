@@ -6,6 +6,10 @@ import Button from "../Utils/Button";
 import { getDocs, where, query } from "firebase/firestore";
 import { deleteDoc, doc } from "firebase/firestore";
 import ReactStars from "react-rating-stars-component";
+import { IoMdShare } from "react-icons/io";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import UseAnimations from "react-useanimations";
 import Activity from "react-useanimations/lib/activity";
@@ -144,8 +148,12 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
         }
     };
 
+    const notify = () => toast("Link Copied to ClipBoard!");
+
     return (
         <Fragment>
+            <ToastContainer />
+
             <div className="md:p-8 flex flex-col md:flex-row md:justify-start items-center md:gap-9 dark:bg-d-bg-200 dark:text-white gap-4 p-4">
                 <div className="md:h-[370px] md:w-[280px] md:min-w-[250px]  h-[250px] w-[190px]">
                     <img
@@ -159,7 +167,10 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                     <h1 className="md:text-4xl text-2xl mb-2 text-center md:text-left">
                         {book[0]["name"]}
                     </h1>
-                    <a href={`/author/${book[0]["author"]}`} className="w-full ">
+                    <a
+                        href={`/author/${book[0]["author"]}`}
+                        className="w-full "
+                    >
                         <p className="md:text-xl text-md text-center md:text-left mb-4 md:mb-0">
                             {book[0]["author"]}
                         </p>
@@ -199,7 +210,6 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                                 <div className="my-2 md:w-[80%] ">
                                     <div className="dark:bg-d-bg-300 font-eczar dark:text-white font-semibold py-2  rounded  border-2 px-8  w-full flex gap-2 justify-center">
                                         <div className="">
-                                            
                                             <UseAnimations
                                                 animation={Activity}
                                                 size={26}
@@ -212,14 +222,40 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                             )}
                         </div>
 
-                        <div className="flex md:flex-col  items-center p-4 ">
-                            <div className="font-eczar pt-2 px-5">Rate this book:</div>
+                        <div className="flex md:flex-col   items-center  ">
+                            <div className="font-eczar -mb-2   px-5">
+                                Rate this book:
+                            </div>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
                                 size={24}
                                 activeColor="#ffd700"
                             />
+
+                            <div
+                                className="mt-3 hover:scale-105 duration-500 cursor-pointer hidden md:flex items-center gap-2 dark:bg-d-bg-400 px-3 py-1 rounded-md dark:border-white border-2 font-bold"
+                                onClick={() => {
+                                    navigator.clipboard
+                                        .writeText(window.location.href)
+                                        .then(() => {
+                                            // window.alert(
+                                            //     "Text copied to clipboard"
+                                            // );
+
+                                            notify();
+                                        })
+                                        .catch((err) => {
+                                            // This can happen if the user denies clipboard permissions:
+                                            console.error(
+                                                "Could not copy text: ",
+                                                err
+                                            );
+                                        });
+                                }}
+                            >
+                                Share {<IoMdShare className="mt-1" />}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import Collection from "../HomePageComponents/Collection";
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
 
-const Recent = () => {
+const Recent = ({ size }) => {
 
     const auth = getAuth();
     const user = auth.currentUser;
@@ -17,7 +17,7 @@ const Recent = () => {
 
     useEffect(() => {
         const retrieveData = async () => {
-            const q = query(collection(db, "users", user.uid, "recent"),orderBy("timestamp", "desc"), limit(3));
+            const q = query(collection(db, "users", user.uid, "recent"),orderBy("timestamp", "desc"), limit(size ? size : 3));
 
             const querySnapshot = await getDocs(q);
             const fetchPromises = [];

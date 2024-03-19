@@ -125,7 +125,7 @@ const Home = ({ loggedIn }) => {
             <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex  ">
                 <div className=" md:flex-[75]  ">
 
-                    <Recent />
+                    <Recent size={3}/>
                 </div>
                 <div className="md:flex flex-col ml-2 flex-[25] hidden">
 
