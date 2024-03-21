@@ -244,7 +244,7 @@ const Controls = ({
         <div className="controls-wrapper">
             <div
                 className={`controls md:flex justify-between px-6 ${
-                    openModal && "text-3xl md:pb-0 md:-mb-2 pb-8 "
+                    openModal && "text-3xl -mb-2 md:pt-2 pt-4 "
                 }`}
             >
                 {/* Playback Rate Control */}
@@ -269,6 +269,8 @@ const Controls = ({
                         <option value="1.75">1.75x</option>
                         <option value="2">2.00x</option>
                     </select>
+
+                    
                 </div>
 
                 {/* Main Controls */}
@@ -326,35 +328,7 @@ const Controls = ({
                 >
                     {/* AudioLevel Controls */}
 
-                    {/* 
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={() => setMuteVolume((prev) => !prev)}
-                            className="hidden md:block"
-                        >
-                            {muteVolume || volumeval < 5 ? (
-                                <IoMdVolumeOff />
-                            ) : volumeval < 40 ? (
-                                <IoMdVolumeLow />
-                            ) : (
-                                <IoMdVolumeHigh />
-                            )}
-                        </button>
 
-                        <input
-                            type="range"
-                            min={0}
-                            max={100}
-                            id="vol-control"
-                            value={volumeval}
-                            onChange={(e) => setVolume(e.target.value)}
-                            style={{
-                                background: `linear-gradient(to right, #f50 ${volumeval}%, #ccc ${volumeval}%)`,
-                                paddingBottom: "5px",
-                            }}
-                            className="hidden md:block mt-2"
-                        />
-                    </div> */}
 
                     <div
                         className="py-2"

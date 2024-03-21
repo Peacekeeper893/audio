@@ -130,7 +130,7 @@ const Audioplayer = ({
                 </div>
             )}
 
-            <div className={`${openModal && "bg-d-bg-100 bg-opacity-50 rounded-t-[2rem] pt-4"}`}>
+            <div className={`${openModal && "bg-d-bg-100 bg-opacity-70 rounded-t-[2rem] pt-4"}`}>
                 <DisplayTrack
                     currentTrack={currentTrack}
                     audioRef={audioRef}

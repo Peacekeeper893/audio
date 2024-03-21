@@ -18,7 +18,7 @@ const ProfileHero = () => {
 
     return (
         <div>
-            <div className="bg-gray-800 dark:bg-gradient-to-b from-d-bg-500 via-d-bg-200 to-d-bg-100 h-64 p-8">
+            <div className=" bg-slate-500   dark:bg-gradient-to-b dark:from-d-bg-500 dark:via-d-bg-200 dark:to-d-bg-100 h-64 p-8">
                 <div className="flex items-center justify-start h-full gap-16">
                     <div className="p-4 rounded-full border-gray-400 border-8">
                         <HiMiniUser className="text-3xl dark:text-d-primary-500" size={80} />

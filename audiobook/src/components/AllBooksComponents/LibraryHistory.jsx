@@ -77,19 +77,19 @@ export const LibraryHistory = () => {
                 <div>Loading...</div>
             ) : (
                 items.map((item) => (
-                    <div className="flex text-sm lg:text-xl font-semibold font-eczar">
-                        <div className="flex-[70%] flex gap-2">
+                    <div className="flex text-sm lg:text-xl font-semibold font-eczar dark:text-white">
+                        <div className="flex-[65%] flex gap-2">
                             <div className="flex-[50%]">{item["name"]}</div>
                             <div className="flex-[50%]">Chapter: {item["chapter"]}</div>
                         </div>
-                        <div className="flex-[30%] flex justify-between gap-4 lg:gap-6">
+                        <div className="flex-[35%] flex justify-between gap-4 lg:gap-6 items-center">
 
-                            <div className="flex-[90%] flex justify-end">{timediff(item["at"])} ago</div>
+                            <div className="flex-[90%] flex justify-end items-center lg:text-xl text-xs">{timediff(item["at"])} ago</div>
                             <div
                             onClick={handleDeleteHistory}
-                            className="hover:scale-[1.1] pt-1 flex-[10%] flex"
+                            className="hover:text-blue-400  flex-[10%] flex text-base items-center underline-offset-2 underline text-blue-500 cursor-pointer pt-0.5"
                         >
-                            <RiDeleteBinFill />
+                            Delete
                         </div>
                             
                         </div>

@@ -1,8 +1,19 @@
 import React from "react";
-import { Fragment, useRef } from "react";
+import { Fragment, useRef ,useState } from "react";
 import Audioplayer from "../AudioPlayerComponents/Audioplayer";
 import { FaHouseChimneyWindow } from "react-icons/fa6";
 import { GiContract } from "react-icons/gi";
+import { TbBooks } from "react-icons/tb";
+import { IoCloseSharp } from "react-icons/io5";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoMdBookmarks } from "react-icons/io";
+
+import { motion, AnimatePresence } from "framer-motion";
+
+import Bookmark from "../Utils/Bookmark";
+import Bookmarks from "../Utils/Bookmarks";
+import MobileChapterList from "../Utils/MobileChapterList";
+
 
 const Chapter = ({
     title,
@@ -19,7 +30,35 @@ const Chapter = ({
     const name = book[0]["name"];
     console.log(chapter_number);
 
+    const [bookmarkDisplay, setBookmarkDisplay] = useState(false);
+    const [chapterDisplay, setChapterDisplay] = useState(false);
+
     const ARef = useRef();
+
+    const bookmarkBarVariants = {
+        hidden: { y: "100%" },
+        visible: { y: "0%" },
+        exit: { y: "100%" }, // Add opacity: 0 to make the exit animation visible
+    };
+
+    const handleBookmarkDisplay = () => {
+        setBookmarkDisplay((prev) => !prev);
+    };
+
+    const handleChapterDisplay = () => {  
+        setChapterDisplay((prev) => !prev);
+    };
+
+    const playBookmark = (chapter, timestamp) =>{
+        
+        sendData(chapter);
+
+        setTimeout(() => {
+            ARef.current.currentTime = timestamp;
+            // setIsPlaying(true);
+        }, 500);
+    }
+    
 
 
 
@@ -36,10 +75,10 @@ const Chapter = ({
                 <p
                     className={`${
                         openModal &&
-                        "bg-transparent bottom-2 text-2xl md:text-4xl lg:text-6xl font-sans text-[#ececec] mb-1 lg:px-72 lg:mx-8 text-center"
+                        "bg-transparent bottom-2 text-2xl md:text-4xl lg:text-6xl font-sans text-[#ececec] md:mb-4 mb-2 lg:px-72 lg:mx-8 text-center py-2"
                     } ${
-                        !openModal && "text-2xl font-semibold pl-5"
-                    } py-3 text-center`}
+                        !openModal && "text-2xl font-semibold pl-5 py-3"
+                    }  text-center`}
                 >
                     {book[0]["chapterdetails"]
                         ? title
@@ -60,10 +99,10 @@ const Chapter = ({
                 />
 
                 {openModal && (
-                    <div className=" md:hidden w-full h-16  flex  bg-opacity-75">
+                    <div className=" md:hidden w-full h-12  flex  bg-d-bg-100 bg-opacity-70">
                         <div className="w-[25%]  h-full  flex items-center justify-center p-4">
                             <select
-                                className="bg-transparent text-white p-1 pb-3 w-[90%]"
+                                className="bg-transparent text-white p-1 font-eczar w-[90%] "
                                 onChange={(e) => {
                                     ARef.current.playbackRate = e.target.value;
                                 }}
@@ -80,10 +119,10 @@ const Chapter = ({
                             </select>
                         </div>
                         <div className="w-[25%]  h-full  flex items-center justify-center">
-                            <FaHouseChimneyWindow size={32} />
+                            <IoMdBookmarks size={32} onClick={handleBookmarkDisplay} />
                         </div>
                         <div className="w-[25%]  h-full  flex items-center justify-center">
-                            <FaHouseChimneyWindow size={32} />
+                            <TbBooks size={32} onClick={handleChapterDisplay}/>
                         </div>
                         <div className="w-[25%]  h-full  flex items-center justify-center hover:scale-90">
                             <GiContract
@@ -95,6 +134,86 @@ const Chapter = ({
                     </div>
                 )}
             </div>
+
+            {/* Mobile Bookmark List */}
+
+
+            <AnimatePresence>
+                {openModal && bookmarkDisplay && (
+                    <motion.div
+                        className="bookmark-bar absolute bottom-0 rounded-t-2xl  bg-neutral-200 bg-opacity-100 text-black z-40 w-full px-4 pb-8 max-h-[60vh] min-h-[40vh] text-xl overflow-y-auto  "
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={bookmarkBarVariants}
+                        transition={{ type: "tween", stiffness: 110 }}
+                    >
+                        {/* Your bookmarks go here */}
+
+                        <div className="flex justify-between sticky top-0 mb-4 py-4 z-[50] bg-neutral-200 ">
+                            <div></div>
+
+                            <div
+                                className="flex justify-center items-center gap-3 cursor-pointer"
+                                onClick={handleBookmarkDisplay}
+                            >
+                                <div>Your Bookmarks</div>
+                                <div className="pt-1">
+                                    <IoIosArrowDown />
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleBookmarkDisplay}
+                                className="hover:text-[1.3rem] duration-500"
+                            >
+                                <IoCloseSharp />
+                            </button>
+                        </div>
+
+                        <Bookmarks book={book} playBookmark={playBookmark} />
+
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Mobile Chapter List */}
+            <AnimatePresence>
+                {openModal && chapterDisplay && (
+                    <motion.div
+                        className="bookmark-bar absolute bottom-0 rounded-t-2xl  bg-neutral-200 bg-opacity-100 text-black z-40 w-full px-4 pb-8 max-h-[90vh] min-h-[90vh] text-xl overflow-y-auto dark:bg-d-bg-200 dark:text-white "
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={bookmarkBarVariants}
+                        transition={{ type: "tween", stiffness: 110 }}
+                    >
+                        {/* Your bookmarks go here */}
+
+                        <div className="flex justify-between sticky top-0 mb-4 py-4 z-[50] bg-neutral-200 dark:bg-d-bg-200 dark:text-white  ">
+                            <div></div>
+
+                            <div
+                                className="flex justify-center items-center gap-3 cursor-pointer"
+                                onClick={handleChapterDisplay}
+                            >
+                                <div>Chapters</div>
+                                <div className="pt-1">
+                                    <IoIosArrowDown />
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleChapterDisplay}
+                                className="hover:text-[1.3rem] duration-500"
+                            >
+                                <IoCloseSharp />
+                            </button>
+                        </div>
+
+                        <MobileChapterList book={book} chapter_number={chapter_number} sendData={sendData}/>
+
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </Fragment>
     );
 };

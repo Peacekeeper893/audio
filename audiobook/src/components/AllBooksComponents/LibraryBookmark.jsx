@@ -65,13 +65,13 @@ const LibraryBookmark = ({ bookmark, onDelete, playBookmark }) => {
         <div>
             
             <>
-                <div className="w-full flex justify-between items-center bg-slate-300 py-4 px-4 rounded-xl dark:bg-d-bg-300">
-                    <div className="flex gap-3 text-sm md:text-xl">
-                        <div>{bookmark.name} - </div>
-                        <div>Chapter : {bookmark.chapter_number}</div>
+                <div className="w-full flex justify-between items-center bg-slate-300 py-4 pr-4 lg:px-4 pl-1 rounded-xl dark:bg-d-bg-300">
+                    <div className="flex md:gap-3 gap-2 items-center text-sm md:text-xl">
+                        <div className="text-xs md:text-xl text-center">{bookmark.name}</div>
+                        <div className="min-w-[20vw]">Chapter : {bookmark.chapter_number}</div>
                     </div>
-                    <div className="flex gap-3 items-center">
-                        <div className="italic font-normal text-base lg:pr-8 ">
+                    <div className="flex md:gap-3 gap-4 items-center pl-4">
+                        <div className="italic font-normal text-base lg:pr-8 hidden md:block">
                             {timediff(bookmark.setAt)} ago
                         </div>
                         <div>{formatTime(bookmark.timestamp)}</div>

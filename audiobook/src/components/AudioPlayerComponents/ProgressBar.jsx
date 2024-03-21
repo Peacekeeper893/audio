@@ -65,7 +65,7 @@ const ProgressBar = ({
 
             {openModal && (
                 <div
-                    className=" text-[1rem] font-normal absolute md:bottom-1 bottom-[15vh] w-full pl-2  md:pl-5  hover:pb-[0.08rem] cursor-pointer duration-300"
+                    className="hidden md:block text-[1rem] font-normal md:absolute  md:bottom-1 bottom-[11vh] w-full pl-2  md:pl-5  hover:pb-[0.08rem] cursor-pointer duration-300"
                     onClick={handleBookmarkDisplay}
                 >
                     <div className="flex justify-center">

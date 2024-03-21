@@ -1,12 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { GrNext } from "react-icons/gr";
 import { FcNext } from "react-icons/fc";
 import { MdNavigateNext } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 
-
-const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendData }) => {
+const Modal = ({
+    openModalHandler,
+    closeModalHandler,
+    book,
+    chapter_number,
+    sendData,
+}) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [focused, setFocused] = useState(true);
     const [upnext, setUpnext] = useState(false);
@@ -16,32 +21,35 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
 
     // console.log(focused);
 
-
     const handleTouchStart = (e) => {
         setStartX(e.touches[0].clientX);
-      };
-    
-      const handleTouchEnd = (e) => {
+    };
+
+    const handleTouchEnd = (e) => {
         const endX = e.changedTouches[0].clientX;
         if (startX > endX + 100) {
-            console.log('Swipe Left');
-            
-            if(chapter_number<book[0]["chapters"].length-1){
-                sendData(chapter_number+1);
+            console.log("Swipe Left");
+
+            if (chapter_number < book[0]["chapters"].length - 1) {
+                sendData(chapter_number + 1);
             }
         }
         if (startX + 100 < endX) {
-            console.log('Swipe Right');
-            
+            console.log("Swipe Right");
+
             if (chapter_number > 1) {
                 sendData(chapter_number - 1);
             }
         }
-      };
+    };
 
     useEffect(() => {
-
-        setNxtchapters(book[0]["chapters"].slice(chapter_number, chapter_number + 5 > book[0]["chapters"].length ? book[0]["chapters"].length : chapter_number + 5));
+        setNxtchapters(
+            book[0]["chapters"].slice(
+                chapter_number,
+                book[0]["chapters"].length
+            )
+        );
     }, [chapter_number]);
 
     useEffect(() => {
@@ -70,7 +78,7 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
         };
 
         const handleEscape = (event) => {
-            if (event.key === 'Escape') {
+            if (event.key === "Escape") {
                 // Your logic here
 
                 closeModalHandler();
@@ -79,12 +87,12 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
 
         window.addEventListener("mousemove", handleActivity);
         window.addEventListener("mousedown", handleActivity);
-        window.addEventListener('keydown', handleEscape);
+        window.addEventListener("keydown", handleEscape);
 
         return () => {
             window.removeEventListener("mousemove", handleActivity);
             window.removeEventListener("mousedown", handleActivity);
-            window.removeEventListener('keydown', handleEscape);
+            window.removeEventListener("keydown", handleEscape);
         };
     }, [focused]);
     let burl;
@@ -96,13 +104,13 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
     if (window.innerWidth > 1024) {
         burl = book[0]["bookimg"];
     } else {
-        burl =
-            "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSfGnkT5jVZfCsLtlwy0cyCtE1qfD8ayT7Qtt8gUMSoLopicCWd";
+        burl = book[0]["bookimg"];
+        // "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSfGnkT5jVZfCsLtlwy0cyCtE1qfD8ayT7Qtt8gUMSoLopicCWd";
     }
 
     const containerStyle = {
         backgroundImage: `url(${burl})`,
-        // opacity: 0.9, // Increase the opacity to make the background darker
+        opacity: 0.93, // Increase the opacity to make the background darker
         filter: "contrast(1.2) saturate(90%) brightness(25%)", // Decrease the brightness and adjust the contrast to make the text more visible
     };
     const mainstyle = {
@@ -124,6 +132,7 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
         visible: {
             x: isFirstRender && focused ? 0 : focused ? "-5%" : "15%",
             scale: isFirstRender && focused ? 1 : focused ? 1.2 : 1.25,
+            y: isFirstRender && focused ? 0 : focused ? "5%" : "8%",
             // y: isFirstRender && focused ? 0 : focused ? "7%" : "8%",
             transition: { duration: 0.5 },
         },
@@ -137,11 +146,15 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
     };
 
     return (
-        <div className="" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <div
+            className=""
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+        >
             <div
                 className={`max-w-full bg-black h-screen ${
                     focused ? "-z-40 opacity-90" : "z-20 opacity-100"
-                } -z-40  w-full  text-white absolute top-0 bg-cover bg-center shadow-slate-950 shadow-2xl bg-no-repeat `}
+                } -z-40  w-full  text-white absolute top-0 bg-cover bg-center shadow-slate-950 shadow-2xl bg-no-repeat  `}
                 style={containerStyle}
             >
                 <button
@@ -167,10 +180,13 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
                 />
             </motion.div>
 
-            <div className="md:hidden  absolute  h-[50%] bottom-[38vh] left-[10%]  w-[75%]  z-30" key={chapter_number}>
+            <div
+                className="md:hidden absolute h-[50%] bottom-[40%] left-[18%]  w-[75%]  -z-20"
+                key={chapter_number}
+            >
                 <img
                     src={book[0]["bookimg"]}
-                    className="h-[100%] bottom-12 md:bottom-[4.5rem]  absolute left-[3%]  w-[100%]   "
+                    className="h-[100%]  md:bottom-[4.5rem]  absolute  w-[85%]   "
                     alt={book[0]["bookname"]}
                     style={mainstyle}
                 />
@@ -180,7 +196,7 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
                 className="hidden cursor-pointer absolute top-[12vh] right-[1vw] text-gray-400    w-32 md:block"
                 onClick={handleUpNext}
             >
-                <div className="md:flex items-center gap-2 bg-gray-700 rounded-full py-3 px-2 pl-6 bg-opacity-30 hover:scale-110 duration-500">
+                <div className=" upNextScrollBar md:flex items-center gap-2 bg-gray-700 rounded-full py-3 px-2 pl-6 bg-opacity-30 hover:scale-110 duration-500 mb-4">
                     <div className=" ">Up Next</div>
                     <div className=" pt-1 ">
                         {!upnext && (
@@ -195,32 +211,37 @@ const Modal = ({ openModalHandler, closeModalHandler, book,chapter_number,sendDa
                         )}
                     </div>
                 </div>
-                {upnext && <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={variants2}
-                transition={transition} className=" h-24 w-32  mt-10 flex flex-col gap-3">
 
-                    {nxtchapters && nxtchapters.map((chapter, index) => {
-
-                        return (
-                            <div key={index} className="text-gray-400 text-sm flex w-full gap-2 hover:scale-105 duration-300" onClick={() => { sendData(chapter.chapter_number) }}>
-
-                            <p>  {chapter.chapter_number}.</p> 
-                            <p>    {chapter.chapter_title}</p>
-
-                                
-                                
-                                
-                            </div>
-                        );
-
-                    })}
-                    
-                
-                </motion.div>
-                
-                }
+                <AnimatePresence>
+                    {upnext && (
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            exit={{ x: "-100%" , scale: 0 , transition: { duration: 0.3 } } }
+                            variants={variants2}
+                            transition={transition}
+                            className=" h-[40vh] w-32 overflow-y-auto pr-3 z-[60]  mt-10 flex flex-col gap-3"
+                        >
+                            {nxtchapters &&
+                                nxtchapters.map((chapter, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="text-gray-400 text-sm flex w-full gap-2 hover:text-[0.9rem]  duration-300"
+                                            onClick={() => {
+                                                sendData(
+                                                    chapter.chapter_number
+                                                );
+                                            }}
+                                        >
+                                            <p> {chapter.chapter_number}.</p>
+                                            <p> {chapter.chapter_title}</p>
+                                        </div>
+                                    );
+                                })}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </div>
     );

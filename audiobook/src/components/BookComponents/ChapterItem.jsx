@@ -116,15 +116,15 @@ const ChapterItem = ({
 
                     <div className="flex-col">
                         <div>
-                            {chapterdetails && (
-                                <span className="font-bold">{num}. </span>
+                            { (
+                                <span className="font-bold">Chapter {num}. </span>
                             )}{" "}
                             {chapterdetails && (
                                 <span className="font-semibold">{title}</span>
                             )}
                             {!chapterdetails && (
                                 <span className="font-semibold">
-                                    Chapter {num}
+                                   {title}
                                 </span>
                             )}
                         </div>
@@ -163,7 +163,7 @@ const ChapterItem = ({
                     )}
                 </div>
                 {chapterdetails && (
-                    <div className="dark:text-d-bg-600">{description}</div>
+                    <div className={`dark:text-d-bg-600`}>{description}</div>
                 )}
             </div>
         </Fragment>

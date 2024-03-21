@@ -52,7 +52,7 @@ const Bookmark = ({ bookmark, book ,onDelete,playBookmark }) => {
         const now = new Date();
         const setAt = new Date(timestamp.toDate());
 
-        console.log(now, setAt);
+        // console.log(now, setAt);
         const diff = Math.abs(now - setAt);
         const weeks = Math.floor(diff / 604800000);
         const minutes = Math.floor(diff / 60000);
@@ -81,7 +81,7 @@ const Bookmark = ({ bookmark, book ,onDelete,playBookmark }) => {
                     <div>{book[0]["chapters"][parseInt(bookmark.chapter_number)]["chapter_title"] }</div>
                 </div>
                 <div className="flex gap-3 items-center">
-                    <div className="italic font-normal text-base lg:pr-8 ">{timediff(bookmark.setAt)} ago</div>
+                    <div className="italic font-normal text-base lg:pr-8 pr-3">{timediff(bookmark.setAt)} ago</div>
                     <div>{formatTime(bookmark.timestamp)}</div>
                     <div onClick={handleGoToBookmark} className="underline underline-offset-2 font-medium text-blue-600 hover:text-blue-400 cursor-pointer text-lg">Visit</div>
                     <div onClick={handleDeleteBookmark} className="hover:scale-[1.1] pt-1"><RiDeleteBinFill/></div>
