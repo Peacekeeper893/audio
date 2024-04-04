@@ -98,7 +98,7 @@ const Navbar = ({ loggedIn, home }) => {
             {home && (
                 <>
                     <div className="bg-slate-600 w-full text-white justify-between gap-6 py-3 dark:bg-d-bg-300 items-center hidden md:flex">
-                        <div className="md:ml-8 ml-6 flex justify-start content-center items-center gap-4 text-lg">
+                        <div className="md:ml-8 ml-6 flex justify-start content-center items-center gap-6 text-lg">
                             <div className="mr-4">
                                 <RiMenu3Fill
                                     onClick={handleOpenMenu}
@@ -113,6 +113,9 @@ const Navbar = ({ loggedIn, home }) => {
                             </div>
                             <span className="hover:underline">
                                 <Link to={"/library"}>Library</Link>
+                            </span>
+                            <span className="hover:underline">
+                                <Link to={"/books"}>Explore</Link>
                             </span>
 
                             <div className=" flex " onClick={handleFocus}>

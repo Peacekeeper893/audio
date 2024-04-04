@@ -86,46 +86,45 @@ const ChapterItem = ({
             <motion.div
                 ref={ref}
                 initial={{ opacity: 0, x: -50 }}
+                // animate={
+                //     inView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -10 }
+                //     chapter_number === num ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -10 }
+                // }
                 animate={
-                    inView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -10 }
+                    inView ? (chapter_number === num ? { opacity: 1, x: 8 } : { opacity: 1, x: 0 }) : { opacity: 0.2, x: -10 }
                 }
+
                 transition={{ duration: 0.5 }}
                 className="hidden md:block p-3 pl-6 bg-neutral-100 m-3 dark:bg-d-bg-300 dark:text-white rounded-md"
                 id={num}
             >
-                <div className="flex gap-4">
+                <div className={`flex gap-4 `}>
                     <div className="flex">
                         <button onClick={onClickHandler}>
                             {isPlaying === false ? (
                                 <BsFillPlayCircleFill className=" self-center text-2xl hover:scale-110" />
                             ) : (
                                 <div className="bg-black rounded-full p-1 -ml-1 cursor-auto">
-                                <UseAnimations
-                                    animation={Activity}
-                                    size={20}
+                                    <UseAnimations
+                                        animation={Activity}
+                                        size={20}
                                         color="white"
                                         fillColor="#000"
                                         strokeColor="#fff"
-
-                                        
-                                        />
-                                        </div>
+                                    />
+                                </div>
                             )}
                         </button>
                     </div>
 
                     <div className="flex-col">
                         <div>
-                            { (
-                                <span className="font-bold">Chapter {num}. </span>
-                            )}{" "}
+                            {<span className="font-bold">Chapter {num}. </span>}{" "}
                             {chapterdetails && (
                                 <span className="font-semibold">{title}</span>
                             )}
                             {!chapterdetails && (
-                                <span className="font-semibold">
-                                   {title}
-                                </span>
+                                <span className="font-semibold">{title}</span>
                             )}
                         </div>
                         <div>

@@ -66,7 +66,7 @@ const Navigation = ({ sendData, book, chapter_number }) => {
                         className=" p-4 rounded-lg font-semibold font-serif underline underline-offset-4"
                         onClick={handleCommentsClick}
                     >
-                        COMMENTS
+                        REVIEWS
                     </div>
                 )}
                 {open !== "comments" && (
@@ -74,7 +74,7 @@ const Navigation = ({ sendData, book, chapter_number }) => {
                         className=" p-4 rounded-lg font-semibold font-serif  cursor-pointer"
                         onClick={handleCommentsClick}
                     >
-                        COMMENTS
+                        REVIEWS
                     </div>
                 )}
             </div>

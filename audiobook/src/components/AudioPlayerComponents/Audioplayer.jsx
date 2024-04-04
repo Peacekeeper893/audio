@@ -7,6 +7,7 @@ import { Timestamp } from "firebase/firestore";
 const Audioplayer = ({
     currentTrack,
     openModalHandler,
+    closeModalHandler,
     sendData,
     chapter_number,
     book,
@@ -148,6 +149,7 @@ const Audioplayer = ({
                         duration,
                         setTimeProgress,
                         openModalHandler,
+                        closeModalHandler,
                         sendData,
                         chapter_number,
                         book,

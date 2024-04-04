@@ -82,7 +82,7 @@ const ProgressBar = ({
             <AnimatePresence>
                 {openModal && bookmarkDisplay && (
                     <motion.div
-                        className="bookmark-bar absolute bottom-0 rounded-t-2xl  bg-neutral-200 bg-opacity-100 text-black z-40 w-full px-4 pb-8 max-h-[55vh] text-xl overflow-y-auto  "
+                        className="bookmark-bar absolute bottom-0 rounded-t-2xl  bg-neutral-200 bg-opacity-100 text-black z-[80] w-full px-4 pb-8 max-h-[55vh] text-xl overflow-y-auto  "
                         initial="hidden"
                         animate="visible"
                         exit="exit"

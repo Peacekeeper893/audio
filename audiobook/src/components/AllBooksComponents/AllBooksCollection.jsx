@@ -6,49 +6,56 @@ import Collection from "../HomePageComponents/Collection";
 import { GrLinkPrevious } from "react-icons/gr";
 import { GrLinkNext } from "react-icons/gr";
 
-
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
-const AllBooksCollection = ({}) => {
-    const [books, setBooks] = useState([]);
-    const [loading, setIsLoading] = useState(true);
+const AllBooksCollection = ({books , loading , selectedFilters}) => {
 
-    const GetBooks = () => {
-        fetch(API_BASE + "/books")
-            .then((res) => res.json())
-            .then((data) => {
-                setBooks(data);
-                setIsLoading(false);
-            })
-            .catch((err) => console.error(err));
-    };
 
-    useEffect(() => {
-        GetBooks();
-    }, []);
+    let heading = "All Books"
+
+    if (selectedFilters.length > 0) {
+
+        heading = " Showing Titles in  : "
+
+        selectedFilters.forEach((filter, index) => {
+            heading += filter
+            if (index !== selectedFilters.length - 1) {
+                heading += " + "
+            }
+        })
+    }
+
+    // console.log("AllBooksCollection: ", books);
+
+
 
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 4;
+    const itemsPerPage = 6;
 
     const handlePageClick = ({ selected: selectedPage }) => {
         setCurrentPage(selectedPage);
     };
 
-  const offset = currentPage * itemsPerPage;
-
+    const offset = currentPage * itemsPerPage;
 
     return (
-        <div className="min-h-[150vh] pt-[10vh]">
+        <div className="min-h-[150vh] pt-[5vh]">
             {loading ? (
                 <LoadingScreen />
             ) : (
-            <div>
-                        <Collection contents={books.slice(offset, offset + itemsPerPage)} isLoading={loading} heading={"All Books"} progress={false} isHome={false} />
+                <div>
+                    <Collection
+                        contents={books.slice(offset, offset + itemsPerPage)}
+                        isLoading={loading}
+                        heading={heading}
+                        progress={false}
+                        isHome={false}
+                    />
 
-              <ReactPaginate
-                className="react-paginate mt-[25vh]"
-                        previousLabel={"⏮️ Previous"}
-                        nextLabel={"Next ⏭️"}
+                    <ReactPaginate
+                        className="react-paginate mt-[15vh]"
+                        previousLabel={"<- Previous"}
+                        nextLabel={"Next ->"}
                         pageCount={Math.ceil(books.length / itemsPerPage)}
                         onPageChange={handlePageClick}
                         containerClassName={"pagination"}

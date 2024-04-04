@@ -30,6 +30,7 @@ const Controls = ({
     duration,
     setTimeProgress,
     openModalHandler,
+    closeModalHandler,  
     sendData,
     chapter_number,
     book,
@@ -128,7 +129,7 @@ const Controls = ({
                     handleback10();
                     break;
                 case "KeyF":
-                    openModalHandler();
+                    openModal ? closeModalHandler() : openModalHandler();
                     break;
                 default:
                     break;
@@ -250,7 +251,7 @@ const Controls = ({
                 {/* Playback Rate Control */}
                 <div className="md:flex-[20%] hidden md:flex  self-center">
                     <select
-                        className={`bg-transparent text-black cursor-pointer  block ${
+                        className={`bg-transparent text-black cursor-pointer z-50  block ${
                             openModal
                                 ? "md:block text-gray-600 ring-gray-600 dark:ring-gray-600 text-2xl w-[55%]"
                                 : "md:block"
@@ -404,7 +405,7 @@ const Controls = ({
                             />
                         ) : (
                             <GiContract
-                                onClick={openModalHandler}
+                                onClick={closeModalHandler}
                                 className={`${
                                     openModal ? "text-2xl" : "text-lg"
                                 } hidden md:block`}

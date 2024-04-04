@@ -111,11 +111,11 @@ const BookDisplay = ({ name, author, bookimg, progress }) => {
                         className="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]"
                     />
                 </div>
-                <div className="h-[25%]">
-                    <p className="lg:text-xl md:text-md text-md mt-8 mb-2 font-semibold hover:text-cyan-400 dark:hover:text-d-primary-500">
+                <div className="h-[25%] flex flex-col">
+                    <p className="flex-[40%] overflow-clip  hover:overflow-visible overflow-ellipsis whitespace-nowrap  lg:text-xl hover:whitespace-normal md:text-md text-md mt-8 mb-2 font-semibold hover:text-cyan-400 dark:hover:text-d-primary-500">
                         {name}
                     </p>
-                    <p className="text-sm dark:text-d-bg-600">{author}</p>
+                    <p className="text-sm flex-[60%] dark:text-d-bg-600">{author}</p>
                 </div>
             </motion.div>
 

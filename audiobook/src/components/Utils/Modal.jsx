@@ -121,7 +121,7 @@ const Modal = ({
     const variants = {
         hidden: { x: "-100%" }, // Offscreen to the left
         visible: {
-            x: isFirstRender && focused ? 0 : focused ? "-10%" : "15%",
+            x: isFirstRender && focused ? 0 : focused ? "-7%" : "15%",
             scale: isFirstRender && focused ? 1 : focused ? 0.75 : 1.25,
             y: isFirstRender && focused ? 0 : focused ? "7%" : "8%",
             transition: { duration: 0.5 },
@@ -220,7 +220,7 @@ const Modal = ({
                             exit={{ x: "-100%" , scale: 0 , transition: { duration: 0.3 } } }
                             variants={variants2}
                             transition={transition}
-                            className=" h-[40vh] w-32 overflow-y-auto pr-3 z-[60]  mt-10 flex flex-col gap-3"
+                            className=" h-[40vh] w-32 overflow-y-auto pr-3 z-[90]  mt-10 flex flex-col gap-3 relative"
                         >
                             {nxtchapters &&
                                 nxtchapters.map((chapter, index) => {

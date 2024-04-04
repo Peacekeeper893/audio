@@ -13,6 +13,7 @@ import Collection from "./HomePageComponents/Collection";
 import Recent from "./ProfileComponents/Recent";
 import MobileSearch from "./HomePageComponents/MobileSearch";
 import MobileGreeting from "./HomePageComponents/MobileGreeting";
+import MostPopular from "./HomePageComponents/MostPopular";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -140,6 +141,8 @@ const Home = ({ loggedIn }) => {
                     </div>
                 </div>
             </div>
+
+            <MostPopular isLoading={isLoading} />
 
             <Collection heading="Harry Potter Books" contents={hpbooks} isLoading={isLoading} />
 

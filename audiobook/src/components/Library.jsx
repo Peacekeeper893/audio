@@ -8,6 +8,16 @@ import LibraryDisplay from "./AllBooksComponents/LibraryDisplay";
 
 const Library = ({ loggedIn, loading }) => {
     const [selected, setSelected] = useState("Shelf");
+    useEffect(() => {
+        const handleBeforeUnload = (e) => {
+            e.preventDefault();
+            e.returnValue = '';
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    }, []);
+
     return (
         <>
             {loading ? (

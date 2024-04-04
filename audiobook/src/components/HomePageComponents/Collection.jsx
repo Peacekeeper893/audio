@@ -2,6 +2,7 @@ import React from "react";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import BookDisplay from "./BookDisplay";
+import ScrollCollection from "../Utils/ScrollCollection";
 
 const Collection = ({ heading, contents, isLoading ,progress , isHome }) => {
     return (
@@ -24,7 +25,9 @@ const Collection = ({ heading, contents, isLoading ,progress , isHome }) => {
                         </div>
                     ))
                 ) : (
-                    <Fragment>
+                        <Fragment>
+                            
+                            {/* <ScrollCollection mostPopularBooks={contents} /> */}
                         {contents.map((book) => (
                             <Link to={`/book/${book["name"]}`}>
                                 <BookDisplay

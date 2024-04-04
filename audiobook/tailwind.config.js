@@ -23,6 +23,9 @@ module.exports = {
                 "d-primary-400": "#9171f8",
                 "d-primary-300": "#7a5af5",
                 "d-primary-200": "#5e43f3",
+                'fade-white': 'linear-gradient(to top, white, transparent)',
+                'fade-black': 'linear-gradient(to top, black, transparent)',
+        
             },
             textShadow: {
                 "default":"2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000",

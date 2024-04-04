@@ -11,7 +11,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.2",
-    "epubjs": "^0.3.93",
     "firebase": "^10.5.0",
     "framer-motion": "^10.16.4",
     "r2-lcp-js": "^1.0.38",

@@ -34,13 +34,42 @@ const Book = ({ loggedIn }) => {
     const [user, setUser] = useState({});
     const [showPlayer, setShowPlayer] = useState(true);
 
-
     const openModalHandler = () => {
         setOpenModal((prev) => !prev);
+
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+            // Firefox
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+            // Chrome, Safari and Opera
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+            // IE/Edge
+            document.documentElement.msRequestFullscreen();
+        }
+
+
     };
 
     const closeModalHandler = () => {
+
+        if (document.exitFullscreen) {
+            console.log("exitFullscreen");
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+            console.log("exitFullscreen");
+            
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+
         setOpenModal(false);
+
     };
     const GetBook = () => {
         fetch(API_BASE + "/book/" + book_name)
@@ -61,9 +90,10 @@ const Book = ({ loggedIn }) => {
         GetBook();
     }, []);
 
+    // Add book to recent
+
     useEffect(() => {
         const handleRecord = async () => {
-
             try {
                 if (book && user && user.uid) {
                     const q = query(
@@ -101,21 +131,75 @@ const Book = ({ loggedIn }) => {
                                 );
                             })
                             .catch((error) => {
-                                console.error("Error writing document: ", error);
+                                console.error(
+                                    "Error writing document: ",
+                                    error
+                                );
                             });
                     }
                 }
-            
             } catch (e) {
                 console.log(e);
             }
-        }
+        };
+
+        const handlestat = async () => {
+            try {
+                if (book && user && user.uid) {
+                    const q = query(
+                        collection(db, "all-stats"),
+                        where("name", "==", book[0]["name"])
+                    );
+
+                    let querySnapshot;
+                    try {
+                        querySnapshot = await getDocs(q);
+                    } catch (e) {
+                        console.log(e);
+                    }
+
+                    if (!querySnapshot.empty) {
+                        querySnapshot.forEach((docx) => {
+                            const docRef = doc(db, "all-stats", docx.id);
+                            updateDoc(docRef, {
+                                listens: docx.data()["listens"] + 1,
+                            });
+                        });
+                    } else {
+                        addDoc(collection(db, "all-stats"), {
+                            name: book[0]["name"],
+                            listens: 1,
+                        })
+                            .then(() => {
+                                console.log(
+                                    "Document successfully written to all-stats!"
+                                );
+                            })
+                            .catch((error) => {
+                                console.error(
+                                    "Error writing document: ",
+                                    error
+                                );
+                            });
+                    }
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
         if (user && book) {
             setTimeout(() => {
                 handleRecord();
             }, 8000);
+
+            setTimeout(() => {
+                handlestat();
+            }, 8000);
         }
     }, [user, book]);
+
+    // save the progress of the user
 
     const handleProgress = async (progress) => {
         if (book && user && user.uid) {
@@ -162,26 +246,21 @@ const Book = ({ loggedIn }) => {
     };
 
     const handleListenHistory = async (data) => {
-
         addDoc(collection(db, "users", user.uid, "history"), {
             name: book[0]["name"],
             chapter: data,
             at: serverTimestamp(),
         })
             .then(() => {
-                console.log(
-                    "History Document successfully written!"
-                );
+                console.log("History Document successfully written!");
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
-
-    }
+    };
 
     const sendData = (data) => {
-
-        setShowPlayer(true)
+        setShowPlayer(true);
         setChapter_number((prev) => data);
         var currentURL = window.location.href;
         // Store data in local storage with the URL as the key
@@ -189,15 +268,11 @@ const Book = ({ loggedIn }) => {
 
         const test = true;
 
-
         setTimeout(() => {
-
             if (test) {
                 handleListenHistory(data);
             }
-
-        } , 5000);
-        
+        }, 5000);
 
         setTimeout(() => {
             if (user && book) {
@@ -214,17 +289,21 @@ const Book = ({ loggedIn }) => {
                 <Modal
                     closeModalHandler={closeModalHandler}
                     openModalHandler={openModalHandler}
-                        book={book}
-                        chapter_number={chapter_number}
-                        sendData={sendData}
-                        
+                    book={book}
+                    chapter_number={chapter_number}
+                    sendData={sendData}
                 />
             ) : (
                 <div className="min-h-screen dark:bg-d-bg-200 dark:text-white">
                     <Navbar loggedIn={loggedIn} home={false} />
                     <hr className="dark:border-d-primary-300 border-d-bg-300" />
 
-                    <Hero book={book} user={user} sendData={sendData} chapter_number={chapter_number} />
+                    <Hero
+                        book={book}
+                        user={user}
+                        sendData={sendData}
+                        chapter_number={chapter_number}
+                    />
 
                     {!loggedIn ? (
                         <div className="text-center py-16 h-full dark:bg-d-bg-200 dark:text-white">
@@ -262,12 +341,12 @@ const Book = ({ loggedIn }) => {
                         }`}
                         // url="https://novsound-ubukj-234.s3.amazonaws.com/WTCS/4.mp3"
                         openModalHandler={openModalHandler}
+                        closeModalHandler={closeModalHandler}
                         openModal={openModal}
                         book={book}
                         chapter_number={chapter_number}
                         sendData={sendData}
                         setShowPlayer={setShowPlayer}
-                        
                     />
                 </div>
             )}

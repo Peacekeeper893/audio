@@ -19,6 +19,7 @@ const Chapter = ({
     title,
     url,
     openModalHandler,
+    closeModalHandler,
     openModal,
     book,
     chapter_number,
@@ -87,6 +88,7 @@ const Chapter = ({
                 <Audioplayer
                     currentTrack={url}
                     openModalHandler={openModalHandler}
+                    closeModalHandler={closeModalHandler}
                     sendData={sendData}
                     chapter_number={chapter_number}
                     book={book}

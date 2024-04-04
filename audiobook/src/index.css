@@ -175,3 +175,13 @@ ul.react-paginate li.disabled a {
 .volume:hover .volume-slider {
   display: block !important;
 }
+
+.horizontal-scrollbar::-webkit-scrollbar  {
+
+  display: none;
+}
+
+.horizontal-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

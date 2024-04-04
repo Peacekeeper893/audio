@@ -154,7 +154,7 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
         <Fragment>
             <ToastContainer />
 
-            <div className="md:p-8 flex flex-col md:flex-row md:justify-start items-center md:gap-9 dark:bg-d-bg-200 dark:text-white gap-4 p-4">
+            <div className="md:p-8 flex flex-col md:flex-row md:justify-start items-center md:gap-9 dark:bg-d-bg-200 dark:text-white gap-4 p-4 ">
                 <div className="md:h-[370px] md:w-[280px] md:min-w-[250px]  h-[250px] w-[190px]">
                     <img
                         src={book[0]["bookimg"]}
@@ -164,7 +164,7 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                 </div>
 
                 <div>
-                    <h1 className="md:text-4xl text-2xl mb-2 text-center md:text-left">
+                    <h1 className="md:text-4xl text-2xl mb-2 text-center md:text-left font-semibold">
                         {book[0]["name"]}
                     </h1>
                     <a
@@ -176,9 +176,15 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                         </p>
                     </a>
 
-                    <p className="my-12 italic font-extralight max-w-[100%] max-h-[4.9em] overflow-hidden md:block hidden">
+                    <div className="px-1 md:block hidden">
+
+                    <p className="my-12 italic font-extralight max-w-[100%] max-h-[6rem]  overflow-hidden -z-10 ">
                         {book[0]["about"]}
                     </p>
+                    <div className=" w-[100%] h-6  -mx-1 bg-opacity-100 bg-gradient-to-t from-gray-200 dark:from-d-bg-300 -mt-[4.4rem] mb-12 md:block hidden z-[70] "></div>
+
+                    </div>
+
 
                     <div className="flex md:flex-row flex-col-reverse items-center md:gap-4 justify-between gap-2">
                         <div className="md:w-[30%] w-full">
@@ -187,12 +193,14 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                                 <Button
                                     handleTask={handleAddShelf}
                                     desc={"Add to Shelf"}
+                                    color={"#F1F7FE"}
                                 />
                             )}
                             {third && (
                                 <Button
                                     handleTask={handleRemoveShelf}
                                     desc={"Remove from Shelf"}
+                                    color={"#F1F7FE"}
                                 />
                             )}
 
@@ -201,10 +209,11 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
                                 <Button
                                     handleTask={handleResume}
                                     desc={"Resume"}
+                                    color={"#FFA000"}
                                 />
                             )}
                             {isStarted === "no" && (
-                                <Button handleTask={handlePlay} desc={"Play"} />
+                                <Button handleTask={handlePlay} desc={"Play"} color={"#FFA000"} />
                             )}
                             {isStarted === "playing" && (
                                 <div className="my-2 md:w-[80%] ">
