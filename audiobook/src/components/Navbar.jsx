@@ -60,7 +60,7 @@ const Navbar = ({ loggedIn, home }) => {
     };
     return (
         <Fragment>
-            <div className="  md:h-[14vh] min-h-[10vh] flex justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
+            <div className="hidden md:flex  md:h-[14vh] min-h-[10vh]  justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
                 <div className="self-center md:text-4xl">
                     <NovelSounds />
                 </div>

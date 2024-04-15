@@ -14,6 +14,8 @@ import Recent from "./ProfileComponents/Recent";
 import MobileSearch from "./HomePageComponents/MobileSearch";
 import MobileGreeting from "./HomePageComponents/MobileGreeting";
 import MostPopular from "./HomePageComponents/MostPopular";
+import GenreHomePage from "./HomePageComponents/GenreHomePage";
+import CollectionScrollableWrapper from "./HomePageComponents/CollectionScrollableWrapper";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -27,6 +29,8 @@ const Home = ({ loggedIn }) => {
     const [searchmodal, setSearchmodal] = useState(false);
     const [lotrbooks, setLotrbooks] = useState([]); // Initialize loading state to true
     const [query, setQuery] = useState("");
+
+    const [genres , setGenres] = useState([]);
 
     const navigate = useNavigate();
 
@@ -45,6 +49,19 @@ const Home = ({ loggedIn }) => {
             .then((data) => {
                 setBooks(data);
                 setIsLoading(false);
+
+                let opt = [];
+
+                data.forEach((book) => {
+                    book.genres.forEach((genre) => {
+                        if (!opt.includes(genre)) {
+                            opt.push(genre);
+                        }
+                    });
+                });
+
+                setGenres(opt);
+
             })
             .catch((err) => console.error(err));
     };
@@ -107,16 +124,16 @@ const Home = ({ loggedIn }) => {
 
     return (
         <Fragment>
+            
+                        {/* Search bar for mobile displays */}
+            
+                        <MobileSearch />
+            <MobileGreeting/>
             <Navbar loggedIn={loggedIn} home={true} />
 
 
             
 
-            {/* Search bar for mobile displays */}
-
-            <MobileSearch />
-
-            <MobileGreeting/>
 
             <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3 flex justify-center pl-2 bg-stone-100 py-8 ">
                 {" "}
@@ -144,20 +161,21 @@ const Home = ({ loggedIn }) => {
 
             <MostPopular isLoading={isLoading} />
 
-            <Collection heading="Harry Potter Books" contents={hpbooks} isLoading={isLoading} />
+            <CollectionScrollableWrapper isLoading={isLoading} heading="Featured: The Harry Potter Collection" displayBooks={hpbooks} />
+            <GenreHomePage genres={genres} isLoading={isLoading} />
 
             <Collection
-                heading="Lord of the Rings Books"
+                heading="The Lord of the Rings Collection"
                 contents={lotrbooks}
                 isLoading={isLoading}
             />
             <Collection
-                heading="A song of Ice and Fire Books"
+                heading="A song of Ice and Fire"
                 contents={asoifbooks}
                 isLoading={isLoading}
             />
             <Collection
-                heading="Hunger Games Books"
+                heading="The Hunger Games Series"
                 contents={hgbooks}
                 isLoading={isLoading}
             />

@@ -6,10 +6,11 @@ import { useState, useEffect } from "react";
 // import hp3test from '../../data/hp3test.epub'
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
-const AboutBook = ({ about, bookName, bookTag }) => {
+const AboutBook = ({ about, bookName, bookTag , genres }) => {
     const [similar, setsimilar] = useState([]);
     const [info, setInfo] = useState([]);
 
+    console.log(genres);
     useEffect(() => {
         fetchSimilar();
     }, []);
@@ -54,8 +55,19 @@ const AboutBook = ({ about, bookName, bookTag }) => {
                 {about}
             </div>
 
-            <div className="flex md:p-12 md:pt-0 p-4 font-eczar underline underline-offset-4 w-full flex-wrap">
-                <div className="text-2xl font-semibold">Genres :</div>
+            <div className="flex md:p-12 md:pt-0 p-4 font-eczar items-center  w-full flex-wrap gap-3">
+                <div className="text-2xl font-semibold underline underline-offset-4 md:mr-8">Genres :</div>
+
+                {
+                    genres.length === 0 ? (
+                        <p>Not Available</p>
+                    ) : (
+                        genres.map((genre, index) => (
+                            <div key={index} className="border py-[3px] shadow-md cursor-pointer rounded-lg px-2 md:min-w-[6rem] text-center">{genre}</div>
+                        ))
+                    )
+                }
+
             </div>
 
             <div className="flex justify-between md:px-12 md:pb-12 p-4">

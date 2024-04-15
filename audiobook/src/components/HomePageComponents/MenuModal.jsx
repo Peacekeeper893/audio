@@ -115,10 +115,10 @@ const MenuModal = ({ menu, setMenu }) => {
                             animate={{ x: menu ? "0%" : "-100%" }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "tween", stiffness: 110 }}
-                            className={`md:w-72 w-56 md:top-0 top-[10vh] absolute z-20 left-0 h-[90vh] md:h-full bg-d-bg-200 text-white overflow-auto`}
+                            className={`md:w-72 w-56 top-0 h-[101vh] absolute z-20 left-0 md:h-full bg-d-bg-200 text-white overflow-auto`}
                         >
                             <button
-                                className="p-4 pt-7  text-red-500 shadow-2xl right-0 absolute text-2xl"
+                                className="md:p-4 p-2 md:top-3 top-5  text-red-500 shadow-2xl right-0 absolute text-2xl"
                                 onClick={() => setMenu(false)}
                             >
                                 <IoCloseSharp />
@@ -135,10 +135,10 @@ const MenuModal = ({ menu, setMenu }) => {
                                         alt=""
                                         height={50}
                                         width={45}
-                                        className="mr-3 pb-1"
+                                        className="md:mr-3 mr-1 pb-1"
                                     />
                                 }
-                                Hi {user.displayName} 👋
+                                Hi {user.displayName}👋
                             </div>
                             <div className="border"></div>
                             <Link
@@ -195,7 +195,7 @@ const MenuModal = ({ menu, setMenu }) => {
                                 stiffness: 60,
                                 damping: 20,
                             }}
-                            className="bg-stone-700 h-full absolute md:top-0 top-[10vh] md:left-72 left-56 z-20 md:w-[calc(100vw-288px)] w-[calc(100vw-224px)]"
+                            className="bg-stone-700 md:h-full h-[101vh] absolute top-0  md:left-72 left-56 z-20 md:w-[calc(100vw-288px)] w-[calc(100vw-220px)]"
                             onClick={() => setMenu(false)}
                         />
                     </motion.div>

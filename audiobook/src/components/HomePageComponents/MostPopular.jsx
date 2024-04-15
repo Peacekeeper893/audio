@@ -79,7 +79,7 @@ const MostPopular = ({ isLoading }) => {
 
                         </div>
                         
-                        <ScrollCollection mostPopularBooks={mostPopularBooks} />
+                        <ScrollCollection mostPopularBooks={mostPopularBooks} numbering={true}/>
 
 
                 </Fragment>

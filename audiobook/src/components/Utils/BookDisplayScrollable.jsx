@@ -12,7 +12,7 @@ const BookDisplayScrollable = ({ name, author, bookimg, numbering, idx }) => {
                 animate={{ scale: 1, opacity: 1 }}
                 whileHover={{ scale: 1.03 }}
                 onTap={{ scale: 0.95 }}
-                className="hidden md:block lg:h-[78vh] lg:w-[280px] w-[140px] h-[315px] md:h-[425px] md:w-[200px] my-3 hover:shadow-lg  shadow-slate-900 dark:shadow-d-bg-400 hover:px-3 group p-4 rounded-xl"
+                className=" md:block lg:h-[78vh] lg:w-[280px] w-[190px] h-[335px] md:h-[425px] md:w-[200px] my-3 hover:shadow-lg  shadow-slate-900 dark:shadow-d-bg-400 hover:px-3 group p-4 rounded-xl"
             >
                 <div className="h-[80%] mb-4 relative">
                 {numbering && (

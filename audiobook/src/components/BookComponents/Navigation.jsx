@@ -94,6 +94,7 @@ const Navigation = ({ sendData, book, chapter_number }) => {
                     about={book[0]["about"]}
                     bookName={book[0]["name"]}
                     bookTag={book[0]["tag"]}
+                    genres={book[0]["genres"]}
                 />
             )}
             {open === "comments" && <Comments name={book[0]["name"]} />}
