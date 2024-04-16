@@ -60,12 +60,15 @@ const Navbar = ({ loggedIn, home }) => {
     };
     return (
         <Fragment>
-            <div className="hidden md:flex  md:h-[14vh] min-h-[10vh]  justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
-                <div className="self-center md:text-4xl">
+            <div className="hidden md:flex  md:h-[12vh] min-h-[10vh]  justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
+                <div className="self-center md:text-3xl">
                     <NovelSounds />
                 </div>
 
                 <div className="flex md:gap-8 gap-5">
+                    <div className="self-center " title="Switch Theme">
+                        <Switcher />
+                    </div>
                     {loggedIn && (
                         <div
                             className="self-center text-md font-semibold md:text-lg dark:bg-d-bg-300 px-4 py-2  rounded-full hover:scale-105 bg-d-bg-500 text-white dark:text-d-primary-400"
@@ -76,28 +79,27 @@ const Navbar = ({ loggedIn, home }) => {
                             </Link>
                         </div>
                     )}
-                    <div className="self-center " title="Switch Theme">
-                        <Switcher />
-                    </div>
                     {!loggedIn && (
                         <div className="self-center text-md md:text-lg dark:bg-d-bg-300 md:px-5 md:py-2 px-3 py-2 rounded-xl hover:scale-105 bg-d-bg-500 text-white">
                             <Link to={"/login"}>Login</Link>
                         </div>
                     )}
-                    {loggedIn && (
+                    {/* {loggedIn && (
                         <div
                             className="self-center text-4xl hover:cursor-pointer"
                             title="Logout"
                         >
                             <IoLogOutOutline onClick={handleLogout} />
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
 
+            {/* Second Action Bar */}
+
             {home && (
                 <>
-                    <div className="bg-slate-600 w-full text-white justify-between gap-6 py-3 dark:bg-d-bg-300 items-center hidden md:flex">
+                    <div className="bg-slate-600 w-full text-white justify-between gap-6 py-2 dark:bg-d-bg-300 items-center hidden md:flex">
                         <div className="md:ml-8 ml-6 flex justify-start content-center items-center gap-6 text-lg">
                             <div className="mr-4">
                                 <RiMenu3Fill

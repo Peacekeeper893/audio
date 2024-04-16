@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import UseAnimations from "react-useanimations";
 import Activity from "react-useanimations/lib/activity";
 
-const Hero = ({ book, user, sendData, chapter_number }) => {
+const Hero = ({ book, user, sendData, chapter_number,open,setOpen }) => {
     const [third, setThird] = useState(false);
     const [isStarted, setIsStarted] = useState("no");
 
@@ -134,18 +134,23 @@ const Hero = ({ book, user, sendData, chapter_number }) => {
             sendData(parseInt(data));
         }
 
-        const chapterElement = document.getElementById(data);
+        setOpen("chapters");
 
+        
+        setTimeout(() => {
+            const chapterElement = document.getElementById(data);
         // Scroll to chapter
         if (chapterElement) {
+
             const rect = chapterElement.getBoundingClientRect();
             const scrollTop =
                 window.pageYOffset || document.documentElement.scrollTop;
             const clientTop = document.documentElement.clientTop || 0;
             const top = rect.top + scrollTop - clientTop;
             const middle = top - window.innerHeight / 2;
-            window.scrollTo({ top: middle, behavior: "smooth" });
-        }
+                window.scrollTo({ top: middle, behavior: "smooth" });
+            }
+        }, 500);
     };
 
     const notify = () => toast("Link Copied to ClipBoard!");

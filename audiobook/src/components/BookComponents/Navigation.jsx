@@ -4,8 +4,8 @@ import AboutBook from "./AboutBook";
 import Comments from "./Comments";
 import ProgressBarComponent from "./ProgressBarComponent";
 
-const Navigation = ({ sendData, book, chapter_number }) => {
-    const [open, setOpen] = useState("chapters");
+const Navigation = ({ sendData, book, chapter_number,open,setOpen }) => {
+    // const [open, setOpen] = useState("book");
     const handleChapterClick = () => {
         setOpen((prev) => "chapters");
     };

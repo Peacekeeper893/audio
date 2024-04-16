@@ -6,6 +6,8 @@ import { useNavigate , useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import AllBooksCollection from "./AllBooksComponents/AllBooksCollection";
 import Explore from "./ExploreComponents/Explore";
+import MobileSearch from "./HomePageComponents/MobileSearch";
+import Carousel from "./HomePageComponents/Carousel";
 
 const AllBooks = ({ loggedIn, loading }) => {
     const navigate = useNavigate();
@@ -25,6 +27,8 @@ const AllBooks = ({ loggedIn, loading }) => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     // const paramValue = queryParams.get('paramName');
+
+    const hpbooks = []
 
 
         const genreParam = queryParams.get("genre");
@@ -49,8 +53,16 @@ const AllBooks = ({ loggedIn, loading }) => {
                             </h1>
                         </div>
                     ) : (
-                        <div className="min-h-screen flex flex-col">
-                            <Navbar loggedIn={loggedIn} home={true} />
+                                <div className="min-h-screen flex flex-col">
+                                    
+                        <MobileSearch />
+
+                                    <Navbar loggedIn={loggedIn} home={true} />
+                                    
+                                    <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3  justify-center pl-2 bg-stone-100 py-8 flex md:hidden">
+                
+                <Carousel books={hpbooks} />
+            </div>
 
                             {/* <AllBooksCollection /> */}
                                     <Explore

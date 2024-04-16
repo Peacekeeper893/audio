@@ -43,7 +43,7 @@ const AllBooksCollection = ({books , loading , selectedFilters}) => {
             {loading ? (
                 <LoadingScreen />
             ) : (
-                <div>
+                <div className="w-[75vw]">
                     <Collection
                         contents={books.slice(offset, offset + itemsPerPage)}
                         isLoading={loading}
@@ -53,7 +53,7 @@ const AllBooksCollection = ({books , loading , selectedFilters}) => {
                     />
 
                     <ReactPaginate
-                        className="react-paginate mt-[15vh]"
+                        className="react-paginate mt-[15vh] "
                         previousLabel={"<- Previous"}
                         nextLabel={"Next ->"}
                         pageCount={Math.ceil(books.length / itemsPerPage)}

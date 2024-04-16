@@ -69,7 +69,7 @@ const Carousel = ({ books }) => {
                             {book["name"]}
                         </p>
                         <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 font-extralight -translate-y-1/2 text-zinc-200 text-8xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <Link to={book["link"]} key={index} className="relative w-screen group">
+                        <Link to={`/${book["link"]}`} key={index} className="relative w-screen group">
                             <PlayCircleOutlineTwoTone fontSize="" />
                         </Link>
                         </p>

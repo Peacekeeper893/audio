@@ -7,7 +7,7 @@ import Footer from "./HomePageComponents/Footer";
 import ShortcutDisplay from "./Utils/ShortcutDisplay";
 import SearchModal from "./HomePageComponents/SearchModal";
 import { IoSearch } from "react-icons/io5";
-// import LoadingScreen from "./LoadingScreen";
+import LoadingPause from "./Utils/LoadingPause";
 import Carousel from "./HomePageComponents/Carousel";
 import Collection from "./HomePageComponents/Collection";
 import Recent from "./ProfileComponents/Recent";
@@ -16,6 +16,7 @@ import MobileGreeting from "./HomePageComponents/MobileGreeting";
 import MostPopular from "./HomePageComponents/MostPopular";
 import GenreHomePage from "./HomePageComponents/GenreHomePage";
 import CollectionScrollableWrapper from "./HomePageComponents/CollectionScrollableWrapper";
+import MobileRecents from "./HomePageComponents/MobileRecents";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -131,16 +132,20 @@ const Home = ({ loggedIn }) => {
             <MobileGreeting/>
             <Navbar loggedIn={loggedIn} home={true} />
 
+            <div className="block md:hidden">
+                <MobileRecents />
+                </div>
+
 
             
 
 
-            <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3 flex justify-center pl-2 bg-stone-100 py-8 ">
-                {" "}
+            <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3  justify-center pl-2 bg-stone-100 py-8 hidden md:flex">
+                
                 <Carousel books={hpbooks} />
             </div>
 
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex  ">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white md:flex hidden  ">
                 <div className=" md:flex-[75]  ">
 
                     <Recent size={3}/>
@@ -169,6 +174,10 @@ const Home = ({ loggedIn }) => {
                 contents={lotrbooks}
                 isLoading={isLoading}
             />
+
+            <LoadingPause />
+
+
             <Collection
                 heading="A song of Ice and Fire"
                 contents={asoifbooks}

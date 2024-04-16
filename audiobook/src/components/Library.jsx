@@ -5,7 +5,7 @@ import Footer from "./HomePageComponents/Footer";
 import { useState, useEffect } from "react";
 import LibraryHEader from "./AllBooksComponents/LibraryHEader";
 import LibraryDisplay from "./AllBooksComponents/LibraryDisplay";
-
+import MobileSearch from "./HomePageComponents/MobileSearch";
 const Library = ({ loggedIn, loading }) => {
     const [selected, setSelected] = useState("Shelf");
     useEffect(() => {
@@ -37,6 +37,7 @@ const Library = ({ loggedIn, loading }) => {
                     ) : (
                         <div className="min-h-screen flex flex-col">
                             <Navbar loggedIn={loggedIn} home={true} />
+                        <MobileSearch />
 
                             <LibraryHEader
                                 selected={selected}

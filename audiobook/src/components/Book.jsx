@@ -33,6 +33,8 @@ const Book = ({ loggedIn }) => {
     const [openModal, setOpenModal] = useState(false);
     const [user, setUser] = useState({});
     const [showPlayer, setShowPlayer] = useState(true);
+    const [open, setOpen] = useState("book");
+
 
     const openModalHandler = () => {
         setOpenModal((prev) => !prev);
@@ -302,7 +304,10 @@ const Book = ({ loggedIn }) => {
                         book={book}
                         user={user}
                         sendData={sendData}
-                        chapter_number={chapter_number}
+                                chapter_number={chapter_number}
+                                open={open}
+                                setOpen={setOpen}
+
                     />
 
                     {!loggedIn ? (
@@ -313,7 +318,9 @@ const Book = ({ loggedIn }) => {
                         <Navigation
                             sendData={sendData}
                             book={book}
-                            chapter_number={chapter_number}
+                                        chapter_number={chapter_number}
+                                        open={open}
+                                        setOpen={setOpen}
                         />
                     )}
                 </div>

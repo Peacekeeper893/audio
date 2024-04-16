@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import ProfileHero from "./ProfileComponents/ProfileHero";
 import Footer from "./HomePageComponents/Footer";
 import ProfileContent from "./ProfileComponents/ProfileContent";
-
+import MobileSearch from "./HomePageComponents/MobileSearch";
 import LoadingScreen from "./Utils/LoadingScreen";
 
 const Profile = ({ loggedIn, loading }) => {
@@ -39,7 +39,9 @@ const Profile = ({ loggedIn, loading }) => {
                             </h1>
                         </div>
                     ) : (
-                        <div className="min-h-screen flex flex-col">
+                                <div className="min-h-screen flex flex-col">
+                        <MobileSearch />
+                                    
                             <Navbar loggedIn={loggedIn} home={true} />
                             <ProfileHero />
                             <ProfileContent />
