@@ -9,6 +9,7 @@ import Request from "./components/Request";
 import Author from "./components/Author";
 import MiniPlayer from "./components/MiniPlayer";
 import Library from "./components/Library";
+import GenreBooks from "./components/GenreBooks";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -77,6 +78,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/books" element={<AllBooks loggedIn={loggedIn} loading={loading} />} />
+                <Route path="/books/:genre" element={<GenreBooks loggedIn={loggedIn} loading={loading} />} />
                 <Route path="/request" element={<Request loggedIn={loggedIn} loading={loading} />} />
                 <Route path="/library" element={<Library loggedIn={loggedIn} loading={loading} />} />
 

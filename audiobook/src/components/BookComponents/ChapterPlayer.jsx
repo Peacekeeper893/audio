@@ -1,5 +1,5 @@
 import React from "react";
-import { Fragment, useRef ,useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import Audioplayer from "../AudioPlayerComponents/Audioplayer";
 import { FaHouseChimneyWindow } from "react-icons/fa6";
 import { GiContract } from "react-icons/gi";
@@ -7,13 +7,21 @@ import { TbBooks } from "react-icons/tb";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMdBookmarks } from "react-icons/io";
+import { CiBookmarkPlus } from "react-icons/ci";
 
 import { motion, AnimatePresence } from "framer-motion";
+
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../../firebase";
+import { getAuth } from "firebase/auth";
+
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Bookmark from "../Utils/Bookmark";
 import Bookmarks from "../Utils/Bookmarks";
 import MobileChapterList from "../Utils/MobileChapterList";
-
 
 const Chapter = ({
     title,
@@ -31,6 +39,9 @@ const Chapter = ({
     const name = book[0]["name"];
     console.log(chapter_number);
 
+    const auth = getAuth();
+    const user = auth.currentUser;
+
     const [bookmarkDisplay, setBookmarkDisplay] = useState(false);
     const [chapterDisplay, setChapterDisplay] = useState(false);
 
@@ -46,22 +57,41 @@ const Chapter = ({
         setBookmarkDisplay((prev) => !prev);
     };
 
-    const handleChapterDisplay = () => {  
+    const handleChapterDisplay = () => {
         setChapterDisplay((prev) => !prev);
     };
 
-    const playBookmark = (chapter, timestamp) =>{
-        
+    const playBookmark = (chapter, timestamp) => {
         sendData(chapter);
 
         setTimeout(() => {
             ARef.current.currentTime = timestamp;
             // setIsPlaying(true);
         }, 500);
-    }
-    
+    };
 
+    const notify = (message) => toast(message);
 
+    const handleAddBookmark = async () => {
+        if (user && user.uid && book && ARef.current) {
+            addDoc(collection(db, "users", user.uid, "bookmarks"), {
+                name: book[0]["name"],
+                chapter_number: chapter_number,
+                timestamp: ARef.current.currentTime,
+                setAt: serverTimestamp(),
+            })
+                .then(() => {
+                    console.log("Document successfully written!");
+                    window.alert("Bookmark added successfully");
+                    notify("Bookmark Added");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+        } else {
+            console.log("Error in adding bookmark");
+        }
+    };
 
     return (
         <Fragment>
@@ -97,7 +127,6 @@ const Chapter = ({
                     isMiniPlayer={isMiniPlayer}
                     time={time}
                     setShowPlayer={setShowPlayer}
-
                 />
 
                 {openModal && (
@@ -121,17 +150,16 @@ const Chapter = ({
                             </select>
                         </div>
                         <div className="w-[25%]  h-full  flex items-center justify-center">
-                            <IoMdBookmarks size={32} onClick={handleBookmarkDisplay} />
+                            <IoMdBookmarks
+                                size={32}
+                                onClick={handleBookmarkDisplay}
+                            />
                         </div>
                         <div className="w-[25%]  h-full  flex items-center justify-center">
-                            <TbBooks size={32} onClick={handleChapterDisplay}/>
+                            <TbBooks size={32} onClick={handleChapterDisplay} />
                         </div>
                         <div className="w-[25%]  h-full  flex items-center justify-center hover:scale-90">
-                            <GiContract
-                                size={32}
-                                onClick={openModalHandler}
-
-                            />
+                            <GiContract size={32} onClick={openModalHandler} />
                         </div>
                     </div>
                 )}
@@ -139,11 +167,10 @@ const Chapter = ({
 
             {/* Mobile Bookmark List */}
 
-
             <AnimatePresence>
                 {openModal && bookmarkDisplay && (
                     <motion.div
-                        className="bookmark-bar absolute bottom-0 rounded-t-2xl  bg-neutral-200 bg-opacity-100 text-black z-40 w-full px-4 pb-8 max-h-[60vh] min-h-[40vh] text-xl overflow-y-auto  "
+                        className="bookmark-bar absolute bottom-0 rounded-t-2xl  bg-neutral-200 bg-opacity-100 text-black z-40 w-full px-4 md:pb-8 pb-2 max-h-[60vh] min-h-[40vh] text-xl overflow-y-auto  "
                         initial="hidden"
                         animate="visible"
                         exit="exit"
@@ -152,28 +179,34 @@ const Chapter = ({
                     >
                         {/* Your bookmarks go here */}
 
-                        <div className="flex justify-between sticky top-0 mb-4 py-4 z-[50] bg-neutral-200 ">
-                            <div></div>
+                        <div className="flex flex-col justify-between   max-h-[60vh] min-h-[40vh]">
+                            <div>
+                                <div className="flex justify-center sticky top-0 mb-4 py-4 z-[50] bg-neutral-200 ">
+                                    
 
-                            <div
-                                className="flex justify-center items-center gap-3 cursor-pointer"
-                                onClick={handleBookmarkDisplay}
-                            >
-                                <div>Your Bookmarks</div>
-                                <div className="pt-1">
-                                    <IoIosArrowDown />
+                                    <div
+                                        className="flex justify-center items-center gap-3 cursor-pointer"
+                                        onClick={handleBookmarkDisplay}
+                                    >
+                                        <div>Your Bookmarks</div>
+                                        <div className="pt-1">
+                                            <IoIosArrowDown />
+                                        </div>
+                                    </div>
+
                                 </div>
+
+                                <Bookmarks
+                                    book={book}
+                                    playBookmark={playBookmark}
+                                />
                             </div>
-                            <button
-                                onClick={handleBookmarkDisplay}
-                                className="hover:text-[1.3rem] duration-500"
-                            >
-                                <IoCloseSharp />
-                            </button>
+
+                            <div className="text-center flex justify-center gap-2 items-center mt-8" onClick={handleAddBookmark}>
+                                <p className="text-lg font-medium">Add Bookmark</p>
+                                <CiBookmarkPlus size={24} />
+                            </div>
                         </div>
-
-                        <Bookmarks book={book} playBookmark={playBookmark} />
-
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -211,8 +244,11 @@ const Chapter = ({
                             </button>
                         </div>
 
-                        <MobileChapterList book={book} chapter_number={chapter_number} sendData={sendData}/>
-
+                        <MobileChapterList
+                            book={book}
+                            chapter_number={chapter_number}
+                            sendData={sendData}
+                        />
                     </motion.div>
                 )}
             </AnimatePresence>

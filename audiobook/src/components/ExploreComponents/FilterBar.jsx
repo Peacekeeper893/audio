@@ -60,6 +60,7 @@ const FilterBar = ({
 
     // },[loading , bookLoading]  );
 
+        console.log(selectedAuthor , selectedFilters)
     
 
     return (
@@ -102,7 +103,7 @@ const FilterBar = ({
                                         onChange={() =>
                                             handleFilterChange(option)
                                         }
-                                        disabled={selectedAuthor !== null}
+                                        disabled={selectedAuthor !== undefined && selectedAuthor !== null}
                                     />
                                     <p className="px-3">{option}</p>
                                 </label>

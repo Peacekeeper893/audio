@@ -8,13 +8,13 @@ const Collection = ({ heading, contents, isLoading ,progress , isHome }) => {
     return (
         <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-full max-w-full md:px-5 md:py-3 p-2">
             <div
-                className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600 font-eczar"
+                className=" md:text-4xl text-3xl font-semibold pointer-events-none px-4 pt-4 dark:text-d-bg-600 font-eczar"
                 id="hunger-games"
             >
                 {heading}
             </div>
 
-            <div className="flex flex-wrap  p-4 gap-6 md:gap-2">
+            <div className="flex flex-wrap px-4  py-4 md:px-0 gap-6 md:gap-2">
                 {isLoading === true ? (
                     Array.from({ length: 5 }).map((_, index) => (
                         <div

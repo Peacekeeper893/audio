@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import UseAnimations from "react-useanimations";
 import Activity from "react-useanimations/lib/activity";
 
-const Hero = ({ book, user, sendData, chapter_number,open,setOpen }) => {
+const Hero = ({ book, user, sendData, chapter_number, open, setOpen }) => {
     const [third, setThird] = useState(false);
     const [isStarted, setIsStarted] = useState("no");
 
@@ -136,18 +136,16 @@ const Hero = ({ book, user, sendData, chapter_number,open,setOpen }) => {
 
         setOpen("chapters");
 
-        
         setTimeout(() => {
             const chapterElement = document.getElementById(data);
-        // Scroll to chapter
-        if (chapterElement) {
-
-            const rect = chapterElement.getBoundingClientRect();
-            const scrollTop =
-                window.pageYOffset || document.documentElement.scrollTop;
-            const clientTop = document.documentElement.clientTop || 0;
-            const top = rect.top + scrollTop - clientTop;
-            const middle = top - window.innerHeight / 2;
+            // Scroll to chapter
+            if (chapterElement) {
+                const rect = chapterElement.getBoundingClientRect();
+                const scrollTop =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                const clientTop = document.documentElement.clientTop || 0;
+                const top = rect.top + scrollTop - clientTop;
+                const middle = top - window.innerHeight / 2;
                 window.scrollTo({ top: middle, behavior: "smooth" });
             }
         }, 500);
@@ -182,47 +180,60 @@ const Hero = ({ book, user, sendData, chapter_number,open,setOpen }) => {
                     </a>
 
                     <div className="px-1 md:block hidden">
-
-                    <p className="my-12 italic font-extralight max-w-[100%] max-h-[6rem]  overflow-hidden -z-10 ">
-                        {book[0]["about"]}
-                    </p>
-                    <div className=" w-[100%] h-6  -mx-1 bg-opacity-100 bg-gradient-to-t from-gray-200 dark:from-d-bg-300 -mt-[4.4rem] mb-12 md:block hidden z-[70] "></div>
-
+                        <p className="my-12 italic font-extralight max-w-[100%] max-h-[6rem]  overflow-hidden -z-10 ">
+                            {book[0]["about"]}
+                        </p>
+                        <div className=" w-[100%] h-6  -mx-1 bg-opacity-100 bg-gradient-to-t from-gray-200 dark:from-d-bg-300 -mt-[4.3rem] mb-12 md:block hidden z-[70] "></div>
                     </div>
-
 
                     <div className="flex md:flex-row flex-col-reverse items-center md:gap-4 justify-between gap-2">
                         <div className="md:w-[30%] w-full">
                             {/* // Create a button to add to shelf */}
                             {!third && (
-                                <Button
-                                    handleTask={handleAddShelf}
-                                    desc={"Add to Shelf"}
-                                    color={"#F1F7FE"}
-                                />
+                                <div className="my-2 md:w-[80%] w-full ">
+                                <div
+                                    className={` bg-[#F1F7FE]  font-eczar text-center cursor-pointer  font-semibold py-2 rounded border-2 px-8 w-full dark:text-white dark:bg-d-bg-300 `}
+                                    onClick={handleAddShelf}
+                                >
+                                    Add to Shelf
+                                </div>
+                            </div>
                             )}
                             {third && (
-                                <Button
-                                    handleTask={handleRemoveShelf}
-                                    desc={"Remove from Shelf"}
-                                    color={"#F1F7FE"}
-                                />
+                                <div className="my-2 md:w-[80%] w-full ">
+                                    <div
+                                        className={` bg-[#F1F7FE]  font-eczar text-center cursor-pointer  font-semibold py-2 rounded border-2 px-8 w-full dark:text-white dark:bg-d-bg-300 `}
+                                        onClick={handleRemoveShelf}
+                                    >
+                                        Remove from Shelf
+                                    </div>
+                                </div>
                             )}
 
                             {/* // Create a button to play or resume playing */}
                             {isStarted === "yes" && (
-                                <Button
-                                    handleTask={handleResume}
-                                    desc={"Resume"}
-                                    color={"#FFA000"}
-                                />
+                                <div className="my-2 md:w-[80%] w-full ">
+                                    <div
+                                        className={` bg-[#FFA000]  font-eczar text-center cursor-pointer  font-semibold py-2 rounded border-2 px-8 w-full dark:text-white dark:bg-d-bg-300 `}
+                                        onClick={handleResume}
+                                    >
+                                        Resume
+                                    </div>
+                                </div>
                             )}
                             {isStarted === "no" && (
-                                <Button handleTask={handlePlay} desc={"Play"} color={"#FFA000"} />
+                                <div className="my-2 md:w-[80%] w-full ">
+                                    <div
+                                        className={` bg-[#FFA000]  font-eczar text-center cursor-pointer  font-semibold py-2 rounded border-2 px-8 w-full dark:text-white dark:bg-d-bg-300 `}
+                                        onClick={handlePlay}
+                                    >
+                                        Play
+                                    </div>
+                                </div>
                             )}
                             {isStarted === "playing" && (
                                 <div className="my-2 md:w-[80%] ">
-                                    <div className="dark:bg-d-bg-300 font-eczar dark:text-white font-semibold py-2  rounded  border-2 px-8  w-full flex gap-2 justify-center">
+                                    <div className="bg-[#F1F7FE] dark:bg-d-bg-300 font-eczar dark:text-white font-semibold py-2  rounded  border-2 px-8  w-full flex gap-2 justify-center">
                                         <div className="">
                                             <UseAnimations
                                                 animation={Activity}

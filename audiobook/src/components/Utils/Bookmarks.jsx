@@ -70,7 +70,7 @@ const Bookmarks = ({ book, playBookmark }) => {
                             </h1>
                         </div>
                     ) : (
-                        <div className="flex flex-col gap-4 md:p-4 p-1">
+                        <div className="flex flex-col overflow-y-scroll gap-4 md:p-4 p-1">
                             {bookmarks.map((bookmark) => (
                                 <Bookmark
                                     bookmark={bookmark}

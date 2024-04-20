@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import ScrollCollection from '../Utils/ScrollCollection'
 
 
-const CollectionScrollableWrapper = ({isLoading , heading , displayBooks}) => {
+const CollectionScrollableWrapper = ({isLoading , heading , displayBooks , numbering}) => {
   return (
     <div className="bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-full max-w-full md:px-5 md:py-3 p-2">
     {isLoading === true ? (
@@ -19,18 +19,18 @@ const CollectionScrollableWrapper = ({isLoading , heading , displayBooks}) => {
         </div>
     ) : (
         <Fragment>
-            <div className="flex">
-                <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600 font-eczar">
+            <div className="flex ">
+                <div className="md:text-4xl text-3xl font-semibold pointer-events-none p-4 dark:text-d-bg-600 font-eczar">
                     {heading}
                 </div>
 
-                <div className="bg-stone-300 rounded-full h-5 w-5 text-center mt-2 cursor-pointer dark:text-black text-sm">
+                <div className="hidden md:block bg-stone-300 rounded-full h-5 w-5 text-center mt-2 cursor-pointer dark:text-black text-sm">
                     ?
                 </div>
 
                 </div>
                 
-                <ScrollCollection mostPopularBooks={displayBooks} />
+                <ScrollCollection mostPopularBooks={displayBooks} numbering={numbering} />
 
 
         </Fragment>

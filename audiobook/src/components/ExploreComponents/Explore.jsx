@@ -91,6 +91,8 @@ const Explore = ({genreParam , authorParam}) => {
 
 
 
+
+
     return (
         <div className="min-h-[100vh] w-screen flex">
             <div className="flex-[25%] md:pt-[5vh] md:pl-6 ">

@@ -56,9 +56,9 @@ const MobileRecents = ({ size }) => {
             {/* {loading ? <div>Loading...</div> : items.map((item) => (<div> {item["name"]} </div>))} */}
             {/* <Collection contents={items} isLoading={loading} heading={"Recently Played"} progress={true} /> */}
 
-            <div className="flex flex-wrap p-3 gap-x-5 gap-y-3 w-full my-8">
+            <div className="flex flex-wrap py-3 pl-3 pr-1 gap-x-2 gap-y-3 w-full my-4">
                 {items.map((book) => (
-                    <Link to={`/book/${book["name"]}`} className="w-[47%] bg-slate-200 dark:bg-d-bg-200 dark:text-gray-200 rounded-md h-14 flex">
+                    <Link to={`/book/${book["name"]}`} className="w-[48%] bg-slate-200 dark:bg-d-bg-200 dark:text-gray-200 rounded-md h-14 flex">
                         <div className="flex-[30%] ">
                         <img
                         src={book["bookimg"]}
@@ -67,7 +67,7 @@ const MobileRecents = ({ size }) => {
                     />
                             </div>
                         <div className="flex-[70%] flex items-center h-14 overflow-clip  ">
-                            <div className="text-xs font-semibold  py-1 px-2">{book["name"]}</div>
+                            <div className="text-xs font-medium  py-1 pl-2">{book["name"]}</div>
                             </div>
                     </Link>
                 ))}

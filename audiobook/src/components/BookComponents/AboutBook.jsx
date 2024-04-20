@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 
 // import hp3test from '../../data/hp3test.epub'
+import { Link } from "react-router-dom";
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
 const AboutBook = ({ about, bookName, bookTag , genres }) => {
@@ -48,7 +49,7 @@ const AboutBook = ({ about, bookName, bookTag , genres }) => {
 
     return (
         <Fragment>
-            <div className="md:px-12 md:py-6 px-6 py-2 lg:text-4xl font-semibold font-eczar underline underline-offset-4">
+            <div className="md:px-12 md:py-6 px-6 py-2 lg:text-4xl text-3xl mt-2 font-semibold font-eczar underline underline-offset-4" id="overview">
                 Overview
             </div>
             <div className=" md:px-12 md:pb-12 md:pt-6 pt-3 min-h-[30vh] dark:bg-d-bg-200 dark:text-white text-justify px-6 pb-6">
@@ -63,14 +64,16 @@ const AboutBook = ({ about, bookName, bookTag , genres }) => {
                         <p>Not Available</p>
                     ) : (
                         genres.map((genre, index) => (
-                            <div key={index} className="border py-[3px] shadow-md cursor-pointer rounded-lg px-2 md:min-w-[6rem] text-center">{genre}</div>
+                            <div key={index} className="border py-[3px] shadow-md cursor-pointer rounded-lg px-2 md:min-w-[6rem] text-center"><Link to={`/books/${genre}`}>
+                            {genre}
+                        </Link></div>
                         ))
                     )
                 }
 
             </div>
 
-            <div className="flex justify-between md:px-12 md:pb-12 p-4">
+            <div className="flex justify-between md:px-12 md:pb-12 p-4 mt-4 md:mt-0">
                 <div className="flex flex-col gap-1">
                     <h2 className="text-2xl font-bold">About the Author</h2>
                     <p className="text-justify">

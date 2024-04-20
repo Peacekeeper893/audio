@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-
+import { throttle } from 'lodash';
 // icons
 import {
     IoPlaySkipBackSharp,
@@ -168,6 +168,13 @@ const Controls = ({
 
     let currentTime;
 
+    const throttledSetItem = throttle((bookName, chapterNumber, currentTime) => {
+        localStorage.setItem(
+          `${bookName}-${chapterNumber}`,
+          currentTime.toString()
+        );
+      }, 1000); // Adjust this value as needed
+
     const repeat = useCallback(() => {
         try {
             currentTime = audioRef.current.currentTime;
@@ -179,12 +186,12 @@ const Controls = ({
             );
 
             playAnimationRef.current = requestAnimationFrame(repeat);
+
+            throttledSetItem(book[0].name, chapter_number, currentTime);
+
         } catch (error) {
             console.log("Error");
-            localStorage.setItem(
-                `${book[0].name}-${chapter_number}`,
-                currentTime.toString()
-            );
+
         }
     }, [audioRef, duration, progressBarRef, setTimeProgress]);
 

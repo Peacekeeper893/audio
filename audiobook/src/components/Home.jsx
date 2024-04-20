@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import BookDisplay from "./HomePageComponents/BookDisplay";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./HomePageComponents/Footer";
 import ShortcutDisplay from "./Utils/ShortcutDisplay";
@@ -31,7 +31,7 @@ const Home = ({ loggedIn }) => {
     const [lotrbooks, setLotrbooks] = useState([]); // Initialize loading state to true
     const [query, setQuery] = useState("");
 
-    const [genres , setGenres] = useState([]);
+    const [genres, setGenres] = useState([]);
 
     const navigate = useNavigate();
 
@@ -62,7 +62,6 @@ const Home = ({ loggedIn }) => {
                 });
 
                 setGenres(opt);
-
             })
             .catch((err) => console.error(err));
     };
@@ -125,48 +124,50 @@ const Home = ({ loggedIn }) => {
 
     return (
         <Fragment>
-            
-                        {/* Search bar for mobile displays */}
-            
-                        <MobileSearch />
-            <MobileGreeting/>
+            {/* Search bar for mobile displays */}
+
+            <MobileSearch />
+            <MobileGreeting />
             <Navbar loggedIn={loggedIn} home={true} />
 
             <div className="block md:hidden">
                 <MobileRecents />
-                </div>
-
-
-            
-
+            </div>
 
             <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3  justify-center pl-2 bg-stone-100 py-8 hidden md:flex">
-                
                 <Carousel books={hpbooks} />
             </div>
 
             <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white md:flex hidden  ">
                 <div className=" md:flex-[75]  ">
-
-                    <Recent size={3}/>
+                    <Recent size={3} />
                 </div>
                 <div className="md:flex flex-col ml-2 flex-[25] hidden">
-
-                    <div className="font-semibold text-2xl mt-6 mb-1">Recently Added</div>
+                    <div className="font-semibold text-2xl mt-6 mb-1">
+                        Recently Added
+                    </div>
                     <hr className="border-gray-500 " />
                     <div className=" mt-8 max-h-fit flex-col grid gap-10 md:gap-4">
-                        {books.slice().reverse().slice(0,12).map((book) => (
-                            <Link to={`book/${book["name"]}`}>
-                                <ShortcutDisplay book={book} />
-                            </Link>
-                        ))}
+                        {books
+                            .slice()
+                            .reverse()
+                            .slice(0, 12)
+                            .map((book) => (
+                                <Link to={`book/${book["name"]}`}>
+                                    <ShortcutDisplay book={book} />
+                                </Link>
+                            ))}
                     </div>
                 </div>
             </div>
 
             <MostPopular isLoading={isLoading} />
 
-            <CollectionScrollableWrapper isLoading={isLoading} heading="Featured: The Harry Potter Collection" displayBooks={hpbooks} />
+            <CollectionScrollableWrapper
+                isLoading={isLoading}
+                heading="Featured: The Harry Potter Collection"
+                displayBooks={hpbooks}
+            />
             <GenreHomePage genres={genres} isLoading={isLoading} />
 
             <Collection
@@ -176,7 +177,6 @@ const Home = ({ loggedIn }) => {
             />
 
             <LoadingPause />
-
 
             <Collection
                 heading="A song of Ice and Fire"

@@ -1,5 +1,6 @@
 import React from "react";
-import {useEffect , useState} from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const GenreHomePage = ({ genres, isLoading }) => {
     
@@ -51,19 +52,23 @@ const GenreHomePage = ({ genres, isLoading }) => {
     return (
         <div className="dark:text-white ">
             <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-full max-w-full md:px-5 md:py-3 md:my-2 md:mb-8 p-2">
-                <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600 font-eczar md:mb-2">
+                <div className=" md:text-4xl text-3xl font-semibold pointer-events-none p-4 dark:text-d-bg-600 font-eczar md:mb-2">
                     Browse Audiobooks By Category
                 </div>
 
-                <div className="flex flex-wrap p-4 gap-3 md:gap-3">
+                <div className="flex flex-wrap pl-4 py-4 gap-3 md:gap-4">
 
                     { loading ? (
                         Array.from({ length: 6 }).map((_, index) => (
-                            <div className="w-[32%] bg-gray-400 text-center py-4"></div>
+                            <div className="w-[33%] bg-gray-400 text-center py-4"></div>
                         ))
                     ) : (
                         popularGenres.map((genre , index) => (
-                            <div className={`md:w-[32%] w-[29%] ${gradients[index]} dark:${darkgradients[index]} text-center font-semibold font-mono hover:scale-[1.015] cursor-pointer duration-300 py-4 md:text-xl`}>{genre}</div>
+                            <div className={`md:w-[32%] w-[30%] ${gradients[index]} dark:${darkgradients[index]} text-center font-semibold font-mono hover:scale-[1.015] cursor-pointer duration-300 md:py-4 py-3 md:text-xl`}>
+                                <Link to={`/books/${genre}`}>
+                                    {genre}
+                                </Link>
+                            </div>
                         ))
                     )}
 

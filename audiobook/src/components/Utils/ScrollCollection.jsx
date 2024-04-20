@@ -35,10 +35,10 @@ const ScrollCollection = ({mostPopularBooks , numbering}) => {
             >
                 <MdNavigateNext className="dark:text-white" size={24} />
             </div>
-            <div className="absolute inset-y-0 md:left-0 -left-2 w-12 bg-gradient-to-r from-white to-transparent dark:from-d-bg-100 dark:to-transparent z-[40]"></div>
-            <div className="absolute inset-y-0 md:right-0 -right-2 w-16 bg-gradient-to-l from-white to-transparent dark:from-d-bg-100 dark:to-transparent z-[40]"></div>
+            <div className="absolute inset-y-0 -left-2 w-12 bg-gradient-to-r from-white to-transparent dark:from-d-bg-100 dark:to-transparent z-[30]"></div>
+            <div className="absolute inset-y-0 md:right-0 -right-2 w-16 bg-gradient-to-l from-white to-transparent dark:from-d-bg-100 dark:to-transparent z-[30]"></div>
             <div
-                className="relative flex overflow-x-scroll horizontal-scrollbar md:p-4 gap-1 md:gap-2"
+                className="relative flex overflow-x-scroll horizontal-scrollbar md:py-4 gap-1 md:gap-2"
                 ref={scrollRef}
             >
                 {mostPopularBooks.map((book, i) => (

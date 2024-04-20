@@ -115,7 +115,7 @@ const MenuModal = ({ menu, setMenu }) => {
                             animate={{ x: menu ? "0%" : "-100%" }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "tween", stiffness: 110 }}
-                            className={`md:w-72 w-56 top-0 h-[101vh] absolute z-20 left-0 md:h-full bg-d-bg-200 text-white overflow-auto`}
+                            className={`md:w-72 w-56 top-0 h-[101vh] absolute z-40 left-0 md:h-full bg-d-bg-200 text-white overflow-auto`}
                         >
                             <button
                                 className="md:p-4 p-2 md:top-3 top-5  text-red-500 shadow-2xl right-0 absolute text-2xl"

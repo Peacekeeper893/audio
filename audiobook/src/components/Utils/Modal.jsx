@@ -18,8 +18,7 @@ const Modal = ({
     const [nxtchapters, setNxtchapters] = useState([]);
     const inactivityTimeout = useRef(null);
     const [startX, setStartX] = useState();
-
-    // console.log(focused);
+ 
 
     const handleTouchStart = (e) => {
         setStartX(e.touches[0].clientX);
@@ -123,7 +122,7 @@ const Modal = ({
         visible: {
             x: isFirstRender && focused ? 0 : focused ? "-7%" : "15%",
             scale: isFirstRender && focused ? 1 : focused ? 0.75 : 1.25,
-            y: isFirstRender && focused ? 0 : focused ? "7%" : "8%",
+            y: isFirstRender && focused ? 0 : focused ? "4%" : "8%",
             transition: { duration: 0.5 },
         },
     };
@@ -147,102 +146,139 @@ const Modal = ({
 
     return (
         <div
-            className=""
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
+            style={{
+                position: "fixed",
+                width: "100%",
+                height: "100%",
+                top: 0,
+                left: 0,
+            }}
         >
-            <div
-                className={`max-w-full bg-black h-screen ${
-                    focused ? "-z-40 opacity-90" : "z-20 opacity-100"
-                } -z-40  w-full  text-white absolute top-0 bg-cover bg-center shadow-slate-950 shadow-2xl bg-no-repeat  `}
-                style={containerStyle}
-            >
-                <button
-                    className="text-white float-right p-4 font-bold font-serif"
-                    onClick={closeModalHandler}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    initial={{ y: "50vh" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "100vh" }}
+                    transition={{ type: "tween", stiffness: 100 }}
+                    className="-z-40 h-screen "
                 >
-                    X
-                </button>
-            </div>
+                    <div
+                        className=""
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                    >
+                        <div
+                            className={`max-w-full bg-black h-screen ${
+                                focused
+                                    ? "-z-40 opacity-90"
+                                    : "z-20 opacity-100"
+                            } -z-40  w-full  text-white absolute top-0 bg-cover bg-center shadow-slate-950 shadow-2xl bg-no-repeat  `}
+                            style={containerStyle}
+                        >
+                            <button
+                                className="text-white float-right p-4 font-bold font-serif"
+                                onClick={closeModalHandler}
+                            >
+                                X
+                            </button>
+                        </div>
 
-            <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={variants}
-                transition={transition}
-                className="hidden md:block lg:h-[60%] md:bottom-[35vh] md:w-[50%] md:left-[32%] absolute lg:bottom-20 h-[60%] bottom-[40vh] left-[23%] right-[25%] w-[70%] lg:w-[20%] lg:left-[2%] z-30"
-            >
-                <img
-                    src={book[0]["bookimg"]}
-                    className="h-[100%] bottom-12 md:bottom-[4.5rem]  absolute left-[3%]  w-[110%]  md:left-0 "
-                    alt={book[0]["bookname"]}
-                    style={mainstyle}
-                />
-            </motion.div>
-
-            <div
-                className="md:hidden absolute h-[50%] bottom-[40%] left-[18%]  w-[75%]  -z-20"
-                key={chapter_number}
-            >
-                <img
-                    src={book[0]["bookimg"]}
-                    className="h-[100%]  md:bottom-[4.5rem]  absolute  w-[85%]   "
-                    alt={book[0]["bookname"]}
-                    style={mainstyle}
-                />
-            </div>
-
-            <div
-                className="hidden cursor-pointer absolute top-[12vh] right-[1vw] text-gray-400    w-32 md:block"
-                onClick={handleUpNext}
-            >
-                <div className=" upNextScrollBar md:flex items-center gap-2 bg-gray-700 rounded-full py-3 px-2 pl-6 bg-opacity-30 hover:scale-110 duration-500 mb-4">
-                    <div className=" ">Up Next</div>
-                    <div className=" pt-1 ">
-                        {!upnext && (
-                            <span style={{ color: "#9CA3AF" }}>
-                                <MdNavigateNext size={18} />
-                            </span>
-                        )}
-                        {upnext && (
-                            <span style={{ color: "#9CA3AF" }}>
-                                <MdArrowDropDown size={18} />
-                            </span>
-                        )}
-                    </div>
-                </div>
-
-                <AnimatePresence>
-                    {upnext && (
                         <motion.div
                             initial="hidden"
                             animate="visible"
-                            exit={{ x: "-100%" , scale: 0 , transition: { duration: 0.3 } } }
-                            variants={variants2}
+                            variants={variants}
                             transition={transition}
-                            className=" h-[40vh] w-32 overflow-y-auto pr-3 z-[90]  mt-10 flex flex-col gap-3 relative"
+                            className="hidden md:block lg:h-[60%] md:bottom-[35vh] md:w-[50%] md:left-[32%] absolute lg:bottom-20 h-[60%] bottom-[40vh] left-[23%] right-[25%] w-[70%] lg:w-[20%] lg:left-[2%] z-30"
                         >
-                            {nxtchapters &&
-                                nxtchapters.map((chapter, index) => {
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="text-gray-400 text-sm flex w-full gap-2 hover:text-[0.9rem]  duration-300"
-                                            onClick={() => {
-                                                sendData(
-                                                    chapter.chapter_number
-                                                );
-                                            }}
-                                        >
-                                            <p> {chapter.chapter_number}.</p>
-                                            <p> {chapter.chapter_title}</p>
-                                        </div>
-                                    );
-                                })}
+                            <img
+                                src={book[0]["bookimg"]}
+                                className="h-[100%] bottom-12 md:bottom-[4.5rem]  absolute left-[3%]  w-[110%]  md:left-0 "
+                                alt={book[0]["bookname"]}
+                                style={mainstyle}
+                            />
                         </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
+
+                        <motion.div
+                                            initial={{ scale: 0.5, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                            className="md:hidden absolute h-[50%] bottom-[40%] left-[18%]  w-[75%]  -z-20"
+                            key={chapter_number}
+                        >
+                            <img
+                                src={book[0]["bookimg"]}
+                                className="h-[100%]  md:bottom-[4.5rem]  absolute  w-[85%]"
+                                alt={book[0]["bookname"]}
+                                style={mainstyle}
+                            />
+                        </motion.div>
+
+                        <div
+                            className="hidden cursor-pointer absolute top-[12vh] right-[1vw] text-gray-400    w-32 md:block"
+                            onClick={handleUpNext}
+                        >
+                            <div className=" upNextScrollBar md:flex items-center gap-2 bg-gray-700 rounded-full py-3 px-2 pl-6 bg-opacity-30 hover:scale-110 duration-500 mb-4">
+                                <div className=" ">Up Next</div>
+                                <div className=" pt-1 ">
+                                    {!upnext && (
+                                        <span style={{ color: "#9CA3AF" }}>
+                                            <MdNavigateNext size={18} />
+                                        </span>
+                                    )}
+                                    {upnext && (
+                                        <span style={{ color: "#9CA3AF" }}>
+                                            <MdArrowDropDown size={18} />
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+
+                            <AnimatePresence>
+                                {upnext && (
+                                    <motion.div
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit={{
+                                            x: "-100%",
+                                            scale: 0,
+                                            transition: { duration: 0.3 },
+                                        }}
+                                        variants={variants2}
+                                        transition={transition}
+                                        className=" h-[40vh] w-32 overflow-y-auto pr-3 z-[90]  mt-10 flex flex-col gap-3 relative"
+                                    >
+                                        {nxtchapters &&
+                                            nxtchapters.map(
+                                                (chapter, index) => {
+                                                    return (
+                                                        <div
+                                                            key={index}
+                                                            className="text-gray-400 text-sm flex w-full gap-2 hover:text-[0.9rem]  duration-300"
+                                                            onClick={() => {
+                                                                sendData(
+                                                                    chapter.chapter_number
+                                                                );
+                                                            }}
+                                                        >
+                                                            <p>
+                                                                {chapter.chapter_number}
+                                                                .
+                                                            </p>
+                                                            <p>
+                                                                {
+                                                                    chapter.chapter_title
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    );
+                                                }
+                                            )}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                </motion.div>
+            </AnimatePresence>
         </div>
     );
 };
