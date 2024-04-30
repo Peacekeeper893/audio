@@ -153,6 +153,13 @@ const Hero = ({ book, user, sendData, chapter_number, open, setOpen }) => {
 
     const notify = () => toast("Link Copied to ClipBoard!");
 
+    const handleScrollToDescription = () => {
+        const description = document.querySelector(".description");
+        if (description) {
+            description.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <Fragment>
             <ToastContainer />
@@ -183,7 +190,12 @@ const Hero = ({ book, user, sendData, chapter_number, open, setOpen }) => {
                         <p className="my-12 italic font-extralight max-w-[100%] max-h-[6rem]  overflow-hidden -z-10 ">
                             {book[0]["about"]}
                         </p>
-                        <div className=" w-[100%] h-6  -mx-1 bg-opacity-100 bg-gradient-to-t from-gray-200 dark:from-d-bg-300 -mt-[4.3rem] mb-12 md:block hidden z-[70] "></div>
+                        <div
+                            className=" w-[100%] h-6  -mx-1 bg-opacity-100 bg-gradient-to-t from-gray-200 dark:from-d-bg-300 -mt-[4.3rem] mb-12 md:block hidden z-[70]"
+                            onClick={handleScrollToDescription}
+                        >
+                            <p className="text-right pb-5 text-sm">...</p>
+                        </div>
                     </div>
 
                     <div className="flex md:flex-row flex-col-reverse items-center md:gap-4 justify-between gap-2">
@@ -191,13 +203,13 @@ const Hero = ({ book, user, sendData, chapter_number, open, setOpen }) => {
                             {/* // Create a button to add to shelf */}
                             {!third && (
                                 <div className="my-2 md:w-[80%] w-full ">
-                                <div
-                                    className={` bg-[#F1F7FE]  font-eczar text-center cursor-pointer  font-semibold py-2 rounded border-2 px-8 w-full dark:text-white dark:bg-d-bg-300 `}
-                                    onClick={handleAddShelf}
-                                >
-                                    Add to Shelf
+                                    <div
+                                        className={` bg-[#F1F7FE]  font-eczar text-center cursor-pointer  font-semibold py-2 rounded border-2 px-8 w-full dark:text-white dark:bg-d-bg-300 `}
+                                        onClick={handleAddShelf}
+                                    >
+                                        Add to Shelf
+                                    </div>
                                 </div>
-                            </div>
                             )}
                             {third && (
                                 <div className="my-2 md:w-[80%] w-full ">
@@ -247,19 +259,21 @@ const Hero = ({ book, user, sendData, chapter_number, open, setOpen }) => {
                             )}
                         </div>
 
-                        <div className="flex md:flex-col   items-center  ">
-                            <div className="font-eczar -mb-2   px-5">
-                                Rate this book:
+                        <div className="flex md:flex-col    items-center  ">
+                            <div className="pt-1">
+                                <div className="font-eczar font-semibold -mb-2">
+                                    Your Rating:
+                                </div>
+                                <ReactStars
+                                    count={5}
+                                    onChange={ratingChanged}
+                                    size={24}
+                                    activeColor="rgb(87, 153, 239)"
+                                />
                             </div>
-                            <ReactStars
-                                count={5}
-                                onChange={ratingChanged}
-                                size={24}
-                                activeColor="#ffd700"
-                            />
 
                             <div
-                                className="mt-3 hover:scale-105 duration-500 cursor-pointer hidden md:flex items-center gap-2 dark:bg-d-bg-400 px-3 py-1 rounded-md dark:border-white border-2 font-bold"
+                                className="my-2 hover:scale-105 duration-500 cursor-pointer hidden md:flex items-center gap-2 dark:bg-d-bg-300 px-6 py-2 rounded-md dark:border-white border-2 font-bold"
                                 onClick={() => {
                                     navigator.clipboard
                                         .writeText(window.location.href)

@@ -99,7 +99,7 @@ const Navbar = ({ loggedIn, home }) => {
 
             {home && (
                 <>
-                    <div className="bg-slate-600 w-full text-white justify-between gap-6 py-2 dark:bg-d-bg-300 items-center hidden md:flex">
+                    <div className="bg-slate-600 w-full text-white justify-between gap-6 py-[0.6rem] dark:bg-d-bg-300 items-center hidden md:flex">
                         <div className="md:ml-8 ml-6 flex justify-start content-center items-center gap-6 text-lg">
                             <div className="mr-4">
                                 <RiMenu3Fill
@@ -132,14 +132,14 @@ const Navbar = ({ loggedIn, home }) => {
                             </div>
                         </div>
 
-                        <div className=" w-[30%] text-black  dark:text-d-primary-400 px-4 ">
+                        <div className=" w-[30%] text-black  dark:text-d-primary-400 px-4  ">
                             <div className="flex">
                                 <input
                                     type="search"
                                     name="searchq"
                                     id="searchq"
                                     placeholder="Search for an Audiobook..."
-                                    className="px-4 py-0.5 border-gray-300 border-[3px] w-full dark:bg-d-bg-200 rounded-lg"
+                                    className="px-4 py-1 border-gray-300 border-[3px] w-full dark:bg-d-bg-200 rounded-lg"
                                     onFocus={handleSearch}
                                     onBlur={handleBlur}
                                     value={query}
@@ -147,7 +147,7 @@ const Navbar = ({ loggedIn, home }) => {
                                         setQuery(() => e.target.value);
                                     }}
                                 />
-                                <FaSearch className="-left-6 relative top-2" />
+                                <FaSearch className="-left-6 relative top-[0.6rem]" />
                             </div>
 
                             {searchmodal && <SearchModal query={query} />}

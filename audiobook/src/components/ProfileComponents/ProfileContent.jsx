@@ -4,6 +4,7 @@ import Recent from "./Recent";
 
 import { useState, useEffect } from "react";
 import { LibraryHistory } from "../AllBooksComponents/LibraryHistory";
+import Reccomendations from "../HomePageComponents/Recommendations";
 
 const ProfileContent = () => {
     const [selected, setSelected] = useState("Shelf");
@@ -58,11 +59,20 @@ const ProfileContent = () => {
                     {selected === "Shelf" && <Shelf />}
                     {selected === "Recents" && <Recent size={6} />}
                     {selected === "History" && (
-              <div className="w-full">
-                <div className="text-2xl px-4 my-12 font-eczar">Your Listen History</div>
+                        <div className="w-full">
+                            <div className="text-2xl px-4 my-12 font-eczar">
+                                Your Listen History
+                            </div>
                             <LibraryHistory />
                         </div>
                     )}
+                    {selected === "Account" && (
+
+                        <div className="w-[75vw]">
+                            <Reccomendations />
+                            </div>
+                    )}
+                        
                 </div>
             </div>
             {/* <Shelf />

@@ -17,6 +17,7 @@ import MostPopular from "./HomePageComponents/MostPopular";
 import GenreHomePage from "./HomePageComponents/GenreHomePage";
 import CollectionScrollableWrapper from "./HomePageComponents/CollectionScrollableWrapper";
 import MobileRecents from "./HomePageComponents/MobileRecents";
+import Recommendations from "./HomePageComponents/Recommendations";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -162,6 +163,8 @@ const Home = ({ loggedIn }) => {
             </div>
 
             <MostPopular isLoading={isLoading} />
+
+            <Recommendations />
 
             <CollectionScrollableWrapper
                 isLoading={isLoading}

@@ -13,6 +13,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 
+import ImageLoader from "../Utils/ImageLoader";
 
 const BookDisplay = ({ name, author, bookimg, progress }) => {
     const [loading, setLoading] = useState(true);
@@ -105,11 +106,17 @@ const BookDisplay = ({ name, author, bookimg, progress }) => {
                             />
                         </div>
                     )}
-                    <img
+                    {/* <img
                         src={bookimg}
                         alt="img"
                         className="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]"
-                    />
+                        
+                    /> */}
+                    <ImageLoader src={bookimg} classSettings="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]" />
+                    
+
+                    
+    
                 </div>
                 <div className="h-[25%] flex flex-col">
                     <p className="flex-[40%] overflow-clip  hover:overflow-visible overflow-ellipsis whitespace-nowrap  lg:text-xl hover:whitespace-normal md:text-md text-md mt-8 mb-2 font-semibold hover:text-cyan-400 dark:hover:text-d-primary-500">
@@ -121,11 +128,12 @@ const BookDisplay = ({ name, author, bookimg, progress }) => {
 
             <div className="md:hidden lg:h-[533px] lg:w-[250px] w-[160px] h-[315px] md:h[425] md:w-[200] my-3">
                 <div className="h-[75%] mb-2">
-                    <img
+                    {/* <img
                         src={bookimg}
                         alt="img"
                         className="object-fit h-[240px] w-[160px] lg:h-[400px] lg:w-[250px] md:h[375] md:w-[200]"
-                    />
+                    /> */}
+                    <ImageLoader src={bookimg} classSettings="object-fit h-[240px] w-[160px] lg:h-[400px] lg:w-[250px] md:h[375] md:w-[200]" />
                 </div>
                 <div className="h-[25%] ">
                     <p className="lg:text-xl md:text-lg text-md mb-2 font-semibold hover:text-cyan-400 dark:hover:text-d-primary-500">
