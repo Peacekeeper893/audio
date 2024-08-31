@@ -1,0 +1,175 @@
+{
+  "name": "Book Title",
+  "author": "Author Name",
+  "about" : "A brief description of the book",
+  "chapters": [
+    {
+      "chapter_number": "1",
+      "chapter_title": "Part 1 - Chapter 1",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "2",
+      "chapter_title": "Chapter 2",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "3",
+      "chapter_title": "Chapter 3",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "4",
+      "chapter_title": "Chapter 4",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "5",
+      "chapter_title": "Chapter 5",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "6",
+      "chapter_title": "Chapter 6",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "7",
+      "chapter_title": "Chapter 7",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "8",
+      "chapter_title": "Chapter 8",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "9",
+      "chapter_title": "Chapter 9",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "10",
+      "chapter_title": "Part 2 - Chapter 10",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "11",
+      "chapter_title": "Chapter 11",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "12",
+      "chapter_title": "Chapter 12",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "13",
+      "chapter_title": "Chapter 13",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "14",
+      "chapter_title": "Chapter 14",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "15",
+      "chapter_title": "Chapter 15",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "16",
+      "chapter_title": "Chapter 16",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "17",
+      "chapter_title": "Chapter 17",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "18",
+      "chapter_title": "Chapter 18",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "19",
+      "chapter_title": "Part 3 - Chapter 19",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "20",
+      "chapter_title": "Chapter 20",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "21",
+      "chapter_title": "Chapter 21",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "22",
+      "chapter_title": "Chapter 22",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "23",
+      "chapter_title": "Chapter 23",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "24",
+      "chapter_title": "Chapter 24",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "25",
+      "chapter_title": "Chapter 25",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "26",
+      "chapter_title": "Chapter 26",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "27",
+      "chapter_title": "Chapter 27",
+      "summary": "",
+      "url": "Placeholder URL"
+    },
+    {
+      "chapter_number": "28",
+      "chapter_title": "Epilogue",
+      "summary": "",
+      "url": "Placeholder URL"
+    }
+  ]
+}

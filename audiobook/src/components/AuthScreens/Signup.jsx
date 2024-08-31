@@ -14,14 +14,13 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getAuth, updateProfile } from "firebase/auth";
-import { auth } from '../firebase';
-import { setDoc ,doc} from "firebase/firestore";
-import {db} from '../firebase';
+import { auth } from "../../firebase";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function Copyright(props) {
     return (
@@ -44,65 +43,68 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Signup() {
-
     const navigate = useNavigate();
 
-
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const name = event.target.firstName.value + " " + event.target.lastName.value;
+        const name =
+            event.target.firstName.value + " " + event.target.lastName.value;
 
         await createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            const auth = getAuth();
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                const auth = getAuth();
 
-            updateProfile(auth.currentUser, {
-                displayName: name, photoURL: "https://png.pngtree.com/png-clipart/20210606/original/pngtree-gray-avatar-placeholder-png-image_6398267.jpg"
-              }).then(() => {
-                  // Profile updated!
-                  console.log("Updated")
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL:
+                        "https://png.pngtree.com/png-clipart/20210606/original/pngtree-gray-avatar-placeholder-png-image_6398267.jpg",
+                })
+                    .then(() => {
+                        // Profile updated!
+                        console.log("Updated");
+                        // ...
+                    })
+                    .catch((error) => {
+                        // An error occurred
+                        // ...
+                    });
+
+                console.log(user);
+
+                const newData = {
+                    name: name,
+                    email: email,
+                    photoURL:
+                        "https://png.pngtree.com/png-clipart/20210606/original/pngtree-gray-avatar-placeholder-png-image_6398267.jpg",
+                };
+
+                // Set a custom document ID when adding data using doc() and setDoc()
+                const userRef = doc(db, "users", user.uid);
+                setDoc(userRef, newData)
+                    .then(() => {
+                        console.log(
+                            "Data added with custom document ID: ",
+                            user.uid
+                        );
+                    })
+                    .catch((error) => {
+                        console.error("Error adding document: ", error);
+                    });
+
+                navigate("/login");
                 // ...
-              }).catch((error) => {
-                // An error occurred
-                // ...
-              });
-
-            console.log(user);
-
-            const newData = {
-                name: name,
-                email: email,
-                photoURL: "https://png.pngtree.com/png-clipart/20210606/original/pngtree-gray-avatar-placeholder-png-image_6398267.jpg"
-            }
-
-            // Set a custom document ID when adding data using doc() and setDoc()
-            const userRef = doc(db, "users", user.uid);
-            setDoc(userRef, newData)
-            .then(() => {
-                console.log("Data added with custom document ID: ", user.uid);
             })
             .catch((error) => {
-                console.error("Error adding document: ", error);
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+                // ..
             });
-
-            navigate("/login")
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            // ..
-        });
-
-
     };
 
     return (
@@ -134,7 +136,6 @@ export default function Signup() {
                                 <TextField
                                     autoComplete="given-name"
                                     name="firstName"
-                                    
                                     fullWidth
                                     id="firstName"
                                     label="First Name"
@@ -171,7 +172,9 @@ export default function Signup() {
                                     type="password"
                                     id="password"
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)} 
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                     autoComplete="new-password"
                                 />
                             </Grid>
@@ -198,10 +201,9 @@ export default function Signup() {
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="#" variant="body2">
-
-                                    <Li to={'/login'}>
+                                    <Li to={"/login"}>
                                         Already have an account? Sign in
-                                        </Li>
+                                    </Li>
                                 </Link>
                             </Grid>
                         </Grid>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 
 const DisplayTrack = ({
   currentTrack,
@@ -12,9 +13,11 @@ const DisplayTrack = ({
 }) => {
 
 
+
   const art = [{
      src: book[0]["bookimg"] , sizes: '128x128', type: 'image/png' 
   }] 
+
 
 
   const onLoadedMetadata = () => {
@@ -52,9 +55,12 @@ const DisplayTrack = ({
 
 
   const onLoadedData = () => {
+    setIsPlaying(true);
     audioRef.current.play().then(_ => updateMetadata())
     .catch(error => console.log(error));
   }
+
+
 
   return (
     <div className="">

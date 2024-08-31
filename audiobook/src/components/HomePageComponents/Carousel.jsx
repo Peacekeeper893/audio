@@ -53,23 +53,23 @@ const Carousel = ({ books }) => {
     };
 
     return (
-        <div className=" dark:bg-d-bg-100 md:w-[95%] w-[90%] bg-stone-300 ">
+        <div className=" dark:bg-d-bg-100 md:w-[90%] w-[90%] bg-stone-300 rounded-md ">
             <Slider {...settings}>
                 {images.map((book, index) => (
 
-                    <div key={index} className="relative w-screen group">
+                    <div key={index} className="relative w-screen group rounded-md">
                         <img
                             src={book["url"]}
                             alt={`Slide ${index + 1}`}
-                            className="w-screen md:h-[80vh] h-[32vh] object-fill hover:scale-[1.04] transition duration-1000 ease-in-out"
+                            className="w-screen md:h-[80vh] h-[32vh] object-fill hover:scale-[1.04] transition duration-1000 ease-in-out rounded-md"
                         />
-                        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black opacity-50 group-hover:opacity-20"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t hover:scale-[1.04] transition duration-1000 ease-in-out from-black opacity-50 group-hover:opacity-20"></div>
                         
                         <p className="absolute bottom-5 left-2 p-4 text-[#ececec] text-3xl md:text-6xl group-hover:text-[4rem] font-bold font-sans transition-all duration-300 ease-in-out">
                             {book["name"]}
                         </p>
                         <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 font-extralight -translate-y-1/2 text-zinc-200 text-8xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <Link to={book["link"]} key={index} className="relative w-screen group">
+                        <Link to={`/${book["link"]}`} key={index} className="relative w-screen group">
                             <PlayCircleOutlineTwoTone fontSize="" />
                         </Link>
                         </p>

@@ -2,10 +2,10 @@ import React, { Fragment, useState } from "react";
 import ChapterList from "./ChapterList";
 import AboutBook from "./AboutBook";
 import Comments from "./Comments";
-import ProgressBarComponent from "../ProgressBarComponent";
+import ProgressBarComponent from "./ProgressBarComponent";
 
-const Navigation = ({ sendData, book, chapter_number }) => {
-    const [open, setOpen] = useState("chapters");
+const Navigation = ({ sendData, book, chapter_number,open,setOpen }) => {
+    // const [open, setOpen] = useState("book");
     const handleChapterClick = () => {
         setOpen((prev) => "chapters");
     };
@@ -22,7 +22,6 @@ const Navigation = ({ sendData, book, chapter_number }) => {
 
     const curr_chap = localStorage.getItem(currentURL);
     const per = (curr_chap / chapter_length) * 100;
-    console.log(per);
 
     return (
         <Fragment>
@@ -67,7 +66,7 @@ const Navigation = ({ sendData, book, chapter_number }) => {
                         className=" p-4 rounded-lg font-semibold font-serif underline underline-offset-4"
                         onClick={handleCommentsClick}
                     >
-                        COMMENTS
+                        REVIEWS
                     </div>
                 )}
                 {open !== "comments" && (
@@ -75,7 +74,7 @@ const Navigation = ({ sendData, book, chapter_number }) => {
                         className=" p-4 rounded-lg font-semibold font-serif  cursor-pointer"
                         onClick={handleCommentsClick}
                     >
-                        COMMENTS
+                        REVIEWS
                     </div>
                 )}
             </div>
@@ -88,6 +87,7 @@ const Navigation = ({ sendData, book, chapter_number }) => {
                     chapters={book[0]["chapters"]}
                     chapter_number={chapter_number}
                     chapterdetails={book[0]["chapterdetails"]}
+                    host={book[0]["aws_hosted"]}
                 />
             )}
             {open === "book" && (
@@ -95,6 +95,7 @@ const Navigation = ({ sendData, book, chapter_number }) => {
                     about={book[0]["about"]}
                     bookName={book[0]["name"]}
                     bookTag={book[0]["tag"]}
+                    genres={book[0]["genres"]}
                 />
             )}
             {open === "comments" && <Comments name={book[0]["name"]} />}

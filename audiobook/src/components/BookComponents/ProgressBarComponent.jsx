@@ -14,7 +14,7 @@ const ProgressBarComponent = ({ now }) => {
                 animate={{ width: `${now}%` }}
                 transition={{ duration: 1 }}
             >
-                <p className='relative bottom-[3.5px] dark:text-white font-semibold px-2'>{fixedNow}%</p>
+                <p className='relative bottom-[2.2px] dark:text-white font-semibold px-2'>{fixedNow}%</p>
             </motion.div>
         </div>
     )
