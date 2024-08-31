@@ -35,7 +35,7 @@ const Book = ({ loggedIn }) => {
     const [user, setUser] = useState({});
     const [showPlayer, setShowPlayer] = useState(true);
     const [open, setOpen] = useState("book");
-    const [host, setHost] = useState("jukehost");
+    const [host, setHost] = useState("do");
     const [audioUrl, setAudioUrl] = useState(null);
 
     const openModalHandler = () => {
@@ -289,10 +289,15 @@ const Book = ({ loggedIn }) => {
         }, 1000);
     };
 
-    const getJHurl = (book, chapter_number) => {
-        return `https://audio.jukehost.co.uk/${
-            book[0]["chapters"][parseInt(chapter_number) - 1]["url"]
-        }`;
+    const getDigitalOceanUrl = async (book_name, chapter_number) => {
+
+        const response = await fetch("https://admin-server-rose.vercel.app/getDO_url/" + book_name + "/" + chapter_number);
+        const data = await response.json();
+
+        console.log(data.url);
+
+        return data.url;
+        
     };
 
 
@@ -301,6 +306,8 @@ const Book = ({ loggedIn }) => {
         // Assuming you're making an API call to get the URL
         const response = await fetch("https://admin-server-rose.vercel.app/mp3url/" + book[0]["chapters"][parseInt(chapter_number) - 1]["url"]);
         const data = await response.json();
+
+        
     
         // Assuming the URL is in the 'url' property of the returned data
         return data.url;
@@ -309,8 +316,8 @@ const Book = ({ loggedIn }) => {
     useEffect(() => {
         const fetchAudioUrl = async () => {
             let url;
-            if (host === "jukehost") {
-                url = getJHurl(book, chapter_number);
+            if (host === "do") {
+                url = await getDigitalOceanUrl(book_name, chapter_number);
             } else {
                 url = await getAWSurl(book, chapter_number);
             }
