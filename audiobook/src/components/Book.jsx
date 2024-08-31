@@ -21,6 +21,7 @@ import {
     serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import chapters from "./../data/hp4";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -34,7 +35,8 @@ const Book = ({ loggedIn }) => {
     const [user, setUser] = useState({});
     const [showPlayer, setShowPlayer] = useState(true);
     const [open, setOpen] = useState("book");
-
+    const [host, setHost] = useState("jukehost");
+    const [audioUrl, setAudioUrl] = useState(null);
 
     const openModalHandler = () => {
         setOpenModal((prev) => !prev);
@@ -51,33 +53,37 @@ const Book = ({ loggedIn }) => {
             // IE/Edge
             document.documentElement.msRequestFullscreen();
         }
-
-
     };
 
     const closeModalHandler = () => {
-
         if (document.exitFullscreen) {
             console.log("exitFullscreen");
             document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) { // Firefox
+        } else if (document.mozCancelFullScreen) {
+            // Firefox
             document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+        } else if (document.webkitExitFullscreen) {
+            // Chrome, Safari and Opera
             console.log("exitFullscreen");
-            
+
             document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { // IE/Edge
+        } else if (document.msExitFullscreen) {
+            // IE/Edge
             document.msExitFullscreen();
         }
 
         setOpenModal(false);
-
     };
+
     const GetBook = () => {
         fetch(API_BASE + "/book/" + book_name)
             .then((res) => res.json())
             .then((data) => {
                 setbook(data);
+
+                if (data[0]["aws_hosted"] === true) {
+                    setHost("aws");
+                }
                 setIsLoading(false);
             })
             .catch((err) => console.error(err));
@@ -283,6 +289,40 @@ const Book = ({ loggedIn }) => {
         }, 1000);
     };
 
+    const getJHurl = (book, chapter_number) => {
+        return `https://audio.jukehost.co.uk/${
+            book[0]["chapters"][parseInt(chapter_number) - 1]["url"]
+        }`;
+    };
+
+
+
+    async function getAWSurl(book, chapter_number) {
+        // Assuming you're making an API call to get the URL
+        const response = await fetch("https://admin-server-rose.vercel.app/mp3url/" + book[0]["chapters"][parseInt(chapter_number) - 1]["url"]);
+        const data = await response.json();
+    
+        // Assuming the URL is in the 'url' property of the returned data
+        return data.url;
+    }
+
+    useEffect(() => {
+        const fetchAudioUrl = async () => {
+            let url;
+            if (host === "jukehost") {
+                url = getJHurl(book, chapter_number);
+            } else {
+                url = await getAWSurl(book, chapter_number);
+            }
+            setAudioUrl(url);
+        };
+    
+        if (book && host && chapter_number !== "0")
+        { 
+            fetchAudioUrl();
+        }
+    }, [book, chapter_number, host]);
+
     return (
         <div>
             {isLoading ? (
@@ -304,10 +344,9 @@ const Book = ({ loggedIn }) => {
                         book={book}
                         user={user}
                         sendData={sendData}
-                                chapter_number={chapter_number}
-                                open={open}
-                                setOpen={setOpen}
-
+                        chapter_number={chapter_number}
+                        open={open}
+                        setOpen={setOpen}
                     />
 
                     {!loggedIn ? (
@@ -318,9 +357,10 @@ const Book = ({ loggedIn }) => {
                         <Navigation
                             sendData={sendData}
                             book={book}
-                                        chapter_number={chapter_number}
-                                        open={open}
+                            chapter_number={chapter_number}
+                            open={open}
                                         setOpen={setOpen}
+                                       
                         />
                     )}
                 </div>
@@ -341,11 +381,14 @@ const Book = ({ loggedIn }) => {
                                 "chapter_title"
                             ]
                         }
-                        url={`https://audio.jukehost.co.uk/${
-                            book[0]["chapters"][parseInt(chapter_number) - 1][
-                                "url"
-                            ]
-                        }`}
+                        // url={`https://audio.jukehost.co.uk/${
+                        //     book[0]["chapters"][parseInt(chapter_number) - 1][
+                        //         "url"
+                        //     ]
+                        // }`}
+                        url={
+                            audioUrl
+                        }
                         // url="https://novsound-ubukj-234.s3.amazonaws.com/WTCS/4.mp3"
                         openModalHandler={openModalHandler}
                         closeModalHandler={closeModalHandler}

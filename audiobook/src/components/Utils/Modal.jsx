@@ -5,6 +5,7 @@ import { FcNext } from "react-icons/fc";
 import { MdNavigateNext } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 
+
 const Modal = ({
     openModalHandler,
     closeModalHandler,
@@ -182,6 +183,8 @@ const Modal = ({
                                 X
                             </button>
                         </div>
+
+                        
 
                         <motion.div
                             initial="hidden"

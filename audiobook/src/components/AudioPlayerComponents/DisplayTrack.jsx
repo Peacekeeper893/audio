@@ -60,6 +60,8 @@ const DisplayTrack = ({
     .catch(error => console.log(error));
   }
 
+
+
   return (
     <div className="">
       <audio

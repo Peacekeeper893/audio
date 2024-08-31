@@ -87,6 +87,7 @@ const Navigation = ({ sendData, book, chapter_number,open,setOpen }) => {
                     chapters={book[0]["chapters"]}
                     chapter_number={chapter_number}
                     chapterdetails={book[0]["chapterdetails"]}
+                    host={book[0]["aws_hosted"]}
                 />
             )}
             {open === "book" && (

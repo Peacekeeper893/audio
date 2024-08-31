@@ -53,15 +53,15 @@ const Carousel = ({ books }) => {
     };
 
     return (
-        <div className=" dark:bg-d-bg-100 md:w-[90%] w-[90%] bg-stone-300 ">
+        <div className=" dark:bg-d-bg-100 md:w-[90%] w-[90%] bg-stone-300 rounded-md ">
             <Slider {...settings}>
                 {images.map((book, index) => (
 
-                    <div key={index} className="relative w-screen group">
+                    <div key={index} className="relative w-screen group rounded-md">
                         <img
                             src={book["url"]}
                             alt={`Slide ${index + 1}`}
-                            className="w-screen md:h-[80vh] h-[32vh] object-fill hover:scale-[1.04] transition duration-1000 ease-in-out"
+                            className="w-screen md:h-[80vh] h-[32vh] object-fill hover:scale-[1.04] transition duration-1000 ease-in-out rounded-md"
                         />
                         <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t hover:scale-[1.04] transition duration-1000 ease-in-out from-black opacity-50 group-hover:opacity-20"></div>
                         

@@ -3,12 +3,22 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import BookDisplay from "./BookDisplay";
 import ScrollCollection from "../Utils/ScrollCollection";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const Collection = ({ heading, contents, isLoading ,progress , isHome }) => {
+const Collection = ({ heading, contents, isLoading, progress, isHome }) => {
+    const { ref, inView } = useInView();
+
     return (
-        <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-full max-w-full md:px-5 md:py-3 p-2">
+        <motion.div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-full max-w-full md:px-5 md:py-3 p-2"
+        ref={ref}
+            initial={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5 }}
+            animate={
+                inView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -16 }
+            }>
             <div
-                className=" md:text-4xl text-3xl font-semibold pointer-events-none px-4 pt-4 dark:text-d-bg-600 font-eczar"
+                className=" md:text-4xl text-3xl font-semibold pointer-events-none px-2 pt-4 dark:text-d-bg-600 font-eczar"
                 id="hunger-games"
             >
                 {heading}
@@ -25,10 +35,9 @@ const Collection = ({ heading, contents, isLoading ,progress , isHome }) => {
                         </div>
                     ))
                 ) : (
-                        <Fragment>
-                            
-                            {/* <ScrollCollection mostPopularBooks={contents} /> */}
-                        {contents.map((book) => (
+                    <Fragment>
+                        {/* <ScrollCollection mostPopularBooks={contents} /> */}
+                        {contents.map((book, index) => (
                             <Link to={`/book/${book["name"]}`}>
                                 <BookDisplay
                                     name={book["name"]}
@@ -36,13 +45,15 @@ const Collection = ({ heading, contents, isLoading ,progress , isHome }) => {
                                     bookimg={book["bookimg"]}
                                     progress={progress}
                                     isHome={isHome}
+                                    premium={book["aws_hosted"]}
+                                    index={index}
                                 />
                             </Link>
                         ))}
                     </Fragment>
                 )}
             </div>
-        </div>
+        </motion.div>
     );
 };
 

@@ -13,9 +13,10 @@ import {
     updateDoc,
 } from "firebase/firestore";
 
+
 import ImageLoader from "../Utils/ImageLoader";
 
-const BookDisplay = ({ name, author, bookimg, progress }) => {
+const BookDisplay = ({ name, author, bookimg, progress, premium,index }) => {
     const [loading, setLoading] = useState(true);
     const [percent, setPercent] = useState(0);
 
@@ -47,7 +48,10 @@ const BookDisplay = ({ name, author, bookimg, progress }) => {
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
                     // console.log("Document data:", docSnap.data());
-                    let p = (parseInt(docSnap.data()["chapter"]) ) / parseInt(docSnap.data()["total"]) * 100;
+                    let p =
+                        (parseInt(docSnap.data()["chapter"]) /
+                            parseInt(docSnap.data()["total"])) *
+                        100;
                     // console.log(p);
                     p = Math.round(p);
                     setPercent(p);
@@ -72,6 +76,7 @@ const BookDisplay = ({ name, author, bookimg, progress }) => {
                 whileHover={{ scale: 1.05 }}
                 onTap={{ scale: 0.95 }}
                 className="hidden md:block lg:h-[533px] lg:w-[280px] w-[140px] h-[315px] md:h[425px] md:w-[200px] my-3 hover:shadow-lg  shadow-slate-900 dark:shadow-d-bg-400 hover:px-3  p-4 rounded-xl"
+                
             >
                 <div className="h-[75%] mb-2 relative">
                     {progress && (
@@ -112,17 +117,26 @@ const BookDisplay = ({ name, author, bookimg, progress }) => {
                         className="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]"
                         
                     /> */}
-                    <ImageLoader src={bookimg} classSettings="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]" />
-                    
+                    <ImageLoader
+                        src={bookimg}
+                        classSettings="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]"
+                    />
 
-                    
-    
+                    {premium && (
+                        <img
+                            class="mr-2 max-sm:h-[30px] max-sm:w-[30px] sm:max-md:h-[14px] sm:max-md:w-[14px] md:max-lg:h-[22px] md:max-lg:w-[22px] lg:h-[44px] lg:w-[44px] absolute top-1 left-1 "
+                            src="https://v3img.voot.com/v3Storage/menu/jv/premium_icon.svg"
+                            alt="premium_icon"
+                        ></img>
+                    )}
                 </div>
                 <div className="h-[25%] flex flex-col">
                     <p className="flex-[40%] overflow-clip  hover:overflow-visible overflow-ellipsis whitespace-nowrap  lg:text-xl hover:whitespace-normal md:text-md text-md mt-8 mb-2 font-semibold hover:text-cyan-400 dark:hover:text-d-primary-500">
                         {name}
                     </p>
-                    <p className="text-sm flex-[60%] dark:text-d-bg-600">{author}</p>
+                    <p className="text-sm flex-[60%] dark:text-d-bg-600">
+                        {author}
+                    </p>
                 </div>
             </motion.div>
 
@@ -133,7 +147,10 @@ const BookDisplay = ({ name, author, bookimg, progress }) => {
                         alt="img"
                         className="object-fit h-[240px] w-[160px] lg:h-[400px] lg:w-[250px] md:h[375] md:w-[200]"
                     /> */}
-                    <ImageLoader src={bookimg} classSettings="object-fit h-[240px] w-[160px] lg:h-[400px] lg:w-[250px] md:h[375] md:w-[200]" />
+                    <ImageLoader
+                        src={bookimg}
+                        classSettings="object-fit h-[240px] w-[160px] lg:h-[400px] lg:w-[250px] md:h[375] md:w-[200]"
+                    />
                 </div>
                 <div className="h-[25%] ">
                     <p className="lg:text-xl md:text-lg text-md mb-2 font-semibold hover:text-cyan-400 dark:hover:text-d-primary-500">

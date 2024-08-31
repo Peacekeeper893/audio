@@ -179,12 +179,11 @@ const Home = ({ loggedIn }) => {
                 isLoading={isLoading}
             />
 
-            <LoadingPause />
 
-            <Collection
-                heading="A song of Ice and Fire"
-                contents={asoifbooks}
+            <CollectionScrollableWrapper
                 isLoading={isLoading}
+                heading="A song of Ice and Fire"
+                displayBooks={asoifbooks}
             />
             <Collection
                 heading="The Hunger Games Series"
