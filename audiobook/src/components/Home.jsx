@@ -135,7 +135,7 @@ const Home = ({ loggedIn }) => {
                 <MobileRecents />
             </div>
 
-            <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3  justify-center pl-2 bg-stone-100 py-8 hidden md:flex">
+            <div className="dark:bg-d-bg-100 dark:text-white md:mt-2 mt-3  justify-center pl-0 bg-stone-100 py-2 hidden md:flex">
                 <Carousel books={hpbooks} />
             </div>
 

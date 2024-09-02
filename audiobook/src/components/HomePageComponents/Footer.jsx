@@ -1,5 +1,5 @@
 import { serverTimestamp } from "firebase/firestore";
-import React, { Fragment,useState } from "react";
+import React, { div,useState } from "react";
 import { FaTwitter } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -12,10 +12,14 @@ const Footer = () => {
 
 
     return (
-        <Fragment>
-            <div className=" dark:bg-black dark:text-white min-h-[10vh] bg-slate-400 flex justify-between md:p-8 px-4 py-8 mt-8">
+        <div className="dark:bg-black dark:text-white min-h-[10vh] dark:bg-footer-gradient bg-footer-gradient-light relative">
+            <img class="footer-white-mask__default dark:hidden" src="https://paperpillar.com/assets/images/footer-white-mask.png" alt="Footer White Mask - Paperpillar"/>
+            <img class="footer-white-mask__default hidden dark:block" src="https://novelsounds-bucket-do.blr1.cdn.digitaloceanspaces.com/misc/footer-white-mask.png" alt="Footer White Mask - Paperpillar"/>
+            <div className="  flex justify-between md:p-8 px-4 py-8 mt-8">
                 {/* <div className="text-center font-eczar py-5"> Thank you for visiting us!!</div> */}
+
                 <div className="flex-col ">
+
 
                     <div className=" font-eczar pb-4 underline underline-offset-4"> Follow Us On Socials</div>
                     <div className="flex gap-3 mb-3">
@@ -48,13 +52,10 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="dark:bg-black bg-slate-400 dark:text-white pt-4 md:pt-0 ">
-                <div className=" font-eczar py-2 text-center">
-                    Thank you for visiting us!!
-                </div>
-                <div className=" font-eczar pb-2 text-center"> © 2023-2024 NovelSounds</div>
-            </div>
-        </Fragment>
+            <img src="https://paperpillar.com/assets/images/footer-pattern-bg.png"  className="absolute bottom-0 h-[40vh] md:h-[70vh] w-full"></img>
+
+
+        </div>
     );
 };
 

@@ -13,6 +13,7 @@
     "bootstrap": "^5.3.2",
     "firebase": "^10.5.0",
     "framer-motion": "^10.16.4",
+    "html-webpack-plugin": "^5.6.0",
     "r2-lcp-js": "^1.0.38",
     "r2-navigator-js": "^1.13.9",
     "r2-streamer-js": "^1.0.46",
@@ -39,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -60,5 +61,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.2.1"
   }
 }

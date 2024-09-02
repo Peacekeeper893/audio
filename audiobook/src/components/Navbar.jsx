@@ -60,18 +60,44 @@ const Navbar = ({ loggedIn, home }) => {
     };
     return (
         <Fragment>
-            <div className="hidden md:flex  md:h-[12vh] min-h-[10vh]  justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
-                <div className="self-center md:text-3xl">
+            <div className="hidden md:flex  md:h-[14vh] min-h-[10vh]  justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1 py-3 items-center">
+                <div className="mr-0  md:text-3xl flex items-center gap-6 ">
+                    <RiMenu3Fill
+                        onClick={handleOpenMenu}
+                        className="cursor-pointer  hover:animate-pulse"
+                    />
+
+                    {menu && <MenuModal setMenu={setMenu} menu={menu} />}
                     <NovelSounds />
                 </div>
+                <div className={`transition-all duration-300 ${searchmodal ? 'w-[60%]' : 'w-[40%]'} w-[50%] text-black  dark:text-d-primary-400 px-4  `}>
+                            <div className="flex">
+                                <input
+                                    type="search"
+                                    name="searchq"
+                                    id="searchq"
+                                    placeholder="Search for an Audiobook..."
+                            className={`px-4 py-2 border-gray-300 dark:border-gray-700 ${searchmodal ? 'border-[3px] ' : 'border-[1.5px]'} w-full dark:bg-d-bg-200 rounded-lg`}
+                                    onFocus={handleSearch}
+                                    onBlur={handleBlur}
+                                    value={query}
+                                    onChange={(e) => {
+                                        setQuery(() => e.target.value);
+                                    }}
+                                />
+                                <FaSearch className="-left-6 relative top-[0.8rem]" />
+                            </div>
 
-                <div className="flex md:gap-8 gap-5">
-                    <div className="self-center " title="Switch Theme">
+                            {searchmodal && <SearchModal query={query} />}
+                </div>
+
+                <div className="flex md:gap-8 gap-5 items-center">
+                    <div className=" " title="Switch Theme">
                         <Switcher />
                     </div>
                     {loggedIn && (
                         <div
-                            className="self-center text-md font-semibold md:text-lg dark:bg-d-bg-300 px-4 py-2  rounded-full hover:scale-105 bg-d-bg-500 text-white dark:text-d-primary-400"
+                            className=" text-md font-semibold md:text-lg dark:bg-d-bg-300 px-4 py-2  rounded-full hover:scale-105 bg-d-bg-500 text-white dark:text-d-primary-400"
                             title={`Hello ${displayName}`}
                         >
                             <Link to={"/profile"}>
@@ -97,7 +123,8 @@ const Navbar = ({ loggedIn, home }) => {
 
             {/* Second Action Bar */}
 
-            {home && (
+            {
+            /* {home && (
                 <>
                     <div className="bg-slate-600 w-full text-white justify-between gap-6 py-[0.6rem] dark:bg-d-bg-300 items-center hidden md:flex">
                         <div className="md:ml-8 ml-6 flex justify-start content-center items-center gap-6 text-lg">
@@ -155,7 +182,8 @@ const Navbar = ({ loggedIn, home }) => {
                     </div>
                     <div className=" border-b-[0.5px] dark:border-d-primary-500"></div>
                 </>
-            )}
+            )} */
+            }
         </Fragment>
     );
 };

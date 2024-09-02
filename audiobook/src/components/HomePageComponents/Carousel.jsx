@@ -53,7 +53,7 @@ const Carousel = ({ books }) => {
     };
 
     return (
-        <div className=" dark:bg-d-bg-100 md:w-[90%] w-[90%] bg-stone-300 rounded-md ">
+        <div className=" dark:bg-d-bg-100  w-[92%] bg-stone-300 rounded-md ">
             <Slider {...settings}>
                 {images.map((book, index) => (
 

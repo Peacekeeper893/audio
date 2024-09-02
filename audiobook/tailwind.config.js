@@ -10,6 +10,8 @@ module.exports = {
             backgroundImage: {
                 "hero-pattern":
                     "url('https://cdn3.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.jpg')",
+                'footer-gradient': 'linear-gradient(to bottom right, #c04de2, #340c7f)',
+                'footer-gradient-light': 'linear-gradient(315deg, hsla(228, 17%, 53%, 1) 0%, hsla(229, 28%, 88%, 1) 100%)',
             },
             colors: {
                 "d-bg-100": "#121212",

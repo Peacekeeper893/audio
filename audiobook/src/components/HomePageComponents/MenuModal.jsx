@@ -115,10 +115,10 @@ const MenuModal = ({ menu, setMenu }) => {
                             animate={{ x: menu ? "0%" : "-100%" }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "tween", stiffness: 110 }}
-                            className={`md:w-72 w-56 top-0 h-[101vh] absolute z-40 left-0 md:h-full bg-d-bg-200 text-white overflow-auto`}
+                            className={`md:w-72 w-56 top-0 h-[101vh] absolute z-40 left-0 md:h-full bg-slate-100 dark:bg-d-bg-200 dark:text-white overflow-auto shadow-xl rounded-r-lg text-xl`}
                         >
                             <button
-                                className="md:p-4 p-2 md:top-3 top-5  text-red-500 shadow-2xl right-0 absolute text-2xl"
+                                className="md:p-4 p-2 md:top-0.5 top-5  text-red-500  right-0 absolute text-2xl"
                                 onClick={() => setMenu(false)}
                             >
                                 <IoCloseSharp />
@@ -128,16 +128,8 @@ const MenuModal = ({ menu, setMenu }) => {
                                 Hi {user.displayName} 👋
                             </div> */}
 
-                            <div className="md:text-2xl flex items-center py-4 pl-0  text-lg font-bold font-eczar">
-                                {
-                                    <img
-                                        src={logo}
-                                        alt=""
-                                        height={50}
-                                        width={45}
-                                        className="md:mr-3 mr-1 pb-1"
-                                    />
-                                }
+                            <div className="md:text-2xl flex items-center py-4 pl-4  text-lg font-bold font-eczar">
+                               
                                 Hi {user.displayName}👋
                             </div>
                             <div className="border"></div>
@@ -169,7 +161,7 @@ const MenuModal = ({ menu, setMenu }) => {
                             </Link>
 
                             <button
-                                className="p-4  text-white bottom-0   right-0 absolute text-2xl"
+                                className="p-4  dark:text-white bottom-0   right-0 absolute text-2xl"
                                 onClick={() => setMenu(false)}
                             >
                                 <div className="flex items-center   gap-2 ">
