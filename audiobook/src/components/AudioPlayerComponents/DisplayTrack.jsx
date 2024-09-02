@@ -73,6 +73,7 @@ const DisplayTrack = ({
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
         onLoadedData={onLoadedData}
+        onLoadStart={() => setDuration(0)}
       ></audio>
     </div>
   );

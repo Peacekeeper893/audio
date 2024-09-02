@@ -7,6 +7,9 @@ import { IoCloseSharp } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import Bookmarks from "../Utils/Bookmarks";
 
+import UseAnimations from "react-useanimations";
+import Infinity from "react-useanimations/lib/infinity";
+
 const ProgressBar = ({
     progressBarRef,
     audioRef,
@@ -59,7 +62,11 @@ const ProgressBar = ({
                     {formatTime(timeProgress)}
                 </div>
                 <div className="relative right-[5%] ">
-                    {formatTime(duration)}
+                    {duration == 0 ? <UseAnimations
+                                                animation={Infinity}
+                                                size={26}
+                                                strokeColor="#000000"
+                                            /> :formatTime(duration)}
                 </div>
             </div>
 
