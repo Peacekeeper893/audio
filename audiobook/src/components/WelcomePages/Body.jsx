@@ -1,5 +1,7 @@
 import React from 'react'
 import cover from '../../data/cover2.png'
+import Footer from './../HomePageComponents/Footer';
+import {Services} from './Services';
 
 const Body = () => {
   return (
@@ -7,7 +9,9 @@ const Body = () => {
           
           <div>
               <img src={cover} alt="" />
-          </div>
+      </div>
+      <Services/>
+      <Footer/>
           
     </div>
   )
