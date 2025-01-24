@@ -185,3 +185,19 @@ ul.react-paginate li.disabled a {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Define the keyframes for the animation */
+@keyframes rotateStretchRotate {
+  0% {
+    transform: rotate(90deg);
+    /* width: 100px; Initial width */
+  }
+  100% {
+    transform: rotate(0deg);
+    /* width: 100px; Final width, same as initial */
+  }
+}
+
+.logo_animate {
+  animation: rotateStretchRotate 1.5s ease-in-out;
+}

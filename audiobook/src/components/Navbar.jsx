@@ -61,23 +61,23 @@ const Navbar = ({ loggedIn, home }) => {
     return (
         <Fragment>
             <div className="hidden md:flex  md:h-[14vh] min-h-[10vh]  justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1 py-3 items-center">
-                <div className="mr-0  md:text-3xl flex items-center gap-6 ">
+                <div className="mr-0  md:text-3xl flex items-center gap-6">
                     <RiMenu3Fill
                         onClick={handleOpenMenu}
-                        className="cursor-pointer  hover:animate-pulse"
+                        className="cursor-pointer hover:animate-pulse logo_animate"
                     />
 
                     {menu && <MenuModal setMenu={setMenu} menu={menu} />}
                     <NovelSounds />
                 </div>
-                <div className={`transition-all duration-300 ${searchmodal ? 'w-[60%]' : 'w-[40%]'} w-[50%] text-black  dark:text-d-primary-400 px-4  `}>
+                <div className={`transition-all duration-300 ${searchmodal ? 'w-[60%]' : 'w-[40%]'} w-[50%] text-black  dark:text-d-primary-400   `}>
                             <div className="flex">
                                 <input
                                     type="search"
                                     name="searchq"
                                     id="searchq"
                                     placeholder="Search for an Audiobook..."
-                            className={`px-4 py-2 border-gray-300 dark:border-gray-700 ${searchmodal ? 'border-[3px] ' : 'border-[1.5px]'} w-full dark:bg-d-bg-200 rounded-lg`}
+                            className={`px-4 py-2 border-gray-300 dark:border-gray-700 ${searchmodal ? 'border-[3px] ' : 'border-[1.5px]'} w-full dark:bg-d-bg-200 rounded-lg h-full`}
                                     onFocus={handleSearch}
                                     onBlur={handleBlur}
                                     value={query}

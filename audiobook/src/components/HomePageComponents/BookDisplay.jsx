@@ -75,34 +75,24 @@ const BookDisplay = ({ name, author, bookimg, progress, premium,index }) => {
                 animate={{ scale: 1, opacity: 1 }}
                 whileHover={{ scale: 1.05 }}
                 onTap={{ scale: 0.95 }}
-                className="hidden md:block lg:h-[533px] lg:w-[280px] w-[140px] h-[315px] md:h[425px] md:w-[200px] my-3 hover:shadow-lg  shadow-slate-900 dark:shadow-d-bg-400 hover:px-3  p-4 rounded-xl"
+                className="hidden md:block
+                h-[55vh] w-[18.5vw]
+                hover:shadow-lg  shadow-slate-900 dark:shadow-d-bg-400 rounded-xl
+                hover:px-3  p-4 my-1 "
                 
             >
-                <div className="h-[75%] mb-2 relative">
+                <div className="h-[80%]  relative">
                     {progress && (
-                        <div className="absolute top-1 right-1   font-bold text-7xl  h-12 w-12 text-purple-800">
+                        <div className="absolute top-1 right-1   font-bold text-7xl  h-[10%] w-10 text-purple-800">
                             <CircularProgressbar
                                 background={true}
                                 strokeWidth={12}
                                 value={percent}
                                 text={`${percent}%`}
                                 styles={buildStyles({
-                                    // Rotation of path and trail, in number of turns (0-1)
-                                    // rotation: 0.25,
-
-                                    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                                     strokeLinecap: "butt",
-
-                                    // Text size
                                     textSize: "28px",
-
-                                    // How long animation takes to go from one percentage to another, in seconds
                                     pathTransitionDuration: 0.5,
-
-                                    // Can specify path transition in more detail, or remove it entirely
-                                    // pathTransition: 'none',
-
-                                    // Colors
                                     pathColor: `rgba(212, 22, 229)`,
                                     textColor: "#000",
                                     trailColor: "#000",
@@ -111,30 +101,27 @@ const BookDisplay = ({ name, author, bookimg, progress, premium,index }) => {
                             />
                         </div>
                     )}
-                    {/* <img
-                        src={bookimg}
-                        alt="img"
-                        className="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]"
-                        
-                    /> */}
+
                     <ImageLoader
                         src={bookimg}
-                        classSettings="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[290px] md:h[375px] md:w-[200px]"
+                        classSettings="object-fit h-full w-full"
                     />
 
                     {premium && (
                         <img
-                            class="mr-2 max-sm:h-[30px] max-sm:w-[30px] sm:max-md:h-[14px] sm:max-md:w-[14px] md:max-lg:h-[22px] md:max-lg:w-[22px] lg:h-[44px] lg:w-[44px] absolute top-1 left-1 "
+                            class="mr-2 h-[15%] w-[15%] absolute top-1 left-1 "
                             src="https://v3img.voot.com/v3Storage/menu/jv/premium_icon.svg"
                             alt="premium_icon"
                         ></img>
                     )}
                 </div>
-                <div className="h-[25%] flex flex-col">
-                    <p className="flex-[40%] overflow-clip  hover:overflow-visible overflow-ellipsis whitespace-nowrap  lg:text-xl hover:whitespace-normal md:text-md text-md mt-8 mb-2 font-semibold hover:text-cyan-400 dark:hover:text-d-primary-500">
+                <div className="h-[20%] flex flex-col">
+                    <p className="flex-1 overflow-clip  hover:overflow-visible overflow-ellipsis whitespace-nowrap   hover:whitespace-normal md:text-md text-md  font-semibold
+                     hover:text-cyan-400 dark:hover:text-d-primary-500
+                     mt-2">
                         {name}
                     </p>
-                    <p className="text-sm flex-[60%] dark:text-d-bg-600">
+                    <p className="text-sm flex-[30%] dark:text-d-bg-600">
                         {author}
                     </p>
                 </div>

@@ -18,13 +18,13 @@ const Collection = ({ heading, contents, isLoading, progress, isHome }) => {
                 inView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -16 }
             }>
             <div
-                className=" md:text-4xl text-3xl font-semibold pointer-events-none px-2 pt-4 dark:text-d-bg-600 font-eczar"
+                className=" md:text-4xl text-3xl font-semibold pointer-events-none px-4 pt-4 dark:text-d-bg-600 font-eczar"
                 id="hunger-games"
             >
                 {heading}
             </div>
 
-            <div className="flex flex-wrap px-4  py-4 md:px-0 gap-6 md:gap-2">
+            <div className="flex flex-wrap px-4 py-2 md:px-0 gap-6 md:gap-2">
                 {isLoading === true ? (
                     Array.from({ length: 5 }).map((_, index) => (
                         <div
@@ -35,7 +35,7 @@ const Collection = ({ heading, contents, isLoading, progress, isHome }) => {
                         </div>
                     ))
                 ) : (
-                    <Fragment>
+                    <div className="flex flex-wrap">
                         {/* <ScrollCollection mostPopularBooks={contents} /> */}
                         {contents.map((book, index) => (
                             <Link to={`/book/${book["name"]}`}>
@@ -50,7 +50,7 @@ const Collection = ({ heading, contents, isLoading, progress, isHome }) => {
                                 />
                             </Link>
                         ))}
-                    </Fragment>
+                    </div>
                 )}
             </div>
         </motion.div>

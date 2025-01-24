@@ -140,26 +140,10 @@ const Home = ({ loggedIn }) => {
             </div>
 
             <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white md:flex hidden  ">
-                <div className=" md:flex-[75]  ">
-                    <Recent size={3} />
+                <div className=" ">
+                    <Recent size={5} />
                 </div>
-                <div className="md:flex flex-col ml-2 flex-[25] hidden">
-                    <div className="font-semibold text-2xl mt-6 mb-1">
-                        Recently Added
-                    </div>
-                    <hr className="border-gray-500 " />
-                    <div className=" mt-8 max-h-fit flex-col grid gap-10 md:gap-4">
-                        {books
-                            .slice()
-                            .reverse()
-                            .slice(0, 12)
-                            .map((book) => (
-                                <Link to={`book/${book["name"]}`}>
-                                    <ShortcutDisplay book={book} />
-                                </Link>
-                            ))}
-                    </div>
-                </div>
+
             </div>
 
             <MostPopular isLoading={isLoading} />
